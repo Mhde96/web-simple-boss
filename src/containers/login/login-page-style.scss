@@ -1,0 +1,12 @@
+@import "../../styles/variable.scss";
+#login-page-style {
+  .login-container {
+    height: $body-height;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    background-color: $primary-color;
+  }
+}
