@@ -1,1 +1,4 @@
-export type {}
+type ButtonProps = {
+    children:any
+};
+export type { ButtonProps };

@@ -1,4 +1,5 @@
 import { Button as BootstrapButton } from "react-bootstrap";
-export const Button = () => {
-  return <BootstrapButton />;
+import { ButtonProps } from "./button-type";
+export const Button = ({ children }: ButtonProps) => {
+  return <BootstrapButton>{children}</BootstrapButton>;
 };

@@ -9,8 +9,7 @@ export const HeaderWidget = () => {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link>Journals</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

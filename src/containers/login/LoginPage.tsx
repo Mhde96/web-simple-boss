@@ -10,24 +10,24 @@ export const LoginPage = ({ handleChange, values }: LoginPagePropsType) => {
   };
   return (
     <div id="login-page-style">
-      <div className="login-container">
-        <Row className="justify-content-center">
-          <Col {...bootstrap}>
-            <Input
-              placeholder="Email"
-              onChange={handleChange("email")}
-              value={values.email}
-            />
-            <Input
-              placeholder="Password"
-              onChange={handleChange("password")}
-              value={values.password}
-            />
+      <Row className="justify-content-center">
+        <Col {...bootstrap}>
+          <Input
+            placeholder="Email"
+            onChange={handleChange("email")}
+            value={values.email}
+          />
+          <Input
+            placeholder="Password"
+            onChange={handleChange("password")}
+            value={values.password}
+          />
 
-            <Button />
-          </Col>
-        </Row>
-      </div>
+          <Button >
+            Login
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 };
