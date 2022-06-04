@@ -1,0 +1,25 @@
+@import "../../styles/variable.scss";
+#table-style {
+  overflow-x: auto;
+
+  table,
+  th,
+  td {
+    // border: 1px solid #6d6969;
+    padding: 10px;
+  }
+
+  table {
+    width: 100%;
+    background: $background-color;
+    // border-radius: 5px;
+  }
+
+  .tr:hover {
+    // background: $primary-color;
+    // color: white;
+    cursor: pointer;
+  }
+  th {
+  }
+}

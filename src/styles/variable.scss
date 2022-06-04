@@ -1,7 +1,43 @@
 // vh
-$header-height: 5vh;
+$header-height: 50px;
 $body-height: calc(100vh - $header-height);
 
 // colors
-$primary-color: #390099;
-$background-color: #390099;
+$primary-color: #f6cf50 ;
+$on-primary-color: #ffffff;
+
+$secondary: #fb8500;
+$on-secondary: #000000;
+
+$background-color: #f0f2f5;
+$background-dark-color: #18191a;
+
+$on-background-color: #000000;
+$on-background-dark-color: #ffffff;
+
+$surface-color: #ffffff;
+$surface-dark-color: #242526;
+
+$on-surface-color: #000000;
+$on-surface-dark-color: #ffffff;
+
+$border-color: #ced0d4;
+$border-dark-color: #393a3b;
+
+// onSurfice_soft: '#87879D',
+// Link: '#2680EB',
+// error: 'red',
+// text: BrightMode ? '#212121' : '#F7F8FA',
+
+// whatsapp: '#57BC55',
+// telegram: '#53A3D9',
+// rate: 'rgb(238,201,70)',
+
+
+// bootstrap values
+$xxl: 1400px;
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+$xs: 0px;

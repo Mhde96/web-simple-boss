@@ -1,11 +1,13 @@
-import React from 'react';
-import { Navigation } from './Routes';
-
-
+import React from "react";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import { Navigation } from "./Routes";
 
 function App() {
   return (
-    <Navigation/>
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
   );
 }
 
