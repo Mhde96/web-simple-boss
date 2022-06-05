@@ -1,9 +1,9 @@
 export type AccountsPropsType = {
-  accounts: Array<account>;
+  accounts: Array<accountType>;
   columns: Array<any>;
 };
 
-type account = {
+export type accountType = {
   id: number;
   name: string;
 };

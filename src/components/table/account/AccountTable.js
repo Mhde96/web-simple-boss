@@ -1,4 +1,4 @@
-import "./table-style.scss";
+import "../table-style.scss";
 
 import { useTranslation } from "react-i18next";
 import {
@@ -7,12 +7,12 @@ import {
   useTableInstance,
 } from "@tanstack/react-table";
 import { useNavigate } from "react-router-dom";
-import { endroutes } from "../../constant/endroutes";
+import { endroutes } from "../../../constant/endroutes";
 import { Table as TableBootstrap } from "react-bootstrap";
 
 const table = createTable();
 
-export const Table = ({ data, columns }) => {
+export const AccountTable = ({ data, columns }) => {
   const navigate = useNavigate();
 
   const displayColumns = [
@@ -66,9 +66,7 @@ export const Table = ({ data, columns }) => {
             <tr
               className="tr"
               key={row.id}
-              onClick={() =>
-                navigate(endroutes.journalentaries(row.original.id).go)
-              }
+             
             >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>{cell.renderCell()}</td>

@@ -1,10 +1,10 @@
-import { Table } from "../../components/table/Table";
+import { AccountTable } from "../../components/table/account/AccountTable";
 import { AccountsPropsType } from "./account-type";
 
 export const AccountsPage = (props: AccountsPropsType) => {
   return (
     <>
-      <Table data={props.accounts} columns={props.columns} />
+      <AccountTable data={props.accounts} columns={props.columns} />
     </>
   );
 };

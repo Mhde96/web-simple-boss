@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { endroutes } from "./constant/endroutes";
 import { AccountsContainer } from "./containers/accounts/AccountsContainer";
-import { JournalEntaryContainer } from "./containers/journal-entary/JournalEntaryContainer";
+import { JournalEntryContainer } from "./containers/journal-entry/JournalEntryContainer";
 import { JournalsContainer } from "./containers/journals/JournalsContainer";
 import { LoginContainer } from "./containers/login/LoginContainer";
 import { selectUser } from "./redux/app/appSlice";
@@ -18,7 +18,7 @@ export const Navigation = () => {
         <Route path="/" element={<PlatformLayout />}>
           <Route
             path={endroutes.journalentaries().path}
-            element={<JournalEntaryContainer />}
+            element={<JournalEntryContainer />}
           />
           <Route
             path={endroutes.journals.path}
