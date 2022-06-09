@@ -15,7 +15,7 @@ export const PlatformLayout = () => {
     </div>
   );
 
-  // register
+  // register 1
   return (
     <div id="platform-layout-style">
       <HeaderWidget />
