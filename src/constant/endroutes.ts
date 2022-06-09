@@ -1,5 +1,6 @@
 export const endroutes = {
   login: "login",
+  register: 'register',
   journals: { path: "journals", title: "Journal" },
   accounts: { path: "accounts", title: "Account" },
   journalentaries: (id?: number) => {

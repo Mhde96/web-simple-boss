@@ -1,6 +1,7 @@
 import react from "react";
+import { Input } from "../../components/input/Input";
 
-const FormSignup = ()=>{
+export const FormSignup = ()=>{
     return(
         <div className="form-content-right">
             <form className="form">
@@ -18,6 +19,9 @@ const FormSignup = ()=>{
                         placeholder="enter your name"/>
                 </div>
                 <div className="form-input">
+                    <Input
+                    placeholder="email"
+                    />
                     <label htmlFor="email" 
                     className="form-lable">
                         Email
@@ -63,4 +67,3 @@ const FormSignup = ()=>{
         </div>
     )
 }
-export default FormSignup;
