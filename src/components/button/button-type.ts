@@ -1,4 +1,5 @@
 type ButtonProps = {
-    children:any
+  children: any;
+  onClick: any;
 };
 export type { ButtonProps };

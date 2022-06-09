@@ -1,0 +1,103 @@
+Date : 2022-06-09 21:12:25
+Directory : /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src
+Total : 52 files,  853 codes, 69 comments, 154 blanks, all 1076 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| TypeScript React |         17 |        388 |         14 |         54 |        456 |
+| JavaScript       |          9 |        165 |         36 |         29 |        230 |
+| TypeScript       |         17 |        163 |          5 |         35 |        203 |
+| SCSS             |          9 |        137 |         14 |         36 |        187 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                            |         52 |        853 |         69 |        154 |      1,076 |
+| components                                                                                                   |         13 |        175 |         40 |         30 |        245 |
+| components/button                                                                                            |          3 |         12 |          0 |          3 |         15 |
+| components/input                                                                                             |          3 |         21 |          0 |          4 |         25 |
+| components/table                                                                                             |          4 |        132 |         40 |         20 |        192 |
+| components/table/account                                                                                     |          1 |         55 |         18 |          8 |         81 |
+| components/table/journal                                                                                     |          1 |         58 |         18 |          7 |         83 |
+| components/text                                                                                              |          3 |         10 |          0 |          3 |         13 |
+| constant                                                                                                     |          3 |         17 |          0 |          4 |         21 |
+| containers                                                                                                   |         13 |        323 |         11 |         50 |        384 |
+| containers/accounts                                                                                          |          3 |         29 |          0 |          6 |         35 |
+| containers/journal-entry                                                                                     |          3 |        182 |         10 |         20 |        212 |
+| containers/journals                                                                                          |          3 |         45 |          0 |          7 |         52 |
+| containers/login                                                                                             |          4 |         67 |          1 |         17 |         85 |
+| helper                                                                                                       |          3 |         23 |          0 |          6 |         29 |
+| helper/languages                                                                                             |          2 |          4 |          0 |          2 |          6 |
+| hook                                                                                                         |          1 |          4 |          0 |          1 |          5 |
+| hook/api                                                                                                     |          1 |          4 |          0 |          1 |          5 |
+| redux                                                                                                        |          5 |         48 |          0 |         12 |         60 |
+| redux/app                                                                                                    |          2 |         15 |          0 |          5 |         20 |
+| redux/data                                                                                                   |          2 |         24 |          0 |          5 |         29 |
+| styles                                                                                                       |          1 |         22 |         10 |         12 |         44 |
+| widgets                                                                                                      |          6 |        129 |          0 |         20 |        149 |
+| widgets/header                                                                                               |          2 |         25 |          0 |          5 |         30 |
+| widgets/layout                                                                                               |          4 |        104 |          0 |         15 |        119 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                                     | language         | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/App.tsx                                            | TypeScript React |         12 |          0 |          3 |         15 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/Routes.tsx                                         | TypeScript React |         36 |          0 |          4 |         40 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/button/Button.tsx                       | TypeScript React |          5 |          0 |          1 |          6 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/button/button-style.scss                | SCSS             |          2 |          0 |          1 |          3 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/button/button-type.ts                   | TypeScript       |          5 |          0 |          1 |          6 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/input/Input.tsx                         | TypeScript React |         14 |          0 |          2 |         16 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/input/input-style.scss                  | SCSS             |          2 |          0 |          1 |          3 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/input/input-type.ts                     | TypeScript       |          5 |          0 |          1 |          6 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/table/account/AccountTable.js           | JavaScript       |         55 |         18 |          8 |         81 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/table/journal/JournalTable.js           | JavaScript       |         58 |         18 |          7 |         83 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/table/table-style.scss                  | SCSS             |         18 |          4 |          4 |         26 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/table/table-type.ts                     | TypeScript       |          1 |          0 |          1 |          2 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/text/Text.tsx                           | TypeScript React |          5 |          0 |          1 |          6 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/text/text-style.scss                    | SCSS             |          2 |          0 |          1 |          3 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/components/text/text-type.ts                       | TypeScript       |          3 |          0 |          1 |          4 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/constant/configEndpoints.ts                        | TypeScript       |          3 |          0 |          2 |          5 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/constant/endpoints.ts                              | TypeScript       |          2 |          0 |          1 |          3 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/constant/endroutes.ts                              | TypeScript       |         12 |          0 |          1 |         13 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/accounts/AccountsContainer.tsx          | TypeScript React |         12 |          0 |          2 |         14 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/accounts/AccountsPage.tsx               | TypeScript React |          9 |          0 |          2 |         11 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/accounts/account-type.ts                | TypeScript       |          8 |          0 |          2 |         10 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/journal-entry/JournalEntaryPage.tsx     | TypeScript React |         23 |          3 |          2 |         28 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/journal-entry/JournalEntryContainer.tsx | TypeScript React |         98 |          7 |         11 |        116 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/journal-entry/journal-entry-type.ts     | TypeScript       |         61 |          0 |          7 |         68 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/journals/JournalsContainer.tsx          | TypeScript React |         27 |          0 |          4 |         31 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/journals/JournalsPage.tsx               | TypeScript React |          9 |          0 |          1 |         10 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/journals/journal-type.ts                | TypeScript       |          9 |          0 |          2 |         11 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/login/LoginContainer.tsx                | TypeScript React |         11 |          0 |          3 |         14 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/login/LoginPage.tsx                     | TypeScript React |         40 |          1 |          6 |         47 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/login/login-constant.ts                 | TypeScript       |         13 |          0 |          5 |         18 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/containers/login/login-page-style.scss             | SCSS             |          3 |          0 |          3 |          6 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/helper/i18n.ts                                     | TypeScript       |         19 |          0 |          4 |         23 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/helper/languages/ar.js                             | JavaScript       |          2 |          0 |          1 |          3 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/helper/languages/en.js                             | JavaScript       |          2 |          0 |          1 |          3 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/hook/api/useApi.ts                                 | TypeScript       |          4 |          0 |          1 |          5 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/index.scss                                         | SCSS             |         35 |          0 |          4 |         39 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/index.tsx                                          | TypeScript React |         15 |          3 |          3 |         21 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/react-app-env.d.ts                                 | TypeScript       |          0 |          1 |          1 |          2 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/redux/app/appAsync.js                              | JavaScript       |          0 |          0 |          1 |          1 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/redux/app/appSlice.js                              | JavaScript       |         15 |          0 |          4 |         19 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/redux/data/dataAsync.js                            | JavaScript       |          0 |          0 |          1 |          1 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/redux/data/dataSlice.js                            | JavaScript       |         24 |          0 |          4 |         28 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/redux/store.js                                     | JavaScript       |          9 |          0 |          2 |         11 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/reportWebVitals.ts                                 | TypeScript       |         13 |          0 |          3 |         16 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/setupTests.ts                                      | TypeScript       |          1 |          4 |          1 |          6 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/styles/variable.scss                               | SCSS             |         22 |         10 |         12 |         44 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/widgets/header/HeaderWidget.tsx                    | TypeScript React |         18 |          0 |          2 |         20 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/widgets/header/header-style.scss                   | SCSS             |          7 |          0 |          3 |         10 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/widgets/layout/AuthLayout.tsx                      | TypeScript React |         12 |          0 |          2 |         14 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/widgets/layout/PlatformLayout.tsx                  | TypeScript React |         42 |          0 |          5 |         47 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/widgets/layout/layout-style.scss                   | SCSS             |         46 |          0 |          7 |         53 |
+| /Volumes/SSD2/developer/Projects/boss/web-simple-boss/src/widgets/layout/layout-type.ts                      | TypeScript       |          4 |          0 |          1 |          5 |
+| Total                                                                                                        |                  |        853 |         69 |        154 |      1,076 |
++--------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
