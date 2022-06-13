@@ -1,6 +1,8 @@
 type LoginPagePropsType = {
   handleChange: any;
   values: LoginStateType;
+  errors: any;
+  handleSubmit: any;
 };
 
 type LoginStateType = {
@@ -12,6 +14,5 @@ export const LoginState: LoginStateType = {
   email: "",
   password: "",
 };
-
 
 export type { LoginPagePropsType, LoginStateType };

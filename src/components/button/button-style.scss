@@ -1,3 +1,4 @@
-#button-style {
-    
+@import "../../styles/variable.scss";
+.button-style {
+  background-color: $primary-color;
 }

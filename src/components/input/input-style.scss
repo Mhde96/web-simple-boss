@@ -1,3 +1,6 @@
-#input-style{
-    
+@import "../../styles/variable.scss";
+#input-style {
+  .error {
+    color: $error;
+  }
 }
