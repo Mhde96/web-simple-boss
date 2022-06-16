@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Button } from "../../components/button/Button";
 import { Input } from "../../components/input/Input";
 import { Text } from "../../components/text/Text";
-import { LoginPagePropsType } from "./login-constant";
+import { LoginPagePropsType } from "./login-type";
 import "./login-page-style.scss";
 export const LoginPage = ({
   handleChange,

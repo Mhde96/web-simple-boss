@@ -33,7 +33,7 @@ export const Navigation = () => {
 
         <Route element={<AuthLayout />}>
           <Route path={endroutes.login} element={<LoginContainer />} />
-          <Route path={endroutes.register} element={<Signupconstant />} />  
+          <Route path={endroutes.register} element={<SignupContainer />} />  
         </Route>
         
       </Routes>

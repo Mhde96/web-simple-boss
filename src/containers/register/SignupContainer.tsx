@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { SignupState } from "./Signup-constant";
+import { SignupState } from "./signup-type";
 import { SignupPage } from "./SignupPage";
 import * as yup from "yup";
 
@@ -10,7 +10,7 @@ const validationSchema = yup.object().shape({
   onfirm_Password: yup.string().required().min(4).max(10),
 });
 
-export const LoginContainer = () => {
+export const SignupContainer = () => {
   const { values, handleChange, errors, handleSubmit } = useFormik({
     validationSchema,
     initialValues: SignupState,

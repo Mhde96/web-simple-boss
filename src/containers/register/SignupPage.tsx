@@ -3,8 +3,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Button } from "../../components/button/Button";
 import { Input } from "../../components/input/Input";
 import { Text } from "../../components/text/Text";
-import { SignupPagePropsType } from "./Signup-constant";
-import "./Signup.scss";
+import { SignupPagePropsType } from "./signup-type";
+import "./signup-page.scss";
 export const SignupPage = ({
   handleChange,
   values,

@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { LoginState } from "./login-constant";
+import { LoginState } from "./login-type";
 import { LoginPage } from "./LoginPage";
 import * as yup from "yup";
 
