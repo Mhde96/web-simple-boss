@@ -5,7 +5,7 @@ import { AccountsContainer } from "./containers/accounts/AccountsContainer";
 import { JournalEntryContainer } from "./containers/journal-entry/JournalEntryContainer";
 import { JournalsContainer } from "./containers/journals/JournalsContainer";
 import { LoginContainer } from "./containers/login/LoginContainer";
-import {FormSignup} from "./containers/register/FormSignup";
+import {SignupContainer} from "./containers/register/SignupContainer";
 import { selectUser } from "./redux/app/appSlice";
 import { AuthLayout } from "./widgets/layout/AuthLayout";
 import { PlatformLayout } from "./widgets/layout/PlatformLayout";
@@ -33,7 +33,7 @@ export const Navigation = () => {
 
         <Route element={<AuthLayout />}>
           <Route path={endroutes.login} element={<LoginContainer />} />
-          <Route path={endroutes.register} element={<FormSignup />} />  
+          <Route path={endroutes.register} element={<Signupconstant />} />  
         </Route>
         
       </Routes>
