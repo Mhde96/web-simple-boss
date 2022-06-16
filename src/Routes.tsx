@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { endroutes } from "./constant/endroutes";
 import { AccountsContainer } from "./containers/accounts/AccountsContainer";
+import { ForgetPasswordContainer } from "./containers/forget-password/ForgetPasswordContainer";
 import { JournalEntryContainer } from "./containers/journal-entry/JournalEntryContainer";
 import { JournalsContainer } from "./containers/journals/JournalsContainer";
 import { LoginContainer } from "./containers/login/LoginContainer";
@@ -34,6 +35,7 @@ export const Navigation = () => {
         <Route element={<AuthLayout />}>
           <Route path={endroutes.login} element={<LoginContainer />} />
           <Route path={endroutes.register} element={<SignupContainer />} />  
+          <Route path={endroutes.forgetpassword} element={<ForgetPasswordContainer/>}/>
         </Route>
         
       </Routes>
