@@ -1,7 +1,12 @@
 import { TextPropsType } from "./text-type";
-import "../../index.scss"
+import "../../index.scss";
 import "./text-style.scss";
-export const Text = ({ children, fs }: TextPropsType) => {
-  
-  return <div className={fs}>{children}</div>;
+import classNames from "classnames";
+export const Text = ({ children, fs, bold, center }: TextPropsType) => {
+  const classes = classNames(fs, {
+    bold,
+    center,
+  });
+
+  return <div className={classes}>{children}</div>;
 };

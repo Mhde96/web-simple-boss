@@ -4,7 +4,8 @@ import { Button } from "../../components/button/Button";
 import { Input } from "../../components/input/Input";
 import { Text } from "../../components/text/Text";
 import { SignupPagePropsType } from "./signup-type";
-import "./signup-page.scss";
+import "./signup-page-style.scss";
+
 export const SignupPage = ({
   handleChange,
   values,
@@ -12,8 +13,13 @@ export const SignupPage = ({
   handleSubmit,
 }: SignupPagePropsType) => {
   return (
-    <>
-      <Text fs={"f2"}>Boss System</Text>
+    <div id="signup-page-style">
+      <Text fs={"f2"} bold center>
+        Boss Accounting
+      </Text>
+      <Text fs={"f2"} center>
+        Reigester
+      </Text>
 
       <br />
 
@@ -23,8 +29,7 @@ export const SignupPage = ({
         value={values.username}
         error={errors?.username}
       />
-      <br />
-      
+
       <br />
 
       <Input
@@ -40,19 +45,18 @@ export const SignupPage = ({
         value={values.password}
         error={errors?.password}
       />
-      <br />
 
       <br />
 
       <Input
         placeholder="Confirm Password"
-        onChange={handleChange("Confirm Password")}
-        value={values.Confirm_Password}
-        error={errors?.Confirm_Password}
+        onChange={handleChange("confirm_password")}
+        value={values.confirm_password}
+        error={errors?.confirm_password}
       />
       <br />
 
       <Button onClick={handleSubmit}>Signup</Button>
-    </>
+    </div>
   );
 };
