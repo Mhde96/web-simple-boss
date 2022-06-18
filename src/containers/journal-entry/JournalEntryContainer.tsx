@@ -1,16 +1,20 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import _ from "lodash";
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectAccounts } from "../../redux/data/dataSlice";
+import { SelectAccountDialog } from "../../widgets/select-account/SelectAccountDialog";
 import { accountType } from "../accounts/account-type";
+import {
+  jounral_entry_columns,
+  journal_entry_rows,
+} from "./journal-entry-functions";
 import {
   columnsKey,
   empty_row,
   entryType,
-  jounral_entry_columns,
   JournalEntryPagePropsType,
-  journal_entry_rows,
 } from "./journal-entry-type";
 import { JournalEntaryPage } from "./JournalEntaryPage";
 
@@ -28,7 +32,7 @@ export const JournalEntryContainer = () => {
 
   // ==============================================================================
   // useState
-  const [rowIndex, setRowIndex] = useState(null);
+  const [rowIndex, setRowIndex] = useState(0);
   const [open, setOpen] = useState(false);
   // ==========================================
   const [current, setCurrent] = useState({
@@ -106,10 +110,53 @@ export const JournalEntryContainer = () => {
     }));
   };
 
+  const summaryRows = useMemo(() => {
+    const totalCredit = _.sumBy(values.journalentries, (item: any) =>
+      Number(item.credit)
+    );
+    const totalDebit = _.sumBy(values.journalentries, (item: any) =>
+      Number(item.debit)
+    );
+    const accountLength = values.journalentries.filter(
+      (item: any) => item.account_id
+    )?.length;
+
+    const difference = totalDebit - totalCredit;
+    return [
+      {
+        totalCredit,
+        totalDebit,
+        accountLength,
+        difference,
+      },
+    ];
+  }, [values.journalentries]);
+
   const props: JournalEntryPagePropsType = {
     values,
     onRowsChange,
     onSelectedCellChange,
+    summaryRows,
+    current,
+    rowIndex,
+    setRowIndex,
+    setValues,
+    // goAccountStatement
   };
-  return <JournalEntaryPage {...props} />;
+  return (
+    <>
+      <SelectAccountDialog
+        onSubmit={(account: accountType) => {
+          setOpen(false);
+          fillAccount(account, rowIndex);
+        }}
+        open={open}
+        setOpen={setOpen}
+        rowIndex={1}
+        text={"2"}
+        onClose={() => {}}
+      />
+      <JournalEntaryPage {...props} />{" "}
+    </>
+  );
 };

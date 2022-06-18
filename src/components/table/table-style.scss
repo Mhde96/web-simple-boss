@@ -5,21 +5,30 @@
   table,
   th,
   td {
-    // border: 1px solid #6d6969;
     padding: 10px;
   }
 
   table {
     width: 100%;
-    background: $background-color;
-    // border-radius: 5px;
+  }
+  th {
   }
 
   .tr:hover {
     // background: $primary-color;
-    // color: white;
     cursor: pointer;
   }
-  th {
+  .tr {
+    border-bottom: 5px solid $background-color;
+
+    background: $surface-color;
   }
+
+  td {
+    border-right: 1px solid $primary-color;
+  }
+
+  // tr.spaceUnder>td {
+  //   padding-bottom: 1em;
+  // }
 }

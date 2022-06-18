@@ -32,11 +32,11 @@
 
 #platform-layout-style {
   height: 100vh;
-
+  background-color: $background-color;
   .platform-conainer {
   }
   .sidebar-container {
-    background-color: $background-color;
+    background-color: $surface-color;
     height: $body-height;
     padding-top: 10px;
   }

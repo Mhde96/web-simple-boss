@@ -15,13 +15,34 @@ const initialState = {
       name: "goods",
     },
   ],
+  searchAccount: {
+    list: [],
+    open: false,
+    rowIndex: undefined,
+  },
 };
 
 export const dataSlice = createSlice({
   name: "dataReducer",
   initialState,
-  reducers: {},
+  reducers: {
+    // searchAccount: (state, { payload }) => {
+    //   const { text, reset, open } = payload;
+    //   if (reset == true) {
+    //     state.search_account.list = [];
+    //     state.searchAccount.open = false;
+    //     state.searchAccount.rowIndex = undefined;
+    //   } else {
+    //     state.searchAccount.open = true;
+    //     state.searchAccount.list = state.accounts?.filter((account) =>
+    //       account.name.toLowerCase().match(text.toLowerCase())
+    //     );
+    //   }
+    // },
+  },
 });
 
 export const selectAccounts = (state) => state.dataReducer.accounts;
+export const SelectSearchAccount = (state) => state.dataReducer.searchAccount;
+
 export default dataSlice;

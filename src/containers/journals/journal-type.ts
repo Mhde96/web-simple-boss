@@ -1,7 +1,8 @@
 export type journalType = {
-  id: number;
+  id?: number;
   description: string;
   date: any;
+  number?: number | string;
 };
 
 export type JournalPagePropsType = {
