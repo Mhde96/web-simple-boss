@@ -30,8 +30,9 @@ export const JournalsPage = (props: JournalPagePropsType) => {
           bold
           number={"Number"}
         />
-        {props.journals.map((item) => (
+        {props.journals.map((item,index:number) => (
           <JournalCard
+          key={index}
             onClick={() => navigate(endroutes.journalentaries(1).go)}
             {...item}
           />

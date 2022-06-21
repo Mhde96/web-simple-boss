@@ -2,8 +2,9 @@
 #header-style {
   height: $header-height;
   background-color: $primary-color;
-
+  
   * {
-    
+    color: $on-surface-color;
+    font-weight: bold;
   }
 }

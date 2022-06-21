@@ -32,8 +32,25 @@ export const PlatformLayout = () => {
                   href={endroutes.accounts.path}
                   title={endroutes.accounts.title}
                 />
+                <Navlink
+                  href={endroutes.account_statment().null_path}
+                  title={endroutes.account_statment().title}
+                />
+
+                <Navlink
+                  href={endroutes.profit_and_loss_account.path}
+                  title={endroutes.profit_and_loss_account.title}
+                />
+                <Navlink
+                  href={endroutes.trading_account.path}
+                  title={endroutes.trading_account.title}
+                />
+                <Navlink
+                  href={endroutes.balancesheet.path}
+                  title={endroutes.balancesheet.title}
+                />
               </Stack>
-              </Container>
+            </Container>
           </Col>
 
           <Col xs={10}>

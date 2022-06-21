@@ -1,7 +1,16 @@
+@import "./variable.scss";
+
 $theme-colors: (
   "info": tomato,
-  "danger": teal,
+  "danger": $error,
+  "primary": $primary-color,
 );
+
+
 
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";
+
+.btn {
+  color: white;
+}

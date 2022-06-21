@@ -1,0 +1,24 @@
+@import "../../../styles/variable.scss";
+#account-card-styles {
+  display: flex;
+  background-color: $surface-color;
+  padding: 6px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  .name {
+    border-right: 1px solid $primary-color;
+    padding: 5px 10px;
+    flex: 1;
+  }
+
+  .description {
+    padding: 5px 10px;
+    flex: 1;
+    border-right: 1px solid $primary-color;
+  }
+  .number {
+    padding: 5px 10px;
+    flex: 0.5;
+  }
+}
