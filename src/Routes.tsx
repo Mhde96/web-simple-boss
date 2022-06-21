@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { endroutes } from "./constant/endroutes";
 import { AccountStatmentContainer } from "./containers/account-statment/AccountStatementContainer";
 import { AccountsContainer } from "./containers/accounts/AccountsContainer";
+import { ChangeForgetPasswordContainer } from "./containers/change-forget-password/ChangeForgetPasswordContainer";
 import { BalanceSheetContainer } from "./containers/financial-statement/BalanceSheetContainer";
 import { ProfitAndLossAccountContainer } from "./containers/financial-statement/ProfitAndLossAccountContainer";
 import { TradingAccountContainer } from "./containers/financial-statement/TradingAccountContainer";
@@ -10,7 +11,8 @@ import { ForgetPasswordContainer } from "./containers/forget-password/ForgetPass
 import { JournalEntryContainer } from "./containers/journal-entry/JournalEntryContainer";
 import { JournalsContainer } from "./containers/journals/JournalsContainer";
 import { LoginContainer } from "./containers/login/LoginContainer";
-import { SignupContainer } from "./containers/register/SignupContainer";
+import { OtbContainer } from "./containers/otb-code/OtbContainer";
+import {SignupContainer} from "./containers/register/SignupContainer";
 import { selectUser } from "./redux/app/appSlice";
 import { AuthLayout } from "./widgets/layout/AuthLayout";
 import { PlatformLayout } from "./widgets/layout/PlatformLayout";
@@ -59,11 +61,11 @@ export const Navigation = () => {
 
         <Route element={<AuthLayout />}>
           <Route path={endroutes.login} element={<LoginContainer />} />
-          <Route path={endroutes.register} element={<SignupContainer />} />
-          <Route
-            path={endroutes.forgetpassword}
-            element={<ForgetPasswordContainer />}
-          />
+          <Route path={endroutes.register} element={<SignupContainer />} />  
+          <Route path={endroutes.forgetpassword} element={<ForgetPasswordContainer/>}/>
+          <Route path={endroutes.otp} element={<OtbContainer/>}/>
+          <Route path={endroutes.changeforgetpassword} element={<ChangeForgetPasswordContainer/>}/>
+
         </Route>
       </Routes>
     </BrowserRouter>

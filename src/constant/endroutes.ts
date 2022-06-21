@@ -1,7 +1,9 @@
 export const endroutes = {
   login: "login",
-  register: "register",
-  forgetpassword: "forgetpassword",
+  register: 'register',
+  forgetpassword: 'forgetpassword',
+  changeforgetpassword:'changeforgetpassword',
+  otp: 'otp',
   journals: { path: "journals", title: "Journal" },
   accounts: { path: "accounts", title: "Account" },
   journalentaries: (id?: number) => {
