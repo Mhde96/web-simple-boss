@@ -5,7 +5,7 @@ export const HeaderWidget = () => {
     <div id="header-style">
       <Navbar  expand="lg">
         <Container fluid>
-          <Navbar.Brand>Boss Platform</Navbar.Brand>
+          <Navbar.Brand >Boss Platform</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav className="me-auto">

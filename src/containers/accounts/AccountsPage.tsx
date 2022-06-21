@@ -1,18 +1,38 @@
-// import { AccountTable } from "../../components/table/account/AccountTable";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AccountCard } from "../../components/cards/account/AccountCard";
 import { AccountsPropsType } from "./account-type";
+import { AccountDialog, OpenAccountDialog } from "./AccountDialog";
 
 export const AccountsPage = (props: AccountsPropsType) => {
+  const [show, setShow] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <>
-      {/* <AccountTable data={props.accounts} columns={props.columns} /> */}
+      <AccountDialog show={show} setShow={setShow} />
       <div className="d-flex flex-column">
-        <Button style={{ width: 100 }}>Add</Button>
+        <Button
+          onClick={() => {
+            OpenAccountDialog(location, navigate, undefined);
+          }}
+          style={{ width: 100 }}
+        >
+          Add
+        </Button>
         <hr />
         <AccountCard name={"name"} />
-        {props.accounts.map((item) => (
-          <AccountCard {...item} operations />
+        {props.accounts.map((item, index) => (
+          <AccountCard
+            key={index}
+            {...item}
+            operations={{
+              update: () => OpenAccountDialog(location, navigate, item),
+              delete: () => {},
+            }}
+          />
         ))}
       </div>
     </>

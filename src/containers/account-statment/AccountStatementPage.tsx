@@ -9,6 +9,7 @@ import {
 } from "./account-statement-type";
 import Select from "react-select";
 import { Break } from "../../components/Break";
+import { Text } from "../../components/text/Text";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -21,6 +22,9 @@ export const AccountStatmentPage = (props: AccountStatementPagePropsType) => {
     <div id="account-statement-page-styles">
       <Select options={options} />
       <Break />
+      <Text fs="f3" bold>Box</Text>
+      <Break />
+
       <DataGrid
         className={"rdg-light fill-grid "}
         // components={{ rowRenderer }}

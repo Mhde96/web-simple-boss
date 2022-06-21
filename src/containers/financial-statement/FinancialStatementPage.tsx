@@ -26,8 +26,9 @@ export const FinancialStatementPage = () => {
         }}
       >
         <div className="column-section">
-          {[1, 2, 5].map((item) => (
+          {[1, 2, 5].map((item, index: number) => (
             <div
+              key={index}
               className="account-row"
               style={{
                 display: "flex",
@@ -44,8 +45,9 @@ export const FinancialStatementPage = () => {
           {[
             1, 2, 3, 4, 5, 2, 1, 2, 3, 4, 5, 6, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8,
             9,
-          ].map((item) => (
+          ].map((item, index: number) => (
             <div
+              key={index}
               className="account-row"
               style={{
                 display: "flex",

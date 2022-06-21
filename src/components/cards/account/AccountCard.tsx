@@ -1,17 +1,19 @@
 import { Button } from "react-bootstrap";
 import "./account-card-styles.scss";
+import { AccountCardTypeProps } from "./account-card-type";
 
-export const AccountCard = ({ name, operations }: any) => {
+export const AccountCard = ({ name, operations }: AccountCardTypeProps) => {
   return (
     <div id="account-card-styles">
       <div className="name">{name}</div>
-      {operations && (
-        <div style={{ display: "flex", gap: "30px" }}>
-          <Button>Open</Button>
-          <Button>Update</Button>
-          <Button>Delete</Button>
-        </div>
-      )}
+
+      <div style={{ display: "flex", gap: "30px" }}>
+        {operations?.open && <Button>Open</Button>}
+        {operations?.update && (
+          <Button onClick={operations.update}>Update</Button>
+        )}
+        {operations?.delete && <Button variant={"danger"}>Delete</Button>}
+      </div>
     </div>
   );
 };
