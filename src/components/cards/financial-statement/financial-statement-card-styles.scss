@@ -1,0 +1,13 @@
+#financial-statement-card-styles {
+  display: flex;
+  flex: 1;
+
+  padding: 5px 10px;
+
+  .account {
+    flex: 1;
+  }
+  .value {
+    flex: 1;
+  }
+}

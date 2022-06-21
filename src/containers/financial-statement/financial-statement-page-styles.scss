@@ -1,0 +1,47 @@
+@import "../../styles/variable.scss";
+#financial-statement-page-styles {
+  height: calc($body-height - 20px);
+  display: flex;
+  flex-direction: column;
+  .header-footer {
+    border: 1px solid $border-color;
+  }
+
+  .header {
+  }
+  .footer {
+    background: $primary-color;
+    color: $on-primary-color;
+    display: flex;
+    justify-content: space-between;
+  }
+  .style-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .account-row {
+    background: $surface-color;
+
+    min-height: 40px;
+    max-height: 40px;
+    border: 1px solid $border-color;
+  }
+
+  .account-row:hover {
+    background: $background-color;
+  }
+
+  .column-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+    height: 100%;
+  }
+
+  .border {
+  }
+  .debit-column {
+  }
+}
