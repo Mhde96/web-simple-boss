@@ -1,16 +1,26 @@
 @import "./variable.scss";
+@import "~bootstrap/scss/bootstrap";
+
 
 $theme-colors: (
-  "info": tomato,
   "danger": $error,
   "primary": $primary-color,
+
+  "secondary": $secondary,
+  "success": $green,
+  "info": $cyan,
+  "warning": $warning,
+  "light": $gray-100,
+  "dark": $gray-900,
 );
 
-
-
-/* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";
 
 .btn {
   color: white;
+
+  // &:hover {
+  //   // color: white;
+  //   // text-decoration: if($link-hover-decoration == underline, none, null);
+  // }
 }
