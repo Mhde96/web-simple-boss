@@ -9,13 +9,13 @@ type SignupPagePropsType = {
 };
 
 type SignupStateType = {
-  username: string;
+  name: string;
   email: string;
   password: string;
   confirm_password: string;
 };
 export const SignupState: SignupStateType = {
-  username: "",
+  name: "",
   email: "",
   password: "",
   confirm_password: "",

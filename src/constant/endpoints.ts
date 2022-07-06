@@ -1,3 +1,3 @@
-export const  endpoints = {
-    
-}
+export const endpoints = {
+  register: "register",
+};

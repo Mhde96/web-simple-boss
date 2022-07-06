@@ -24,10 +24,10 @@ export const SignupPage = ({
       <br />
 
       <Input
-        placeholder="Username"
-        onChange={handleChange("username")}
-        value={values.username}
-        error={errors?.username}
+        placeholder="Name"
+        onChange={handleChange("name")}
+        value={values.name}
+        error={errors?.name}
       />
 
       <br />
