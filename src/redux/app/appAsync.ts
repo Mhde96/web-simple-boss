@@ -32,3 +32,23 @@ export const changeStatusSync =
   (status: StatusType) => (dispatch: AppDispatch) => {
     dispatch(appSlice.actions.changeStatus(status));
   };
+
+export const loginAsync =
+  (values: { email: string; password: string }, navigate: NavigateFunction) =>
+  async (dispatch: AppDispatch) => {
+    dispatch(changeStatusSync(true));
+    api
+      .post(endpoints.login, values)
+      .then((response) => {
+        if (response.data.success) {
+          dispatch(appSlice.actions.login(response.data.data));
+          navigate(endroutes.journals.path);
+        } else {
+          alert(response.data.msg);
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        dispatch(changeStatusSync(false));
+      });
+  };

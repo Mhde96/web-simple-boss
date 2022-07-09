@@ -10,6 +10,7 @@ export const LoginPage = ({
   values,
   errors,
   handleSubmit,
+  handleRegister
 }: LoginPagePropsType) => {
   return (
     <>
@@ -31,8 +32,9 @@ export const LoginPage = ({
         error={errors?.password}
       />
       <br />
-
       <Button onClick={handleSubmit}>Login</Button>
+      <br />
+      <Button onClick={handleRegister}>Register</Button>
     </>
   );
 };

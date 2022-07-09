@@ -26,6 +26,9 @@ export const dataSlice = createSlice({
   name: "dataReducer",
   initialState,
   reducers: {
+    AddAccount: (state, { payload }) => {
+      state.accounts.push({ payload });
+    },
     // searchAccount: (state, { payload }) => {
     //   const { text, reset, open } = payload;
     //   if (reset == true) {

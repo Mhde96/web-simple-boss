@@ -12,7 +12,7 @@ export const AccountsPage = (props: AccountsPropsType) => {
 
   return (
     <>
-      <AccountDialog show={show} setShow={setShow} />
+     
       <div className="d-flex flex-column">
         <Button
           onClick={() => {

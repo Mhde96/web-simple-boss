@@ -3,6 +3,7 @@ type LoginPagePropsType = {
   values: LoginStateType;
   errors: any;
   handleSubmit: any;
+  handleRegister: any;
 };
 
 type LoginStateType = {

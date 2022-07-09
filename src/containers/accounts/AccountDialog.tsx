@@ -10,20 +10,27 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Input } from "../../components/input/Input";
+import { AddAccountAsync } from "../../redux/data/dataAsync";
 import { selectAccounts } from "../../redux/data/dataSlice";
+import { useAppDispatch } from "../../redux/hooks";
 import { accountType } from "./account-type";
 
 export const AccountDialog = ({}: any) => {
   const [searchParams] = useSearchParams();
   const { search } = useLocation();
   const navigate = useNavigate();
+
+  // redux
+  const dispatch = useAppDispatch();
   const accounts = useSelector(selectAccounts);
 
-  const { values, setValues, handleChange } = useFormik({
+  const { values, setValues, handleChange, handleSubmit } = useFormik({
     initialValues: {
       name: "",
     },
-    onSubmit: () => {},
+    onSubmit: (values) => {
+      dispatch(AddAccountAsync(values));
+    },
   });
 
   const account_id = useMemo(() => {
@@ -55,8 +62,8 @@ export const AccountDialog = ({}: any) => {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Save 
+        <Button variant="primary" onClick={() => handleSubmit()}>
+          Save
         </Button>
       </Modal.Footer>
     </Modal>

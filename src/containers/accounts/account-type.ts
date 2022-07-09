@@ -4,6 +4,6 @@ export type AccountsPropsType = {
 };
 
 export type accountType = {
-  id: number;
+  id?: number;
   name: string;
 };
