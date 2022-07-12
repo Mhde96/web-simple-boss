@@ -4,6 +4,8 @@ import "./journal-card-styles.scss";
 
 type JournalCardType = journalType & {
   bold?: boolean;
+  pointer?: boolean;
+
   onClick?: any;
 };
 export const JournalCard = ({
@@ -13,10 +15,13 @@ export const JournalCard = ({
   bold,
   number,
   onClick,
+  pointer,
 }: JournalCardType) => {
   const classes = classNames({
     bold,
+    pointer,
   });
+
   return (
     <div onClick={onClick} id={"journal-card-styles"} className={classes}>
       <div className="date">{date}</div>

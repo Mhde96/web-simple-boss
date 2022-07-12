@@ -1,12 +1,31 @@
 import axios from "axios";
 import { baseURL } from "../constant/configEndpoints";
-export const api = axios.create({
+import { Cookies } from "react-cookie";
+
+const api = axios.create({
   baseURL: baseURL,
   timeout: 200000,
   headers: {
-    // Authorization: `Bearer ${token}`,
-
-    "Content-Type": "multipart/form-data",
+    // "Content-Type": "multipart/form-data",
+    // 'Content-Type': 'application/x-www-form-urlencoded'
     Accept: "application/json",
   },
 });
+
+api.interceptors.request.use((config) => {
+  const cookies = new Cookies();
+  const token = () => cookies.get("user")?.token;
+
+  
+  config.headers = {
+    ...config.headers,
+
+    Authorization: `Bearer ${token()}`,
+  };
+
+  return config;
+});
+
+console.log("configration axios done");
+
+export { api };

@@ -1,20 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { accountType } from "../../containers/accounts/account-type";
+import { journalType } from "../../containers/journals/journal-type";
+import { RootState } from "../store";
 
 const initialState = {
-  accounts: [
-    {
-      id: 1,
-      name: "box",
-    },
-    {
-      id: 2,
-      name: "bank",
-    },
-    {
-      id: 3,
-      name: "goods",
-    },
-  ],
+  accounts: [],
+  journals: [],
   searchAccount: {
     list: [],
     open: false,
@@ -26,8 +17,11 @@ export const dataSlice = createSlice({
   name: "dataReducer",
   initialState,
   reducers: {
-    AddAccount: (state, { payload }) => {
-      state.accounts.push({ payload });
+    fetchAccounts: (state, { payload }) => {
+      state.accounts = payload;
+    },
+    fetchJournals: (state, { payload }) => {
+      state.journals = payload;
     },
     // searchAccount: (state, { payload }) => {
     //   const { text, reset, open } = payload;
@@ -45,7 +39,12 @@ export const dataSlice = createSlice({
   },
 });
 
-export const selectAccounts = (state) => state.dataReducer.accounts;
-export const SelectSearchAccount = (state) => state.dataReducer.searchAccount;
+export const selectAccounts = (state: RootState): Array<any> =>
+  state.dataReducer.accounts;
+export const selectJournals = (state: RootState): Array<journalType> =>
+  state.dataReducer.journals;
+
+export const SelectSearchAccount = (state: RootState) =>
+  state.dataReducer.searchAccount;
 
 export default dataSlice;

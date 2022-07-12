@@ -23,25 +23,30 @@ export const JournalsPage = (props: JournalPagePropsType) => {
           <Button>Number</Button>
         </div>
         <hr />
+      </div>
 
+      <div className="journals-body">
         <JournalCard
           description="description"
           date="date"
           bold
           number={"Number"}
         />
-        {props.journals.map((item,index:number) => (
+        {props.journals.map((item, index: number) => (
           <JournalCard
-          key={index}
-            onClick={() => navigate(endroutes.journalentaries(1).go)}
+            pointer
+            key={index}
+            onClick={() => props.handleNavigateToEntries(item.number)}
             {...item}
           />
         ))}
       </div>
-      <div>
+
+      <div style={{  }}>
         <hr />
         <div
           style={{
+            margin: "10px 0px",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
@@ -49,7 +54,11 @@ export const JournalsPage = (props: JournalPagePropsType) => {
           }}
         >
           <div>Count 3</div>
-          <Button>New Journal</Button>
+          <Button
+            onClick={() => navigate(endroutes.journalentaries().newJournal)}
+          >
+            New Journal
+          </Button>
         </div>
       </div>
     </div>

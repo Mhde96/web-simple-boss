@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { endroutes } from "./constant/endroutes";
@@ -12,18 +13,36 @@ import { JournalEntryContainer } from "./containers/journal-entry/JournalEntryCo
 import { JournalsContainer } from "./containers/journals/JournalsContainer";
 import { LoginContainer } from "./containers/login/LoginContainer";
 import { OtbContainer } from "./containers/otb-code/OtbContainer";
-import {SignupContainer} from "./containers/register/SignupContainer";
+import { SignupContainer } from "./containers/register/SignupContainer";
+
 import { selectUser } from "./redux/app/appSlice";
+import { fetchAccountsAsync, fetchJournalsAsync } from "./redux/data/dataAsync";
+import { useAppDispatch } from "./redux/hooks";
 import { AuthLayout } from "./widgets/layout/AuthLayout";
 import { PlatformLayout } from "./widgets/layout/PlatformLayout";
 
 export const Navigation = () => {
+  const dispatch = useAppDispatch();
   const user = useSelector(selectUser);
+
+  useEffect(() => {
+    dispatch(fetchAccountsAsync());
+    dispatch(fetchJournalsAsync());
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PlatformLayout />}>
+        <Route
+          path="/"
+          element={
+            user?.id ? (
+              <PlatformLayout />
+            ) : (
+              <Navigate to={endroutes.login} replace />
+            )
+          }
+        >
           <Route
             path={endroutes.journalentaries().path}
             element={<JournalEntryContainer />}
@@ -61,11 +80,16 @@ export const Navigation = () => {
 
         <Route element={<AuthLayout />}>
           <Route path={endroutes.login} element={<LoginContainer />} />
-          <Route path={endroutes.register} element={<SignupContainer />} />  
-          <Route path={endroutes.forgetpassword} element={<ForgetPasswordContainer/>}/>
-          <Route path={endroutes.otp} element={<OtbContainer/>}/>
-          <Route path={endroutes.changeforgetpassword} element={<ChangeForgetPasswordContainer/>}/>
-
+          <Route path={endroutes.register} element={<SignupContainer />} />
+          <Route
+            path={endroutes.forgetpassword}
+            element={<ForgetPasswordContainer />}
+          />
+          <Route path={endroutes.otp} element={<OtbContainer />} />
+          <Route
+            path={endroutes.changeforgetpassword}
+            element={<ChangeForgetPasswordContainer />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

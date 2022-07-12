@@ -52,3 +52,11 @@ export const loginAsync =
         dispatch(changeStatusSync(false));
       });
   };
+
+export const refreshTokenAsync = () => async (dispatch: AppDispatch) => {
+  api.post(endpoints.refreshToken).then((response) => {
+    if (response.data.success) {
+      dispatch(appSlice.actions.login({ token: response.data.data }));
+    }
+  });
+};

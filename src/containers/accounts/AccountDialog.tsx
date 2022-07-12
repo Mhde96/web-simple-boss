@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useMemo } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import {
   useLocation,
@@ -9,12 +9,19 @@ import {
   Location,
   Navigate,
 } from "react-router-dom";
-import { Input } from "../../components/input/Input";
-import { AddAccountAsync } from "../../redux/data/dataAsync";
+import { ErrorMessage, Input } from "../../components/input/Input";
+import { financial_statement_array } from "../../constant/account_constant";
+import { SaveAccountAsync } from "../../redux/data/dataAsync";
 import { selectAccounts } from "../../redux/data/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { accountType } from "./account-type";
+import * as yup from "yup";
 
+const validationSchema = yup.object().shape({
+  name: yup.string().required(),
+  financial_statement: yup.string().required(),
+  key: yup.string().required(),
+});
 export const AccountDialog = ({}: any) => {
   const [searchParams] = useSearchParams();
   const { search } = useLocation();
@@ -24,12 +31,16 @@ export const AccountDialog = ({}: any) => {
   const dispatch = useAppDispatch();
   const accounts = useSelector(selectAccounts);
 
-  const { values, setValues, handleChange, handleSubmit } = useFormik({
+  const { values, setValues, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
       name: "",
+      financial_statement: undefined,
+      key: undefined,
     },
+    validateOnChange:false,
+    validationSchema,
     onSubmit: (values) => {
-      dispatch(AddAccountAsync(values));
+      dispatch(SaveAccountAsync(values, navigate));
     },
   });
 
@@ -38,7 +49,7 @@ export const AccountDialog = ({}: any) => {
 
     if (id != undefined) {
       if (id == "new") {
-        setValues({ name: "" });
+        setValues({ name: "", financial_statement: undefined, key: undefined });
       } else setValues(accounts.find((account: any) => account.id == id));
       return true;
     } else return false;
@@ -46,26 +57,50 @@ export const AccountDialog = ({}: any) => {
 
   const handleClose = () => navigate(-1);
 
+  
   return (
     <Modal backdrop="static" show={account_id} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Account</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Input
-          onChange={handleChange("name")}
-          value={values?.name}
-          placeholder="Account Name "
-        />
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={() => handleSubmit()}>
-          Save
-        </Button>
-      </Modal.Footer>
+      <Form onSubmit={handleSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title>Account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Input
+            onChange={handleChange("name")}
+            value={values?.name}
+            placeholder="Account Name "
+            error={errors?.name}
+          />
+          <br />
+          <Input
+            onChange={handleChange("key")}
+            value={values?.key}
+            placeholder="Account key "
+            error={errors?.key}
+          />
+          <br />
+          <>
+            {financial_statement_array.map((item) => (
+              <Form.Check
+                name="financial_statement"
+                type="radio"
+                {...item}
+                value={item?.value}
+                onChange={handleChange("financial_statement")}
+              />
+            ))}
+            <ErrorMessage>{errors?.financial_statement}</ErrorMessage>
+          </>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button type="submit" variant="primary">
+            Save
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   );
 };

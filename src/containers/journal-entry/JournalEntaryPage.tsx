@@ -20,12 +20,15 @@ import {
   useContextMenu,
 } from "react-contexify";
 import { Input } from "../../components/input/Input";
-import { Button, Form } from "react-bootstrap";
+import { Breadcrumb, Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { endroutes } from "../../constant/endroutes";
 
 const MENU_ID = "menu-id";
 
 export const JournalEntaryPage = (props: JournalEntryPagePropsType) => {
   const { values, current, rowIndex, setRowIndex, setValues } = props;
+  const navigate = useNavigate();
 
   // ==========================================
   const { show } = useContextMenu({
@@ -47,39 +50,51 @@ export const JournalEntaryPage = (props: JournalEntryPagePropsType) => {
 
   return (
     <div id={"journal-entry-styles"}>
+      <Breadcrumb>
+        <Breadcrumb.Item onClick={props.handleNavigateJournals}>
+          Journal
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>entry</Breadcrumb.Item>
+      </Breadcrumb>
       <div className="operation-container">
-        <Button style={{ color: "white" }}>
+        {/* <Button style={{ color: "white" }}>
           <img
             src={"/assets/icons/angles-left-solid.svg"}
             style={{ height: 24, width: "auto" }}
           />
-        </Button>
-        <Button>
+        </Button> */}
+        <Button onClick={props.getPreviousJournal}>
           <img
             src={"/assets/icons/angle-left-solid.svg"}
             style={{ height: 24, width: "auto" }}
           />
         </Button>
-        <Form.Control type="input" />
-        <Button>
+
+        <Form.Control disabled value={values.number} type="input" />
+        <Button onClick={props.getNextJournal}>
           <img
             src={"/assets/icons/angle-right-solid.svg"}
             style={{ height: 24, width: "auto" }}
           />
         </Button>
-        <Button>
+        {/* <Button>
           <img
             src={"/assets/icons/angles-right-solid.svg"}
             style={{ height: 24, width: "auto" }}
           />
-        </Button>
+        </Button> */}
         <Form.Control type="date" />
         <Button>Delete</Button>
-        <Button>Update</Button>
-        <Button>Add</Button>
-        <Button>New</Button>
+
+        <Button onClick={props.handleSubmit}>
+          {props.values.number == "new" ? "add" : "update"}
+        </Button>
+        <Button onClick={props.handleNavigateNew}>New</Button>
       </div>
-      <Input placeholder="description" />
+      <Input
+        placeholder="description"
+        onChange={props.handleChange("description")}
+      />
       <hr />
       <DataGrid
         className={"rdg-light fill-grid data-grid"}

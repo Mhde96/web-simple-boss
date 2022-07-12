@@ -10,7 +10,6 @@
     border-right: 1px solid $primary-color;
     padding: 5px 10px;
     flex: 1;
-    
   }
 
   .description {
@@ -21,5 +20,14 @@
   .number {
     padding: 5px 10px;
     flex: 0.5;
+  }
+
+  &:hover {
+    background: $primary-color;
+    color: $on-primary-color;
+    * {
+      border-right: 1px solid $on-primary-color;
+      font-weight: bold;
+    }
   }
 }

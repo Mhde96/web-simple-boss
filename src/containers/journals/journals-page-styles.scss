@@ -3,6 +3,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
-  height: calc($body-height - 20px);
+  height: 100%;
+
+  .journals-body {
+    display: flex;
+    flex-direction: column;
+    // max-height: 60vh;
+    height: 100%;
+    overflow: auto;
+  }
 }

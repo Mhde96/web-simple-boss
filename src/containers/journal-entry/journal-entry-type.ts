@@ -45,4 +45,10 @@ export type JournalEntryPagePropsType = {
   rowIndex: number;
   setRowIndex: any;
   setValues: any;
+  handleChange: any;
+  handleSubmit: any;
+  getNextJournal: any;
+  getPreviousJournal: any;
+  handleNavigateNew: any;
+  handleNavigateJournals: any;
 };

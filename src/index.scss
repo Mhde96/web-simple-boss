@@ -1,6 +1,5 @@
 @import "./styles/variable.scss";
 
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -45,6 +44,9 @@ code {
 .center {
   text-align: center;
 }
-.break-spaces{
+.break-spaces {
   white-space: break-spaces;
+}
+.pointer {
+  cursor: pointer;
 }

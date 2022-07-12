@@ -1,17 +1,18 @@
 export const endroutes = {
   login: "/login",
-  register: '/register',
-  forgetpassword: '/forgetpassword',
-  changeforgetpassword:'/changeforgetpassword',
-  otp: '/otp',
+  register: "/register",
+  forgetpassword: "/forgetpassword",
+  changeforgetpassword: "/changeforgetpassword",
+  otp: "/otp",
   journals: { path: "/journals", title: "Journal" },
   accounts: { path: "/accounts", title: "Account" },
-  journalentaries: (id?: number) => {
+  journalentaries: (id?: number | string) => {
     const name = "journalentaries";
-    const path = `/${name}/:journal_id`;
+    const path = `/${name}/:number`;
     const go = `/${name}/${id}`;
+    const newJournal = `/${name}/new`;
     const title = "Journal";
-    return { path, go, title };
+    return { path, go, title, newJournal };
   },
   account_statment: (id?: number) => {
     const name = "account_statment";
@@ -23,6 +24,9 @@ export const endroutes = {
   },
 
   trading_account: { path: "/tradingaccount", title: "Trading Account" },
-  profit_and_loss_account: { path: "/profitandlossaccount", title: "Profit And Loss Account" },
+  profit_and_loss_account: {
+    path: "/profitandlossaccount",
+    title: "Profit And Loss Account",
+  },
   balancesheet: { path: "/balancesheet", title: "Balance Sheet" },
 };

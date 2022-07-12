@@ -1,4 +1,9 @@
+import moment from "moment";
 import { TextEditor } from "react-data-grid";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { endpoints } from "../../constant/endpoints";
+import { endroutes } from "../../constant/endroutes";
+import { api } from "../../helper/api";
 import { columnsKey, empty_row } from "./journal-entry-type";
 
 export const jounral_entry_columns = [
@@ -63,4 +68,41 @@ export const deleteRow = (rowIdx: number, setValues: any) => {
       (entary: any, index: number) => index != rowIdx
     ),
   }));
+};
+
+export const JournalApi = (data: any , navigate:NavigateFunction) => {
+  
+  let configration = () => {
+    let method = "post";
+    let url = endpoints.journals;
+    if (data.number != "new") {
+      method = "put";
+      url = url + "/" + data.number;
+    }
+
+    return { method, url };
+  };
+
+  let entries: Array<any> = [];
+  data.journalentries.map((entry: any) => {
+    if (entry.account_id && (entry.debit > 0 || entry.credit > 0)) {
+      entries.push(entry);
+    }
+  });
+
+  api({
+    ...configration(),
+
+    data: {
+      ...data,
+      journal_entry: entries,
+      date: moment(data.date).format("yyyy-MM-DD"),
+      entries,
+    },
+  }).then((response) => {
+    navigate(endroutes.journals.path)
+    console.log(response);
+
+    // alert("you had added journal");
+  });
 };

@@ -12,7 +12,7 @@ export const AccountCard = ({ name, operations }: AccountCardTypeProps) => {
         {operations?.update && (
           <Button onClick={operations.update}>Update</Button>
         )}
-        {operations?.delete && <Button variant={"danger"}>Delete</Button>}
+        {operations?.delete && <Button onClick={operations.delete} variant={"danger"}>Delete</Button>}
       </div>
     </div>
   );

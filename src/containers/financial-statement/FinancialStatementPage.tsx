@@ -1,14 +1,14 @@
 import { FinancialStatementCard } from "../../components/cards/financial-statement/FinancialStatementCard";
 import "./financial-statement-page-styles.scss";
 
-export const FinancialStatementPage = () => {
+export const FinancialStatementPage = (props: any) => {
   return (
     <div id="financial-statement-page-styles">
       <div
         className="header-footer"
         style={{
           display: "flex",
-          flex: 1,
+
           justifyContent: "space-between",
         }}
       >
@@ -26,7 +26,7 @@ export const FinancialStatementPage = () => {
         }}
       >
         <div className="column-section">
-          {[1, 2, 5].map((item, index: number) => (
+          {props?.state?.credits?.map((item: any, index: number) => (
             <div
               key={index}
               className="account-row"
@@ -36,16 +36,16 @@ export const FinancialStatementPage = () => {
                 justifyContent: "space-between",
               }}
             >
-              <FinancialStatementCard name="account" value={"2000"} />
+              <FinancialStatementCard
+                name={item.name}
+                value={item.credit}
+              />
             </div>
           ))}
         </div>
 
         <div className="column-section">
-          {[
-            1, 2, 3, 4, 5, 2, 1, 2, 3, 4, 5, 6, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8,
-            9,
-          ].map((item, index: number) => (
+          {props?.state?.debits?.map((item: any, index: number) => (
             <div
               key={index}
               className="account-row"
@@ -55,15 +55,18 @@ export const FinancialStatementPage = () => {
                 justifyContent: "space-between",
               }}
             >
-              <FinancialStatementCard name="account" value={"2000"} />
+              <FinancialStatementCard
+                name={item.name}
+                value={item.debit}
+              />
             </div>
           ))}
         </div>
       </div>
 
       <div className="border header-footer footer">
-        <FinancialStatementCard name="total" value={"10000"} />
-        <FinancialStatementCard name="total" value={"10000"} />
+        <FinancialStatementCard name="total" value={props?.state?.total} />
+        <FinancialStatementCard name="total" value={props?.state?.total} />
       </div>
     </div>
   );

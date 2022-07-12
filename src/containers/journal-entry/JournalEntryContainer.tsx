@@ -1,13 +1,21 @@
 import { useFormik } from "formik";
 import _ from "lodash";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { selectAccounts } from "../../redux/data/dataSlice";
+import { useNavigate, useParams, useRoutes } from "react-router-dom";
+import { endroutes } from "../../constant/endroutes";
+import {
+  fetchAccountsAsync,
+  fetchJournalsAsync,
+} from "../../redux/data/dataAsync";
+import { selectAccounts, selectJournals } from "../../redux/data/dataSlice";
+import { useAppDispatch } from "../../redux/hooks";
 import { SelectAccountDialog } from "../../widgets/select-account/SelectAccountDialog";
 import { accountType } from "../accounts/account-type";
+import { journalType } from "../journals/journal-type";
 import {
   jounral_entry_columns,
+  JournalApi,
   journal_entry_rows,
 } from "./journal-entry-functions";
 import {
@@ -19,17 +27,94 @@ import {
 import { JournalEntaryPage } from "./JournalEntaryPage";
 
 export const JournalEntryContainer = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const accounts = useSelector(selectAccounts);
-  const { journal_id } = useParams();
-  const { values, setValues } = useFormik({
+  const journals = useSelector(selectJournals);
+  const { number } = useParams();
+
+  useEffect(() => {
+    dispatch(fetchJournalsAsync());
+    dispatch(fetchAccountsAsync());
+  }, []);
+
+  useEffect(() => {
+    if (accounts.length && journals.length) getData();
+  }, [journals, accounts, number]);
+  const { values, setValues, handleChange, handleSubmit } = useFormik({
     initialValues: {
+      number: "1",
       description: "",
       date: new Date(),
       journalentries: journal_entry_rows(),
     },
-    onSubmit: () => {},
+    onSubmit: (values) => {
+      JournalApi(values, navigate);
+    },
   });
 
+  const getData = () => {
+    let data: Array<entryType> = [];
+
+    journals
+      .find((journal) => journal.number == number)
+      ?.journal_entries?.map((item) => {
+        data.push({
+          ...item,
+          accountName: accounts.find((account) => account.id == item.account_id)
+            ?.name,
+        });
+      });
+
+    
+
+    if (number) {
+      setValues({
+        ...values,
+        number,
+        journalentries: [...data, ...journal_entry_rows()],
+      });
+    }
+  };
+
+  const getNextJournal = () => {
+    let index = journals.findIndex((item) => item.number == number) + 1;
+    const length = journals.length;
+
+    if (number == "new") {
+      index = length - 1;
+    }
+
+    if (length > index) {
+      const next = journals[index];
+      console.log("next => ", next);
+      navigate(endroutes.journalentaries(next.number).go);
+      setValues({ ...values, number: next.number.toString() });
+    }
+  };
+
+  const getPreviousJournal = () => {
+    let index = journals.findIndex((item) => item.number == number);
+
+    const length = journals.length;
+
+    if (number == "new") {
+      index = length;
+    }
+
+    if (index != 0) {
+      const next = journals[index - 1];
+      console.log("next => ", next);
+      navigate(endroutes.journalentaries(next.number).go);
+      setValues({ ...values, number: next.number.toString() });
+    }
+  };
+
+  const handleNavigateNew = () => {
+    navigate(endroutes.journalentaries().newJournal);
+  };
+
+  const handleNavigateJournals = () => navigate(endroutes.journals.path);
   // ==============================================================================
   // useState
   const [rowIndex, setRowIndex] = useState(0);
@@ -117,7 +202,7 @@ export const JournalEntryContainer = () => {
     const totalDebit = _.sumBy(values.journalentries, (item: any) =>
       Number(item.debit)
     );
-    const accountLength = values.journalentries.filter(
+    const accountLength = values?.journalentries?.filter(
       (item: any) => item.account_id
     )?.length;
 
@@ -141,22 +226,33 @@ export const JournalEntryContainer = () => {
     rowIndex,
     setRowIndex,
     setValues,
+
+    handleChange,
+    handleSubmit,
+    getNextJournal,
+    getPreviousJournal,
+    handleNavigateNew,
+    handleNavigateJournals
     // goAccountStatement
   };
-  return (
-    <>
-      <SelectAccountDialog
-        onSubmit={(account: accountType) => {
-          setOpen(false);
-          fillAccount(account, rowIndex);
-        }}
-        open={open}
-        setOpen={setOpen}
-        rowIndex={1}
-        text={"2"}
-        onClose={() => {}}
-      />
-      <JournalEntaryPage {...props} />{" "}
-    </>
-  );
+
+  if (values?.journalentries?.length > 0)
+    return (
+      <>
+        <SelectAccountDialog
+          onSubmit={(account: accountType) => {
+            setOpen(false);
+            fillAccount(account, rowIndex);
+          }}
+          open={open}
+          setOpen={setOpen}
+          rowIndex={1}
+          text={"2"}
+          onClose={() => {}}
+        />
+        <JournalEntaryPage {...props} />{" "}
+      </>
+    );
+
+  return null;
 };

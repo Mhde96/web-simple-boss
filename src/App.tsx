@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Provider } from "react-redux";
+import { refreshTokenAsync } from "./redux/app/appAsync";
+import { useAppDispatch } from "./redux/hooks";
 import { store } from "./redux/store";
 import { Navigation } from "./Routes";
 
-function App() {
+export const App = () => {
   return (
     <Provider store={store}>
-      <Navigation />
+      <AppProvidedByRedux />
     </Provider>
   );
-}
+};
 
-export default App;
+const AppProvidedByRedux = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(refreshTokenAsync());
+  }, []);
+
+  return <Navigation />;
+};

@@ -20,3 +20,9 @@ export const Input = ({
     </div>
   );
 };
+
+export const ErrorMessage = ({ children }: any) => (
+  <div id="input-style">
+    {children && <div className="error">{children} </div>}
+  </div>
+);

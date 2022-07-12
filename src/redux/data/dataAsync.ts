@@ -1,14 +1,56 @@
+import { NavigateFunction } from "react-router-dom";
+import { boolean } from "yup";
 import { endpoints } from "../../constant/endpoints";
+import { endroutes } from "../../constant/endroutes";
 import { accountType } from "../../containers/accounts/account-type";
 import { api } from "../../helper/api";
+import appSlice from "../app/appSlice";
 
 import { AppDispatch } from "../store";
 import { dataSlice } from "./dataSlice";
 
-export const AddAccountAsync =
-  (account: accountType) => (dispatch: AppDispatch) => {
-    api.post(endpoints.account,account).then((response) => {
-      dispatch(dataSlice.actions.AddAccount(response.data.data));
+export const SaveAccountAsync =
+  (account: accountType, navigate: NavigateFunction) =>
+  (dispatch: AppDispatch) => {
+    let configration = () => {
+      let method = "post";
+      let url = endpoints.account;
+      let data = account;
+
+      if (account.id) {
+        method = "put";
+        url = url + "/" + account.id;
+      }
+
+      return { method, url, data };
+    };
+    api({ ...configration() }).then((response) => {
+      dispatch(fetchAccountsAsync());
+      navigate(-1);
     });
   };
 
+export const deleteAccountAsync =
+  (account: accountType) => (dispatch: AppDispatch) => {
+    api.delete(endpoints.account + "/" + account.id).then(() => {
+      dispatch(fetchAccountsAsync());
+    });
+  };
+
+export const fetchAccountsAsync = () => (dispatch: AppDispatch) => {
+  api.get(endpoints.account).then((response) => {
+    if (response.data.success) {
+      dispatch(dataSlice.actions.fetchAccounts(response.data.data));
+    }
+  });
+};
+
+// ==========================================================================
+// JOURNALS
+// ==========================================================================
+
+export const fetchJournalsAsync = () => (dispatch: AppDispatch) => {
+  api.get(endpoints.journals).then((response) => {
+    dispatch(dataSlice.actions.fetchJournals(response.data.data));
+  });
+};

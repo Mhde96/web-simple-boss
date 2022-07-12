@@ -9,14 +9,13 @@ const initialState: AppStateType = {
   status: false,
 };
 
-
 export const appSlice = createSlice({
   name: "appReducer",
   initialState,
   reducers: {
     login: (state, { payload }) => {
-      cookies.set("user", payload);
-      state.user = payload;
+      state.user = { ...state.user, ...payload };
+      cookies.set("user", { ...state.user, ...payload });
     },
     changeStatus: (state, { payload }) => {
       state.status = payload;
