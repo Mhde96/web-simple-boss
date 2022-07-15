@@ -8,6 +8,7 @@ import { ChangeForgetPasswordContainer } from "./containers/change-forget-passwo
 import { BalanceSheetContainer } from "./containers/financial-statement/BalanceSheetContainer";
 import { ProfitAndLossAccountContainer } from "./containers/financial-statement/ProfitAndLossAccountContainer";
 import { TradingAccountContainer } from "./containers/financial-statement/TradingAccountContainer";
+import { TrialBalanceContainer } from "./containers/financial-statement/TrialBalanceContainer";
 import { ForgetPasswordContainer } from "./containers/forget-password/ForgetPasswordContainer";
 import { JournalEntryContainer } from "./containers/journal-entry/JournalEntryContainer";
 import { JournalsContainer } from "./containers/journals/JournalsContainer";
@@ -64,6 +65,10 @@ export const Navigation = () => {
             element={<AccountStatmentContainer />}
           />
 
+          <Route
+            path={endroutes.trial_balance.path}
+            element={<TrialBalanceContainer />}
+          />
           <Route
             path={endroutes.profit_and_loss_account.path}
             element={<ProfitAndLossAccountContainer />}

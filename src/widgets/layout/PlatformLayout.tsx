@@ -38,13 +38,18 @@ export const PlatformLayout = () => {
                 />
 
                 <Navlink
-                  href={endroutes.profit_and_loss_account.path}
-                  title={endroutes.profit_and_loss_account.title}
+                  href={endroutes.trial_balance.path}
+                  title={endroutes.trial_balance.title}
                 />
                 <Navlink
                   href={endroutes.trading_account.path}
                   title={endroutes.trading_account.title}
                 />
+                <Navlink
+                  href={endroutes.profit_and_loss_account.path}
+                  title={endroutes.profit_and_loss_account.title}
+                />
+
                 <Navlink
                   href={endroutes.balancesheet.path}
                   title={endroutes.balancesheet.title}

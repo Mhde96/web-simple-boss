@@ -23,6 +23,7 @@ export const endroutes = {
     return { path, go, title, null_path };
   },
 
+  trial_balance: { path: "/trial_balance", title: "Trial Balance" },
   trading_account: { path: "/tradingaccount", title: "Trading Account" },
   profit_and_loss_account: {
     path: "/profitandlossaccount",
