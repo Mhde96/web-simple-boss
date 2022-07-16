@@ -11,6 +11,8 @@ export type journalType = {
 
 export type JournalPagePropsType = {
   journals: Array<journalType>;
-  handleNavigateToEntries: any;
+
   columns: Array<any>;
+  handleNavigateToEntries: any;
+  DeleteJournalAsync?: any;
 };

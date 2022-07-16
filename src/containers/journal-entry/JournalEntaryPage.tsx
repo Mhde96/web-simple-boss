@@ -92,6 +92,7 @@ export const JournalEntaryPage = (props: JournalEntryPagePropsType) => {
         <Button onClick={props.handleNavigateNew}>New</Button>
       </div>
       <Input
+        value={values.description}
         placeholder="description"
         onChange={props.handleChange("description")}
       />

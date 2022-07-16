@@ -43,7 +43,7 @@ export const JournalEntryContainer = () => {
   }, [journals, accounts, number]);
   const { values, setValues, handleChange, handleSubmit } = useFormik({
     initialValues: {
-      number: "1",
+      number,
       description: "",
       date: new Date(),
       journalentries: journal_entry_rows(),
@@ -55,23 +55,22 @@ export const JournalEntryContainer = () => {
 
   const getData = () => {
     let data: Array<entryType> = [];
+    const journal = journals.find((journal) => journal.number == number);
 
-    journals
-      .find((journal) => journal.number == number)
-      ?.journal_entries?.map((item) => {
-        data.push({
-          ...item,
-          accountName: accounts.find((account) => account.id == item.account_id)
-            ?.name,
-        });
+    journal?.journal_entries?.map((item) => {
+      data.push({
+        ...item,
+        accountName: accounts.find((account) => account.id == item.account_id)
+          ?.name,
       });
-
-    
+    });
 
     if (number) {
       setValues({
         ...values,
+        ...journal,
         number,
+
         journalentries: [...data, ...journal_entry_rows()],
       });
     }
@@ -232,7 +231,7 @@ export const JournalEntryContainer = () => {
     getNextJournal,
     getPreviousJournal,
     handleNavigateNew,
-    handleNavigateJournals
+    handleNavigateJournals,
     // goAccountStatement
   };
 

@@ -1,12 +1,15 @@
 import classNames from "classnames";
 import { journalType } from "../../../containers/journals/journal-type";
 import "./journal-card-styles.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 type JournalCardType = journalType & {
   bold?: boolean;
   pointer?: boolean;
 
   onClick?: any;
+  handleTrash?: any;
 };
 export const JournalCard = ({
   date,
@@ -16,6 +19,7 @@ export const JournalCard = ({
   number,
   onClick,
   pointer,
+  handleTrash,
 }: JournalCardType) => {
   const classes = classNames({
     bold,
@@ -23,10 +27,18 @@ export const JournalCard = ({
   });
 
   return (
-    <div onClick={onClick} id={"journal-card-styles"} className={classes}>
-      <div className="date">{date}</div>
-      <div className="description">{description}</div>
-      <div className="number">{number}</div>
+    <div id={"journal-card-styles"} className={classes}>
+      <div onClick={onClick} className="date">
+        {date}
+      </div>
+      <div onClick={onClick} className="description">
+        {description}
+      </div>
+      <div onClick={onClick} className="number">
+        {number}
+      </div>
+
+      <FontAwesomeIcon onClick={handleTrash} className="icons" icon={faTrash} />
     </div>
   );
 };

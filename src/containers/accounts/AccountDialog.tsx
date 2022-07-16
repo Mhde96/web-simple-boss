@@ -34,10 +34,10 @@ export const AccountDialog = ({}: any) => {
   const { values, setValues, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
       name: "",
-      financial_statement: undefined,
+      financial_statement: 0,
       key: undefined,
     },
-    validateOnChange:false,
+    validateOnChange: false,
     validationSchema,
     onSubmit: (values) => {
       dispatch(SaveAccountAsync(values, navigate));
@@ -49,7 +49,7 @@ export const AccountDialog = ({}: any) => {
 
     if (id != undefined) {
       if (id == "new") {
-        setValues({ name: "", financial_statement: undefined, key: undefined });
+        setValues({ name: "", financial_statement: 0, key: undefined });
       } else setValues(accounts.find((account: any) => account.id == id));
       return true;
     } else return false;
@@ -57,7 +57,6 @@ export const AccountDialog = ({}: any) => {
 
   const handleClose = () => navigate(-1);
 
-  
   return (
     <Modal backdrop="static" show={account_id} onHide={handleClose}>
       <Form onSubmit={handleSubmit}>
@@ -84,9 +83,15 @@ export const AccountDialog = ({}: any) => {
               <Form.Check
                 name="financial_statement"
                 type="radio"
-                {...item}
-                value={item?.value}
-                onChange={handleChange("financial_statement")}
+                label={item.label}
+                checked={
+                  item?.value == values.financial_statement ? true : false
+                }
+                // value={item?.value == values.financial_statement ? 1 : 0}
+                // handleChange("financial_statement")
+                onChange={() =>
+                  setValues({ ...values, financial_statement: item.value })
+                }
               />
             ))}
             <ErrorMessage>{errors?.financial_statement}</ErrorMessage>

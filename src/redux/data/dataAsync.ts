@@ -3,6 +3,7 @@ import { boolean } from "yup";
 import { endpoints } from "../../constant/endpoints";
 import { endroutes } from "../../constant/endroutes";
 import { accountType } from "../../containers/accounts/account-type";
+import { journalType } from "../../containers/journals/journal-type";
 import { api } from "../../helper/api";
 import appSlice from "../app/appSlice";
 
@@ -54,3 +55,10 @@ export const fetchJournalsAsync = () => (dispatch: AppDispatch) => {
     dispatch(dataSlice.actions.fetchJournals(response.data.data));
   });
 };
+
+export const deleteJournalAsync =
+  (journal: journalType) => (dispatch: AppDispatch) => {
+    api.delete(endpoints.journals + "/" + journal.id).then((response) => {
+      dispatch(fetchJournalsAsync());
+    });
+  };

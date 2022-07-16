@@ -9,21 +9,7 @@ export const JournalsPage = (props: JournalPagePropsType) => {
   const navigate = useNavigate();
   return (
     <div id="journals-page-styles">
-      <div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 10,
-          }}
-        >
-          <div>Filter</div>
-          <Button>Date</Button>
-          <Button>Number</Button>
-        </div>
-        <hr />
-      </div>
+      
 
       <div className="journals-body">
         <JournalCard
@@ -32,17 +18,18 @@ export const JournalsPage = (props: JournalPagePropsType) => {
           bold
           number={"Number"}
         />
-        {props.journals.map((item, index: number) => (
+        {props?.journals?.map((item, index: number) => (
           <JournalCard
             pointer
             key={index}
             onClick={() => props.handleNavigateToEntries(item.number)}
+            handleTrash={() => props.DeleteJournalAsync(item)}
             {...item}
           />
         ))}
       </div>
 
-      <div style={{  }}>
+      <div style={{}}>
         <hr />
         <div
           style={{
@@ -53,7 +40,7 @@ export const JournalsPage = (props: JournalPagePropsType) => {
             alignItems: "center",
           }}
         >
-          <div>Count 3</div>
+          <div>Count {props.journals.length  }</div>
           <Button
             onClick={() => navigate(endroutes.journalentaries().newJournal)}
           >

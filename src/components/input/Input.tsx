@@ -11,8 +11,9 @@ export const Input = ({
   return (
     <div id="input-style">
       <Form.Control
-        value={value}
-        onChange={onChange}
+        defaultValue={value}
+        // onChange={onChange}
+        onBlur={onChange}
         placeholder={placeholder}
       />
 
