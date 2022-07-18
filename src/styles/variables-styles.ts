@@ -24,6 +24,8 @@ const borderDark = "#393a3b";
 const error = "#F44336";
 const danger = error;
 
+const link = "#2680eb";
+
 export const colors = {
   primary,
   onPrimary,
@@ -40,7 +42,8 @@ export const colors = {
   border,
   borderDark,
   error,
-  danger
+  danger,
+  link
 };
 
 // ===================================================

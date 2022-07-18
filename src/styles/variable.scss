@@ -3,7 +3,7 @@ $header-height: 50px;
 $body-height: calc(100vh - $header-height);
 
 // colors
-$primary-color: #f6cf50 ;
+$primary-color: #f6cf50;
 $on-primary-color: #ffffff;
 
 $secondary: #fb8500;
@@ -25,14 +25,13 @@ $border-color: #ced0d4;
 $border-dark-color: #393a3b;
 
 // onSurfice_soft: '#87879D',
-// Link: '#2680EB',
-$error: #F44336;
+$link: #2680eb;
+$error: #f44336;
 // text: BrightMode ? '#212121' : '#F7F8FA',
 
 // whatsapp: '#57BC55',
 // telegram: '#53A3D9',
 // rate: 'rgb(238,201,70)',
-
 
 // bootstrap values
 $xxl: 1400px;

@@ -1,30 +1,35 @@
 import { Button } from "react-bootstrap";
 import "./account-card-styles.scss";
-import { motion, MotionProps, VariantLabels } from "framer-motion";
+import {
+  motion,
+  MotionProps,
+  useAnimationControls,
+  VariantLabels,
+} from "framer-motion";
 import { AccountCardTypeProps } from "./account-card-type";
 import { colors } from "../../../styles/variables-styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const CardAnimationProps: MotionProps = {
-  animate: {
-    background: colors.surface,
-  },
-  whileHover: {
-    background: colors.primary,
-    color: colors.onPrimary,
-    fontWeight: "bold",
-    fontSize: "18px",
-    // padding:'12px 4px'
-  },
-};
+import { TrashIcon } from "../../../assets/icons/TrashIcon";
+import { EditIcon } from "../../../assets/icons/EditIcon";
+import { CardAnimationProps } from "../CardAnimation";
 
-export const AccountCard = ({ name, operations }: AccountCardTypeProps) => {
+export const AccountCard = (props: AccountCardTypeProps) => {
+  const { account_key, name, operations, isHeader, index } = props;
+  const accountKey = account_key ? account_key + " - " : "";
+
+  const AnimationProps = isHeader
+    ? { ...CardAnimationProps({ index }) }
+    : undefined;
   return (
-    <motion.div {...CardAnimationProps} id="account-card-styles">
-      <div className="name">{name}</div>
+    <motion.div {...AnimationProps} id="account-card-styles">
+      <div className="name" onClick={() => operations?.open()}>
+        {accountKey + name}
+      </div>
 
       <div
+        className="operations"
         style={{
           gap: "30px",
           display: "flex",
@@ -33,16 +38,14 @@ export const AccountCard = ({ name, operations }: AccountCardTypeProps) => {
           alignItems: "center",
         }}
       >
-        {operations?.open && <Button>Open</Button>}
-        {operations?.update && <Button>Update</Button>}
-        {operations?.delete && (
-          <FontAwesomeIcon
-            onClick={operations.delete}
+        {operations?.update && (
+          <EditIcon
+            onClick={operations.update}
             className="icons"
-            icon={faTrash}
-            color={colors.onSurface}
+            // color={colors.surface}
           />
         )}
+        {operations?.delete && <TrashIcon onClick={operations.delete} />}
       </div>
     </motion.div>
   );

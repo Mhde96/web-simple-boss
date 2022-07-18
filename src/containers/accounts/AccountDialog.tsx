@@ -34,7 +34,7 @@ export const AccountDialog = ({}: any) => {
   const { values, setValues, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
       name: "",
-      financial_statement: 0,
+      financial_statement: "0",
       key: undefined,
     },
     validateOnChange: false,
@@ -49,7 +49,7 @@ export const AccountDialog = ({}: any) => {
 
     if (id != undefined) {
       if (id == "new") {
-        setValues({ name: "", financial_statement: 0, key: undefined });
+        setValues({ name: "", financial_statement: "0", key: undefined });
       } else setValues(accounts.find((account: any) => account.id == id));
       return true;
     } else return false;
@@ -79,8 +79,9 @@ export const AccountDialog = ({}: any) => {
           />
           <br />
           <>
-            {financial_statement_array.map((item) => (
+            {financial_statement_array.map((item, index) => (
               <Form.Check
+                key={index}
                 name="financial_statement"
                 type="radio"
                 label={item.label}

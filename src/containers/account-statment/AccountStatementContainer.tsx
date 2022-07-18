@@ -1,47 +1,49 @@
 import { useFormik } from "formik";
 import _ from "lodash";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { endroutes } from "../../constant/endroutes";
 import { selectAccounts, selectJournals } from "../../redux/data/dataSlice";
 import { AccountStatementPagePropsType } from "./account-statement-type";
 import { AccountStatmentPage } from "./AccountStatementPage";
 
 export const AccountStatmentContainer = () => {
+  const { key } = useParams();
+  const navigate = useNavigate();
   const journals = useSelector(selectJournals);
   const accounts = useSelector(selectAccounts);
 
-  const { values, setValues } = useFormik({
-    initialValues: {
-      account_id: null,
-      entries: [],
-    },
-    onSubmit: () => {},
-  });
+  const [entries, setEntries] = useState([]);
+  const account = accounts.find((account) => account.key == key)?.id;
 
-  // const [entries, setEntries] = useState();
+  useEffect(() => {
+    if (key && accounts.length && journals.length) {
+      handleGetAccountData(key);
+    }
+  }, [key, accounts, journals]);
 
-  const handleGetAccountData = (account_id: any) => {
+  const handleGetAccountData = (key: string) => {
+    const account_id = accounts.find((account) => account.key == key)?.id;
+
     let data: any = [];
 
     journals.map((journal) => {
       journal.journal_entries?.map((entry) => {
-        if (entry.account_id == values.account_id) {
+        if (entry.account_id == account_id) {
           data.push(entry);
         }
       });
     });
 
-    setValues({ ...values, account_id, entries: data });
+    navigate(endroutes.account_statment(key).go);
+    setEntries(data);
   };
 
   const summaryRows = useMemo(() => {
-    const totalCredit = _.sumBy(values.entries, (item: any) =>
-      Number(item.credit)
-    );
-    const totalDebit = _.sumBy(values.entries, (item: any) =>
-      Number(item.debit)
-    );
-    const accountLength = values?.entries?.filter(
+    const totalCredit = _.sumBy(entries, (item: any) => Number(item.credit));
+    const totalDebit = _.sumBy(entries, (item: any) => Number(item.debit));
+    const accountLength = entries?.filter(
       (item: any) => item.account_id
     )?.length;
 
@@ -54,15 +56,16 @@ export const AccountStatmentContainer = () => {
         difference,
       },
     ];
-  }, [values.entries]);
-
-
+  }, [entries]);
 
   const props: AccountStatementPagePropsType = {
-    values,
+    account,
+    entries,
     accounts,
     handleGetAccountData,
-    summaryRows
+    summaryRows,
   };
+
+  
   return <AccountStatmentPage {...props} />;
 };

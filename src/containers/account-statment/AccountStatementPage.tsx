@@ -11,37 +11,31 @@ import Select from "react-select";
 import { Break } from "../../components/Break";
 import { Text } from "../../components/text/Text";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
 export const AccountStatmentPage = (props: AccountStatementPagePropsType) => {
   const {} = props;
   return (
     <div id="account-statement-page-styles">
       <Select
         options={props.accounts.map((item: any) => ({
-          value: item.id,
+          value: item.key,
           label: item.name,
         }))}
         onChange={(account: any) => {
           props.handleGetAccountData(account.value);
         }}
+        // inputValue={props?.account?.key}
+        // value={props?.account?.key}
+        // defaultValue={props?.account?.key}
+        // defaultInputValue={props?.account?.key}
       />
-      <Break />
-      <Text fs="f3" bold>
-        Box
-      </Text>
       <Break />
 
       <DataGrid
-      
         className={"rdg-light fill-grid "}
         // components={{ rowRenderer }}
         columns={account_table_columns}
         summaryRows={props.summaryRows}
-        rows={props?.values?.entries}
+        rows={props?.entries}
         // onRowsChange={props.onRowsChange}
       />
     </div>

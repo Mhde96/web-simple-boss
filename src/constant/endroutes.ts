@@ -14,11 +14,11 @@ export const endroutes = {
     const title = "Journal";
     return { path, go, title, newJournal };
   },
-  account_statment: (id?: number) => {
+  account_statment: (key?: string) => {
     const name = "account_statment";
-    const path = `/${name}/:id`;
+    const path = `/${name}/:key`;
     const null_path = `/${name}`;
-    const go = `/${name}/${id}`;
+    const go = `/${name}/${key}`;
     const title = "Account statment";
     return { path, go, title, null_path };
   },

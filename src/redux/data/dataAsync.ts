@@ -16,6 +16,7 @@ export const SaveAccountAsync =
     let configration = () => {
       let method = "post";
       let url = endpoints.account;
+      account.financial_statement = String(account.financial_statement);
       let data = account;
 
       if (account.id) {

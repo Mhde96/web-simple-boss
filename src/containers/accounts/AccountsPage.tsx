@@ -23,17 +23,22 @@ export const AccountsPage = (props: AccountsPropsType) => {
       <hr />
 
       <AccountCard name={"name"} />
-      {props.accounts.map((item, index) => (
-        <AccountCard
-          key={index}
-          {...item}
-          operations={{
-            update: () => OpenAccountDialog(location, navigate, item),
-            delete: () => {
-              props.DeleteAccountAsync(item);
-            },
-          }}
-        />
+      {props.accounts.map((item: any, index) => (
+        <div key={index}>
+          <AccountCard
+            isHeader
+            name={item.name}
+            account_key={item.key}
+            index={index}
+            operations={{
+              open: () => props.handleNavigateAccount(item.key),
+              update: () => OpenAccountDialog(location, navigate, item),
+              delete: () => {
+                props.DeleteAccountAsync(item);
+              },
+            }}
+          />
+        </div>
       ))}
     </div>
   );

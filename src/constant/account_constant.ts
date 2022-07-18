@@ -1,14 +1,14 @@
 export const financial_statement_obg = {
   balance_sheet: {
-    value: 0,
+    value: "0",
     label: "Balance Sheet",
   },
   profit_loss: {
-    value: 1,
+    value: "1",
     label: "Profit And Loss Account",
   },
   trading: {
-    value: 2,
+    value: "2",
     label: "trading Account",
   },
 };
