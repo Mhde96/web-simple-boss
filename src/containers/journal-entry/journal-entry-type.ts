@@ -1,6 +1,7 @@
 export enum columnsKey {
   id = "id",
   account_id = "account_id",
+  accountKey = "accountKey",
   accountName = "accountName",
   description = "description",
   credit = "credit",
@@ -11,6 +12,7 @@ export enum columnsKey {
 export type entryType = {
   [columnsKey.id]: number | null;
   [columnsKey.account_id]: number | null;
+  [columnsKey.accountKey]: string;
   [columnsKey.accountName]: string;
   [columnsKey.description]: string;
   [columnsKey.credit]: number;
@@ -29,6 +31,7 @@ enum status {
 export const empty_row: entryType = {
   [columnsKey.id]: null,
   [columnsKey.account_id]: null,
+  [columnsKey.accountKey]: "",
   [columnsKey.accountName]: "",
   [columnsKey.description]: "",
   [columnsKey.credit]: 0,

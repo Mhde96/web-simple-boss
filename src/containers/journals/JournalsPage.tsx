@@ -25,7 +25,6 @@ export const JournalsPage = (props: JournalPagePropsType) => {
   const navigate = useNavigate();
   return (
     <div id="journals-page-styles">
-      {" "}
       <LayoutGroup>
         <motion.div
           className="journals-body"

@@ -49,7 +49,7 @@ export const journal_entry_rows = (entries?: Array<any>): any => {
     return entries;
   } else {
     let rows = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 20; i++) {
       rows.push({ ...empty_row });
     }
     return rows;

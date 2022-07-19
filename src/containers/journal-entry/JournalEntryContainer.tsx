@@ -58,10 +58,11 @@ export const JournalEntryContainer = () => {
     const journal = journals.find((journal) => journal.number == number);
 
     journal?.journal_entries?.map((item) => {
+      const account = accounts.find((account) => account.id == item.account_id);
       data.push({
         ...item,
-        accountName: accounts.find((account) => account.id == item.account_id)
-          ?.name,
+        accountName: account?.name,
+        accountKey: account?.key,
       });
     });
 

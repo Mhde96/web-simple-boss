@@ -1,8 +1,4 @@
-import DataGrid, {
-  Column,
-  Row as GridRow,
-  RowRendererProps,
-} from "react-data-grid";
+import DataGrid, { Column, Row, RowRendererProps } from "react-data-grid";
 import {
   AccountStatementPagePropsType,
   account_table_columns,
@@ -10,34 +6,45 @@ import {
 import Select from "react-select";
 import { Break } from "../../components/Break";
 import { Text } from "../../components/text/Text";
-
+import "./account-statement-page-styles.scss";
+import { PageTransitionProps } from "../../components/animations/AnimationPageProps";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { endroutes } from "../../constant/endroutes";
 export const AccountStatmentPage = (props: AccountStatementPagePropsType) => {
-  const {} = props;
+  const { selectedAccount } = props;
+  const navigate = useNavigate();
+  const accounts = props.accounts.map((item: any) => ({
+    value: item.key,
+    label: item.name,
+  }));
+
   return (
-    <div id="account-statement-page-styles">
+    <motion.div {...PageTransitionProps} id="account-statement-page-styles">
       <Select
-        options={props.accounts.map((item: any) => ({
-          value: item.key,
-          label: item.name,
-        }))}
+        options={accounts}
         onChange={(account: any) => {
           props.handleGetAccountData(account.value);
         }}
         // inputValue={props?.account?.key}
-        // value={props?.account?.key}
-        // defaultValue={props?.account?.key}
+        value={selectedAccount}
+        defaultValue={selectedAccount}
         // defaultInputValue={props?.account?.key}
       />
       <Break />
 
       <DataGrid
-        className={"rdg-light fill-grid "}
+        className={"rdg-light fill-grid data-grid"}
         // components={{ rowRenderer }}
+
+        onRowClick={(d: any) => {
+          if (d.number) navigate(endroutes.journalentaries(d.number).go);
+        }}
         columns={account_table_columns}
         summaryRows={props.summaryRows}
         rows={props?.entries}
         // onRowsChange={props.onRowsChange}
       />
-    </div>
+    </motion.div>
   );
 };

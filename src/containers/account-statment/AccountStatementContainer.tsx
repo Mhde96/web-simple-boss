@@ -15,6 +15,10 @@ export const AccountStatmentContainer = () => {
   const accounts = useSelector(selectAccounts);
 
   const [entries, setEntries] = useState([]);
+  const [selectedAccount, setSelectedAccount] = useState({
+    label: "Select your Account",
+    value: "",
+  });
   const account = accounts.find((account) => account.key == key)?.id;
 
   useEffect(() => {
@@ -24,14 +28,19 @@ export const AccountStatmentContainer = () => {
   }, [key, accounts, journals]);
 
   const handleGetAccountData = (key: string) => {
-    const account_id = accounts.find((account) => account.key == key)?.id;
+    const account = accounts.find((account) => account.key == key);
+    const account_id = account.id;
+    setSelectedAccount({
+      value: account.key,
+      label: account.name,
+    });
 
     let data: any = [];
 
     journals.map((journal) => {
       journal.journal_entries?.map((entry) => {
         if (entry.account_id == account_id) {
-          data.push(entry);
+          data.push({ ...entry, number: journal.number });
         }
       });
     });
@@ -64,8 +73,8 @@ export const AccountStatmentContainer = () => {
     accounts,
     handleGetAccountData,
     summaryRows,
+    selectedAccount,
   };
 
-  
   return <AccountStatmentPage {...props} />;
 };

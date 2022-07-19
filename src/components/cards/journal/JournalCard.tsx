@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { selectAccounts } from "../../../redux/data/dataSlice";
 import { EditIcon } from "../../../assets/icons/EditIcon";
 import { colors } from "../../../styles/variables-styles";
+import { dateFormatUi } from "../../date/date-format";
 
 type JournalCardType = journalType & {
   bold?: boolean;
@@ -59,15 +60,9 @@ export const JournalCard = ({
         className={classes}
         onClick={handleOpen}
       >
-        <div  className="date">
-          {date}
-        </div>
-        <div className="description">
-          {description}
-        </div>
-        <div  className="number">
-          {number}
-        </div>
+        <div className="date">{dateFormatUi(date)}</div>
+        <div className="description">{description}</div>
+        <div className="number">{number}</div>
       </motion.div>
       <AnimatePresence>
         {entries && active && (
@@ -88,12 +83,9 @@ export const JournalCard = ({
               ))}
             </div>
             <div className="edit">
-              <EditIcon  onClick={onEdit} fill={colors.link} />
+              <EditIcon onClick={onEdit} fill={colors.link} />
 
-              <TrashIcon
-                onClick={handleTrash}
-                fill={colors.onSurface}
-              />
+              <TrashIcon onClick={handleTrash} fill={colors.onSurface} />
             </div>
           </motion.div>
         )}

@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ConfirmationDeleteDialog } from "../../components/dialogs/ConfirmationDeleteDialog";
 import { endroutes } from "../../constant/endroutes";
 import {
   deleteJournalAsync,
@@ -21,19 +22,48 @@ export const JournalsContainer = () => {
   const dispatch = useAppDispatch();
   const journals = useSelector(selectJournals);
 
-  const DeleteJournalAsync = (journal: journalType) =>
-    dispatch(deleteJournalAsync(journal));
+  const DeleteJournalAsync = (journal: journalType, isDelete: boolean) => {
+    if (isDelete && journal.id) {
+      dispatch(deleteJournalAsync(journal));
+    } else {
+      setShowConfirmationDialog({
+        show: true,
+        data: journal,
+        title: "Delete Journal",
+        body: "are you sure you want to delete " + journal.number,
+      });
+    }
+  };
   const handleNavigateToEntries = (number: number) =>
     navigate(endroutes.journalentaries(number).go);
 
   useEffect(() => {
     dispatch(fetchJournalsAsync());
   }, []);
+
+  const [showConfirmationDialog, setShowConfirmationDialog] = useState<any>({
+    show: false,
+    data: {},
+    title: "",
+    body: "",
+  });
+
   const props = {
     journals,
     columns,
     handleNavigateToEntries,
     DeleteJournalAsync,
   };
-  return <JournalsPage {...props} />;
+  return (
+    <>
+      <ConfirmationDeleteDialog
+        data={showConfirmationDialog}
+        setData={setShowConfirmationDialog}
+        handleSubmit={() =>
+          DeleteJournalAsync(showConfirmationDialog.data, true)
+        }
+      />
+      <JournalsPage {...props} />;
+    </>
+  );
 };

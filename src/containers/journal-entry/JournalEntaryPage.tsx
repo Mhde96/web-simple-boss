@@ -23,6 +23,9 @@ import { Input } from "../../components/input/Input";
 import { Breadcrumb, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { endroutes } from "../../constant/endroutes";
+import { motion } from "framer-motion";
+import { PageTransitionProps } from "../../components/animations/AnimationPageProps";
+import { navigateAccountStatement } from "../account-statment/account-statement-type";
 
 const MENU_ID = "menu-id";
 
@@ -49,7 +52,7 @@ export const JournalEntaryPage = (props: JournalEntryPagePropsType) => {
   };
 
   return (
-    <div id={"journal-entry-styles"}>
+    <motion.div  {...PageTransitionProps} id={"journal-entry-styles"}>
       <Breadcrumb>
         <Breadcrumb.Item onClick={props.handleNavigateJournals}>
           Journal
@@ -84,7 +87,7 @@ export const JournalEntaryPage = (props: JournalEntryPagePropsType) => {
           />
         </Button> */}
         <Form.Control type="date" />
-        <Button>Delete</Button>
+        <Button disabled>Delete</Button>
 
         <Button onClick={props.handleSubmit}>
           {props.values.number == "new" ? "add" : "update"}
@@ -108,7 +111,19 @@ export const JournalEntaryPage = (props: JournalEntryPagePropsType) => {
 
       <Menu id={MENU_ID}>
         <Item onClick={() => deleteRow(rowIndex, setValues)}>delete</Item>
+        {values.journalentries[rowIndex]?.accountKey && (
+          <Item
+            onClick={() => {
+              navigateAccountStatement({
+                key: values.journalentries[rowIndex].accountKey,
+                navigate,
+              });
+            }}
+          >
+            Account Statement
+          </Item>
+        )}
       </Menu>
-    </div>
+    </motion.div>
   );
 };

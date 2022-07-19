@@ -1,3 +1,7 @@
+@import "../../styles/variable.scss";
 #account-statement-page-styles {
-    
+  height: calc($body-height - 20px);
+  .data-grid {
+    height: 90%;
+  }
 }
