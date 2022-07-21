@@ -24,7 +24,7 @@ export const AccountCard = (props: AccountCardTypeProps) => {
     : undefined;
   return (
     <motion.div {...AnimationProps} id="account-card-styles">
-      <div className="name" onClick={() => operations?.open()}>
+      <div className="name" onClick={() => operations?.update()}>
         {accountKey + name}
       </div>
 
@@ -34,16 +34,22 @@ export const AccountCard = (props: AccountCardTypeProps) => {
           gap: "30px",
           display: "flex",
 
-          justifyContent: "center",
+          
           alignItems: "center",
         }}
       >
         {operations?.update && (
-          <EditIcon
-            onClick={operations.update}
-            className="icons"
-            // color={colors.surface}
-          />
+          <>
+            <div style={{color:'white' , cursor:'pointer'}} className="name" onClick={() => operations?.open()}>
+              Statement
+            </div>
+
+            <EditIcon
+              onClick={operations.update}
+              className="icons"
+              // color={colors.surface}
+            />
+          </>
         )}
         {operations?.delete && <TrashIcon onClick={operations.delete} />}
       </div>

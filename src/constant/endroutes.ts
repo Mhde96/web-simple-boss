@@ -4,6 +4,7 @@ export const endroutes = {
   forgetpassword: "/forgetpassword",
   changeforgetpassword: "/changeforgetpassword",
   otp: "/otp",
+  thankyou: "/thankyou",
   journals: { path: "/journals", title: "Journal" },
   accounts: { path: "/accounts", title: "Account" },
   journalentaries: (id?: number | string) => {

@@ -5,17 +5,22 @@ import { Input } from "../../components/input/Input";
 import { Text } from "../../components/text/Text";
 import { LoginPagePropsType } from "./login-type";
 import "./login-page-style.scss";
+import { motion } from "framer-motion";
+import { PageTransitionProps } from "../../components/animations/AnimationPageProps";
+import { Break } from "../../components/Break";
 export const LoginPage = ({
   handleChange,
   values,
   errors,
   handleSubmit,
-  handleRegister
+  handleRegister,
 }: LoginPagePropsType) => {
   return (
-    <>
-      <Text fs={"f2"}>Boss System</Text>
-      
+    <motion.div {...PageTransitionProps}>
+      <br />
+      <Text bold center fs={"f2"}>Boss Accounting</Text>
+      <Text bold center fs={"f2"}>Hello Again!</Text>
+
       <br />
 
       <Input
@@ -33,8 +38,10 @@ export const LoginPage = ({
       />
       <br />
       <Button onClick={handleSubmit}>Login</Button>
-      <br />
+
+      <Break />
+      <Break />
       <Button onClick={handleRegister}>Register</Button>
-    </>
+    </motion.div>
   );
 };

@@ -19,7 +19,7 @@ export const registerAsync =
       .then((response) => {
         if (response.data.success) {
           dispatch(appSlice.actions.login(response.data.data));
-          navigate(endroutes.journals.path);
+          navigate(endroutes.thankyou);
         }
       })
       .catch(() => {})
@@ -42,7 +42,7 @@ export const loginAsync =
       .then((response) => {
         if (response.data.success) {
           dispatch(appSlice.actions.login(response.data.data));
-          navigate(endroutes.journals.path);
+          navigate(endroutes.thankyou);
         } else {
           alert(response.data.msg);
         }

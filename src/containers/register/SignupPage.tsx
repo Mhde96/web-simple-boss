@@ -5,20 +5,26 @@ import { Input } from "../../components/input/Input";
 import { Text } from "../../components/text/Text";
 import { SignupPagePropsType } from "./signup-type";
 import "./signup-page-style.scss";
-
+import { PageTransitionProps } from "../../components/animations/AnimationPageProps";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { endroutes } from "../../constant/endroutes";
+import { Break } from "../../components/Break";
 export const SignupPage = ({
   handleChange,
   values,
   errors,
   handleSubmit,
 }: SignupPagePropsType) => {
+  const navigate = useNavigate();
+  const handleNavigateLogin = () => navigate(endroutes.login);
   return (
-    <div id="signup-page-style">
+    <motion.div {...PageTransitionProps} id="signup-page-style">
       <Text fs={"f2"} bold center>
         Boss Accounting
       </Text>
       <Text fs={"f2"} center>
-        Reigester
+        Reigester For Free
       </Text>
 
       <br />
@@ -57,6 +63,9 @@ export const SignupPage = ({
       <br />
 
       <Button onClick={handleSubmit}>Signup</Button>
-    </div>
+      <Break />
+      <Break />
+      <Button onClick={handleNavigateLogin}>Login</Button>
+    </motion.div>
   );
 };

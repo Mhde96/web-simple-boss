@@ -1,6 +1,7 @@
 @import "../../../styles/variable.scss";
 #account-card-styles {
   display: flex;
+  align-items: center;
   background-color: $surface-color;
   padding: 6px;
   margin-bottom: 10px;

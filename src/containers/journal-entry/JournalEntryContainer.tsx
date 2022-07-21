@@ -148,7 +148,7 @@ export const JournalEntryContainer = () => {
     // account_name
     else if (data.column.key == columnsKey.accountName) {
       const accountsfiltered = accounts.filter((e: accountType) =>
-        e.name.match(value)
+        e.name.toLowerCase().match(value.toLowerCase())
       );
 
       if (accountsfiltered?.length > 1) {
@@ -185,6 +185,7 @@ export const JournalEntryContainer = () => {
             return {
               ..._entary,
               [columnsKey.accountName]: account.name,
+              [columnsKey.accountKey]: account.key,
               [columnsKey.account_id]: account.id,
             };
           }
@@ -250,7 +251,7 @@ export const JournalEntryContainer = () => {
           text={"2"}
           onClose={() => {}}
         />
-        <JournalEntaryPage {...props} />{" "}
+        <JournalEntaryPage {...props} />
       </>
     );
 

@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { endroutes } from "./constant/endroutes";
 import { AccountStatmentContainer } from "./containers/account-statment/AccountStatementContainer";
 import { AccountsContainer } from "./containers/accounts/AccountsContainer";
+import { AuthThankYouContainer } from "./containers/auth/thankyou/AuthThankYouContainer";
 import { ChangeForgetPasswordContainer } from "./containers/change-forget-password/ChangeForgetPasswordContainer";
 import { BalanceSheetContainer } from "./containers/financial-statement/BalanceSheetContainer";
 import { ProfitAndLossAccountContainer } from "./containers/financial-statement/ProfitAndLossAccountContainer";
@@ -34,6 +35,13 @@ export const Navigation = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<AuthLayout />}>
+          <Route
+            path={endroutes.thankyou}
+            element={<AuthThankYouContainer />}
+          />
+        </Route>
+        
         <Route
           path="/"
           element={
@@ -86,6 +94,10 @@ export const Navigation = () => {
         <Route element={<AuthLayout />}>
           <Route path={endroutes.login} element={<LoginContainer />} />
           <Route path={endroutes.register} element={<SignupContainer />} />
+          <Route
+            path={endroutes.thankyou}
+            element={<AuthThankYouContainer />}
+          />
           <Route
             path={endroutes.forgetpassword}
             element={<ForgetPasswordContainer />}

@@ -7,8 +7,9 @@ import { api } from "../../helper/api";
 import { columnsKey, empty_row } from "./journal-entry-type";
 
 export const jounral_entry_columns = [
-  { key: columnsKey.id, name: columnsKey.id },
-  { key: columnsKey.account_id, name: columnsKey.account_id },
+  // { key: columnsKey.id, name: columnsKey.id },
+  // { key: columnsKey.account_id, name: columnsKey.account_id,},
+  // { key: columnsKey.accountKey, name: columnsKey.accountKey,},
   {
     key: columnsKey.accountName,
     name: columnsKey.accountName,
@@ -70,8 +71,7 @@ export const deleteRow = (rowIdx: number, setValues: any) => {
   }));
 };
 
-export const JournalApi = (data: any , navigate:NavigateFunction) => {
-  
+export const JournalApi = (data: any, navigate: NavigateFunction) => {
   let configration = () => {
     let method = "post";
     let url = endpoints.journals;
@@ -100,7 +100,7 @@ export const JournalApi = (data: any , navigate:NavigateFunction) => {
       entries,
     },
   }).then((response) => {
-    navigate(endroutes.journals.path)
+    navigate(endroutes.journals.path);
     console.log(response);
 
     // alert("you had added journal");

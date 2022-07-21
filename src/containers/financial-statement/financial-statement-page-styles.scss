@@ -1,52 +1,84 @@
 @import "../../styles/variable.scss";
+
 #financial-statement-page-styles {
-  height: 96%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: white;
-  margin: 1% 1% 3% 1%;
-  border:1px solid $border-color;
-  
-  .header-footer {
-    border: 1px solid $border-color;
-  }
-
-  .header {
-  }
-  .footer {
-    background: $primary-color;
-    color: $on-primary-color;
+  & {
+    height: 98%;
     display: flex;
-    justify-content: space-between;
-  }
-  .style-row {
-    display: flex;
-    flex-direction: row;
+    width: 100%;
+    background-color: $surface-color;
   }
 
-  .account-row {
-    background: $surface-color;
-
-    min-height: 40px;
-    max-height: 40px;
+  .box {
+    padding: 10px;
     border: 1px solid $border-color;
-  }
+    width: 100%;
 
-  .account-row:hover {
-    background: $background-color;
-  }
-
-  .column-section {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    
-    height: 100%;
+    justify-content: space-between;
   }
 
-  .border {
+  .header{
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid $border-color;
   }
-  .debit-column {
+
+  .footer{
+    border-top: 1px solid $border-color;
   }
+
 }
+
+
+// #financial-statement-page-styles {
+//   height: 96%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   background-color: white;
+//   margin: 1% 1% 3% 1%;
+//   border: 1px solid $border-color;
+
+//   .header-footer {
+//     border: 1px solid $border-color;
+//   }
+
+//   .header {
+//   }
+//   .footer {
+//     background: $primary-color;
+//     color: $on-primary-color;
+//     display: flex;
+//     justify-content: space-between;
+//   }
+//   .style-row {
+//     display: flex;
+//     flex-direction: row;
+//   }
+
+//   .account-row {
+//     background: $surface-color;
+
+//     min-height: 40px;
+//     max-height: 40px;
+//     border: 1px solid $border-color;
+//   }
+
+//   .account-row:hover {
+//     background: $background-color;
+//   }
+
+//   .column-section {
+//     display: flex;
+//     flex-direction: column;
+//     flex: 1;
+
+//     height: 100%;
+//   }
+
+//   .border {
+//   }
+//   .debit-column {
+//   }
+// }

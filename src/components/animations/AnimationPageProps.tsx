@@ -6,6 +6,7 @@ export const PageTransitionProps: MotionProps = {
   },
   animate: {
     opacity: 1,
+    
   },
   exit: {
     opacity: 0,
