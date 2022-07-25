@@ -3,4 +3,5 @@ export type InputPropsType = {
   onChange?: any;
   value?: any;
   error?: string;
+  disabled?: boolean;
 };

@@ -7,6 +7,8 @@ import { AccountsContainer } from "./containers/accounts/AccountsContainer";
 import { AuthThankYouContainer } from "./containers/auth/thankyou/AuthThankYouContainer";
 import { ChangeForgetPasswordContainer } from "./containers/change-forget-password/ChangeForgetPasswordContainer";
 import { BalanceSheetContainer } from "./containers/financial-statement/BalanceSheetContainer";
+import { BalanceStatementContainer } from "./containers/financial-statement/BalanceStatementContainer";
+import { IncomeStatementContainer } from "./containers/financial-statement/IncomeStatementContainer";
 import { ProfitAndLossAccountContainer } from "./containers/financial-statement/ProfitAndLossAccountContainer";
 import { TradingAccountContainer } from "./containers/financial-statement/TradingAccountContainer";
 import { TrialBalanceContainer } from "./containers/financial-statement/TrialBalanceContainer";
@@ -16,6 +18,7 @@ import { JournalsContainer } from "./containers/journals/JournalsContainer";
 import { LoginContainer } from "./containers/login/LoginContainer";
 import { OtbContainer } from "./containers/otb-code/OtbContainer";
 import { SignupContainer } from "./containers/register/SignupContainer";
+import { AboutContainer } from "./containers/system/about/AboutContainer";
 
 import { selectUser } from "./redux/app/appSlice";
 import { fetchAccountsAsync, fetchJournalsAsync } from "./redux/data/dataAsync";
@@ -41,7 +44,7 @@ export const Navigation = () => {
             element={<AuthThankYouContainer />}
           />
         </Route>
-        
+
         <Route
           path="/"
           element={
@@ -89,6 +92,15 @@ export const Navigation = () => {
             path={endroutes.balancesheet.path}
             element={<BalanceSheetContainer />}
           />
+          <Route
+            path={endroutes.income_statement.path}
+            element={<IncomeStatementContainer />}
+          />
+          <Route
+            path={endroutes.balance_statement.path}
+            element={<BalanceStatementContainer />}
+          />
+          <Route path={endroutes.about.path} element={<AboutContainer />} />
         </Route>
 
         <Route element={<AuthLayout />}>

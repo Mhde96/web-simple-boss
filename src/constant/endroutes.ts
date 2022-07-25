@@ -5,6 +5,7 @@ export const endroutes = {
   changeforgetpassword: "/changeforgetpassword",
   otp: "/otp",
   thankyou: "/thankyou",
+  about: { path: "/about-us", title: "About Us" },
   journals: { path: "/journals", title: "Journal" },
   accounts: { path: "/accounts", title: "Account" },
   journalentaries: (id?: number | string) => {
@@ -31,4 +32,6 @@ export const endroutes = {
     title: "Profit And Loss Account",
   },
   balancesheet: { path: "/balancesheet", title: "Balance Sheet" },
+  income_statement: { path: "/income_statement", title: "Income Statement" },
+  balance_statement: { path: "/balance_statement", title: "Balance Statement" },
 };

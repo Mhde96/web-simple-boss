@@ -7,10 +7,12 @@ export const Input = ({
   value,
   placeholder,
   error,
+  disabled,
 }: InputPropsType) => {
   return (
     <div id="input-style">
       <Form.Control
+        disabled={disabled}
         defaultValue={value}
         // onChange={onChange}
         onBlur={onChange}

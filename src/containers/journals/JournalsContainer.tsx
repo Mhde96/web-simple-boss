@@ -63,7 +63,7 @@ export const JournalsContainer = () => {
           DeleteJournalAsync(showConfirmationDialog.data, true)
         }
       />
-      <JournalsPage {...props} />;
+      <JournalsPage {...props} />
     </>
   );
 };

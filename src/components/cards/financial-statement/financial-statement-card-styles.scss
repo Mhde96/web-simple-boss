@@ -5,9 +5,40 @@
   padding: 5px 10px;
 
   .account {
-    flex:3;
+    flex: 3;
   }
   .value {
     flex: 1;
+  }
+}
+
+#financial-statement-card-new-styles {
+  & {
+    display: flex;
+    border-bottom: 1px solid gray;
+
+    // border-left: 1px solid black;;
+  }
+
+  * {
+    flex: 1;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    justify-content: center;
+  }
+
+  .border-right-style {
+    border-right: 1px solid gray;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .value3 {
+    // border-top: 1px solid black;
+    // border-bottom: 1px solid black;
   }
 }

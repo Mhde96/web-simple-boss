@@ -4,4 +4,5 @@ export type TextPropsType = {
   bold?: boolean;
   center?: boolean;
   breakSpaces?: boolean;
+  color?: string;
 };

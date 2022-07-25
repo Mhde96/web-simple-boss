@@ -7,6 +7,12 @@ const cookies = new Cookies();
 const initialState: AppStateType = {
   user: cookies.get("user"),
   status: false,
+  confirm: {
+    show: false,
+    title: "",
+    message: "",
+    handleSubmit: undefined,
+  },
 };
 
 export const appSlice = createSlice({
@@ -17,8 +23,23 @@ export const appSlice = createSlice({
       state.user = { ...state.user, ...payload };
       cookies.set("user", { ...state.user, ...payload });
     },
+    logout: (state) => {
+      cookies.remove("user");
+      state.user = { email: "", name: "", id: undefined };
+    },
     changeStatus: (state, { payload }) => {
       state.status = payload;
+    },
+    openConfirmBox: (state, { payload }) => {
+      state.confirm = {
+        show: true,
+        title: payload.title,
+        message: payload.message,
+        handleSubmit: payload.handleSubmit,
+      };
+    },
+    closeConfirmBox: (state, { payload }) => {
+      state.confirm = { ...initialState.confirm };
     },
   },
 });

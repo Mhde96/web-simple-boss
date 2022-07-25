@@ -60,3 +60,7 @@ export const refreshTokenAsync = () => async (dispatch: AppDispatch) => {
     }
   });
 };
+
+export const logoutAsync = () => async (dispatch: AppDispatch) => {
+  dispatch(appSlice.actions.logout());
+};

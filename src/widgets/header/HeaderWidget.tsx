@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Image, Nav, Navbar } from "react-bootstrap";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { UserIcon } from "../../assets/icons/UserIcon";
+import { Text } from "../../components/text/Text";
+import { selectUser } from "../../redux/app/appSlice";
+import { colors } from "../../styles/variables-styles";
 import "./header-style.scss";
+import { OpenProfileDialog, ProfileDialogWidget } from "./ProfileDialogWidget";
 export const HeaderWidget = () => {
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div id="header-style">
-      <Navbar  expand="sm">
+      <ProfileDialogWidget />
+      <Navbar expand="sm">
         <Container fluid>
-          <Navbar.Brand >Boss Platform</Navbar.Brand>
-          {/* <NavbarCollapse id="basic-navbar-nav">
-            <nav className="ms-auto">
-              <Nav.Link href="#mohamed almehdi">mmohamed almehdi</Nav.Link>
-            </nav>
-          </NavbarCollapse> */}
+          <Navbar.Brand>Boss Platform</Navbar.Brand>
+
           <Navbar.Toggle />
           <Navbar.Collapse>
-            <Nav className="ms-auto">
-
-              <a href="/#"  >mohamed Almehdi</a>
-              <Image thumbnail style={{height:30, background:'none' , objectFit:'contain'}} src="assets/icons/icons8-user-24.png"/>
+            <Nav
+              onClick={() => OpenProfileDialog(location, navigate)}
+              className="ms-auto user pointer"
+            >
+              <UserIcon />
+              <Text color={colors.onPrimary}>{user?.name}</Text>
             </Nav>
           </Navbar.Collapse>
         </Container>

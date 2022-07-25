@@ -8,6 +8,7 @@ export const Text = ({
   bold,
   center,
   breakSpaces,
+  color,
 }: TextPropsType) => {
   const classes = classNames(fs, {
     bold,
@@ -15,5 +16,9 @@ export const Text = ({
     ["break-spaces"]: breakSpaces,
   });
 
-  return <div className={classes}>{children}</div>;
+  return (
+    <div className={classes} style={{ color }}>
+      {children}
+    </div>
+  );
 };
