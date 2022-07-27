@@ -7,6 +7,7 @@ const cookies = new Cookies();
 const initialState: AppStateType = {
   user: cookies.get("user"),
   status: false,
+  colorMode: "light",
   confirm: {
     show: false,
     title: "",
@@ -47,5 +48,7 @@ export const appSlice = createSlice({
 export const selectUser = (state: RootState): userType => state.appReducer.user;
 export const selectStatus = (state: RootState): StatusType =>
   state.appReducer.status;
+export const selectColorMode = (state: RootState): string =>
+  state.appReducer.colorMode;
 
 export default appSlice;

@@ -1,0 +1,53 @@
+@import "./variable.scss";
+
+$themes: (
+  light: (
+    bg: $background-color,
+    on-bg: $on-background-color,
+
+    sf: $surface-color,
+    on-sf: $on-surface-color,
+
+    text: $text-light,
+    border: $border-color,
+
+    link: $link,
+    error: $error,
+  ),
+  dark: (
+    bg: $background-dark-color,
+    on-bg: $on-background-dark-color,
+
+    sf: $surface-dark-color,
+    on-sf: $on-surface-dark-color,
+
+    text: $text-dark,
+    border: $border-dark-color,
+
+    link: $link,
+    error: $error,
+  ),
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}

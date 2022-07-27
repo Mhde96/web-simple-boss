@@ -234,6 +234,8 @@ const balance_sheet = (_trial_balance: any, _profit_account: any) => {
   return { debits, credits, total };
 };
 
+
+
 export const useFinancialStatement = () => {
   const accounts = useSelector(selectAccounts);
   const journals = useSelector(selectJournals);
@@ -244,6 +246,7 @@ export const useFinancialStatement = () => {
   const _trading_account = trading_account(_trial_balance);
   const _profit_account = profit_account(_trial_balance, _trading_account);
   const _balance_sheet = balance_sheet(_trial_balance, _profit_account);
+
 
   return {
     trial_balance_ammount: _trial_balance_ammount,

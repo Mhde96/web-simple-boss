@@ -1,7 +1,9 @@
 @import "../../styles/variable.scss";
+@import "../../styles/themes.scss";
 #header-style {
   height: $header-height;
   background-color: $primary-color;
+
   padding: 0px 10px;
 
   .user {
@@ -12,7 +14,10 @@
     align-items: center;
   }
   * {
-    color: $on-surface-color;
+    @include themed() {
+      color: t("on-sf");
+    }
+
     font-weight: bold;
   }
 }

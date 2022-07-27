@@ -7,6 +7,10 @@ import { UserIcon } from "../../assets/icons/UserIcon";
 import { Text } from "../../components/text/Text";
 import { selectUser } from "../../redux/app/appSlice";
 import { colors } from "../../styles/variables-styles";
+import {
+  openSettingsDialog,
+  SettingsDialogWidget,
+} from "../settings/SettingDialogWidget";
 import "./header-style.scss";
 import { OpenProfileDialog, ProfileDialogWidget } from "./ProfileDialogWidget";
 export const HeaderWidget = () => {
@@ -16,6 +20,7 @@ export const HeaderWidget = () => {
   return (
     <div id="header-style">
       <ProfileDialogWidget />
+      <SettingsDialogWidget />
       <Navbar expand="sm">
         <Container fluid>
           <Navbar.Brand>Boss Platform</Navbar.Brand>
@@ -28,6 +33,14 @@ export const HeaderWidget = () => {
             >
               <UserIcon />
               <Text color={colors.onPrimary}>{user?.name}</Text>
+            </Nav>
+
+            <Nav
+              onClick={() => openSettingsDialog(location, navigate)}
+              className="user pointer"
+              style={{padding:'0 10px'}}
+            >
+              <Text color={colors.onPrimary}>{"settings"}</Text>
             </Nav>
           </Navbar.Collapse>
         </Container>

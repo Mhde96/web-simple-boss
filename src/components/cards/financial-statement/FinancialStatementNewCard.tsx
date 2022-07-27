@@ -9,22 +9,21 @@ export const FinancialStatementNewCard = ({
 }: any) => {
   const classes = classNames(
     {
-      bold: value3 ? true : false,
-      value3: value3 ? true : false,
+      bold: value2 ? true : false,
+      value3: value2 ? true : false,
     },
     ["border-right-style"]
   );
 
   const classesValue3 = classNames({
-    bold: value3 ? true : false,
-    value3: value3 ? true : false,
-  })
+    bold: value2 ? true : false,
+    value3: value2 ? true : false,
+  });
   return (
     <div id="financial-statement-card-new-styles">
       <div className={classes}>{name}</div>
       <div className={classes}>{value1}</div>
-      <div className={classes}>{value2}</div>
-      <div className={classesValue3}>{value3}</div>
+      <div className={classesValue3}>{value2}</div>
     </div>
   );
 };

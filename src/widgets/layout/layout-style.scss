@@ -1,4 +1,6 @@
 @import "../../styles/variable.scss";
+@import "../../styles/themes.scss";
+
 #auth-layout-style {
   background-color: $primary-color;
   height: 100vh;
@@ -34,11 +36,16 @@
 
 #platform-layout-style {
   height: 100vh;
-  background-color: $background-color;
+  @include themed() {
+    background-color: t("bg");
+  }
   .platform-conainer {
   }
   .sidebar-container {
-    background-color: $surface-color;
+    @include themed() {
+      background-color: t("sf");
+    }
+
     height: $body-height;
     padding-top: 10px;
   }
@@ -54,7 +61,12 @@
 
   .nav-card {
     display: flex;
-    background: $background-color;
+    @include themed() {
+      background: t("bg");
+      color: t("text");
+      fill: t("text");
+    }
+
     padding: 15px;
     border-radius: 5px;
     cursor: pointer;

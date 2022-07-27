@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { selectAccounts } from "../../../redux/data/dataSlice";
 import { EditIcon } from "../../../assets/icons/EditIcon";
 import { colors } from "../../../styles/variables-styles";
-import { dateFormatUi } from "../../date/date-format";
+import { dateFormatUi } from "../../../utils/date-format";
 
 type JournalCardType = journalType & {
   bold?: boolean;

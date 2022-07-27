@@ -23,6 +23,7 @@ import { useEffect, useMemo } from "react";
 import { matchPath, useMatch } from "react-router";
 import { colors } from "../../styles/variables-styles";
 import appSlice from "../../redux/app/appSlice";
+import { IncomeStatementIcon } from "../../assets/icons/IncomeStatementIcon";
 
 export const PlatformLayout = () => {
   const navigate = useNavigate();
@@ -109,22 +110,17 @@ export const PlatformLayout = () => {
                 title={endroutes.profit_and_loss_account.title}
                 Icon={<ProfitIcon />}
               />
-
+              <NavCard
+                href={endroutes.income_statement.path}
+                title={endroutes.income_statement.title}
+                Icon={<IncomeStatementIcon />}
+              />
               <NavCard
                 href={endroutes.balancesheet.path}
                 title={endroutes.balancesheet.title}
                 Icon={<BalanceIcon />}
               />
-              <NavCard
-                href={endroutes.income_statement.path}
-                title={endroutes.income_statement.title}
-                Icon={<ProfitIcon />}
-              />
-              <NavCard
-                href={endroutes.balance_statement.path}
-                title={endroutes.balance_statement.title}
-                Icon={<BalanceIcon />}
-              />
+
               <NavCard
                 href={endroutes.about.path}
                 title={endroutes.about.title}
