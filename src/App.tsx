@@ -8,7 +8,7 @@ import { useAppDispatch } from "./redux/hooks";
 import { store } from "./redux/store";
 import { Navigation } from "./Routes";
 import { ConfirmBoxWidget } from "./widgets/confirm-box/ConfirmBoxWidget";
-
+import "./styles/themes.scss"
 export const App = () => {
   return (
     <Provider store={store}>

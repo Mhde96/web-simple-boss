@@ -3,6 +3,7 @@ import { Container, Image, Nav, Navbar } from "react-bootstrap";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { SettingsIcon } from "../../assets/icons/SettingsIcon";
 import { UserIcon } from "../../assets/icons/UserIcon";
 import { Text } from "../../components/text/Text";
 import { selectUser } from "../../redux/app/appSlice";
@@ -10,7 +11,7 @@ import { colors } from "../../styles/variables-styles";
 import {
   openSettingsDialog,
   SettingsDialogWidget,
-} from "../settings/SettingDialogWidget";
+} from "../settings/SettingsWidget";
 import "./header-style.scss";
 import { OpenProfileDialog, ProfileDialogWidget } from "./ProfileDialogWidget";
 export const HeaderWidget = () => {
@@ -38,9 +39,9 @@ export const HeaderWidget = () => {
             <Nav
               onClick={() => openSettingsDialog(location, navigate)}
               className="user pointer"
-              style={{padding:'0 10px'}}
+              style={{ padding: "0 20px" }}
             >
-              <Text color={colors.onPrimary}>{"settings"}</Text>
+              <SettingsIcon />
             </Nav>
           </Navbar.Collapse>
         </Container>

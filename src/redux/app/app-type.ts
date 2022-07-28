@@ -1,7 +1,8 @@
 export type AppStateType = {
   user: userType;
   status: StatusType;
-  colorMode: "light" | "dark";
+  colorMode: "light" | "dark" | "auto";
+  language: "default" | "en" | "ar";
   confirm: {
     show: boolean;
     title: string;

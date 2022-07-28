@@ -1,3 +1,5 @@
+import { en } from "../helper/languages/en";
+
 export const endroutes = {
   login: "/login",
   register: "/register",
@@ -5,9 +7,9 @@ export const endroutes = {
   changeforgetpassword: "/changeforgetpassword",
   otp: "/otp",
   thankyou: "/thankyou",
-  about: { path: "/about-us", title: "About Us" },
-  journals: { path: "/journals", title: "Journal" },
-  accounts: { path: "/accounts", title: "Account" },
+  about: { path: "/about-us", title: en.about },
+  journals: { path: "/journals", title: en.journals },
+  accounts: { path: "/accounts", title: en.accounts },
   journalentaries: (id?: number | string) => {
     const name = "journalentaries";
     const path = `/${name}/:number`;
@@ -21,17 +23,16 @@ export const endroutes = {
     const path = `/${name}/:key`;
     const null_path = `/${name}`;
     const go = `/${name}/${key}`;
-    const title = "Account statment";
+    const title = en.account_statement;
     return { path, go, title, null_path };
   },
 
-  trial_balance: { path: "/trial_balance", title: "Trial Balance" },
-  trading_account: { path: "/tradingaccount", title: "Trading Account" },
+  trial_balance: { path: "/trial_balance", title: en.trial_balance },
+  trading_account: { path: "/tradingaccount", title: en.trading },
   profit_and_loss_account: {
     path: "/profitandlossaccount",
-    title: "Profit And Loss Account",
+    title: en.profit_and_loss,
   },
-  balancesheet: { path: "/balancesheet", title: "Balance Sheet" },
-  income_statement: { path: "/income_statement", title: "Income Statement" },
-  balance_statement: { path: "/balance_statement", title: "Balance Statement" },
+  balancesheet: { path: "/balancesheet", title: en.balance_sheet },
+  income_statement: { path: "/income_statement", title: en.income_statement },
 };

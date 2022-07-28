@@ -8,6 +8,8 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { endroutes } from "../../constant/endroutes";
 import { NavigateFunction } from "react-router-dom";
 
+
+
 export const registerAsync =
   (values: userType, navigate: NavigateFunction) =>
   async (dispatch: AppDispatch) => {

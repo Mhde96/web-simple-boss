@@ -3,7 +3,6 @@ import { initReactI18next } from "react-i18next";
 import { ar } from "./languages/ar";
 import { en } from "./languages/en";
 
-
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -12,11 +11,13 @@ i18n.use(initReactI18next).init({
     ar: {
       translation: ar,
     },
+    default: {
+      translation: en,
+    },
   },
   react: {
     useSuspense: false, //   <---- this will do the magic
   },
-  lng: "en",
 });
 
 export default i18n;

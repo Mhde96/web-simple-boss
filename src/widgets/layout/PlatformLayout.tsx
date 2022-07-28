@@ -24,8 +24,11 @@ import { matchPath, useMatch } from "react-router";
 import { colors } from "../../styles/variables-styles";
 import appSlice from "../../redux/app/appSlice";
 import { IncomeStatementIcon } from "../../assets/icons/IncomeStatementIcon";
+import { useTranslation } from "react-i18next";
+import { en } from "../../helper/languages/en";
 
 export const PlatformLayout = () => {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleLogout = () => {
@@ -40,6 +43,8 @@ export const PlatformLayout = () => {
     );
     //
   };
+
+  console.log("i18n : ", i18n.language);
 
   const NavCard = ({ title, href, Icon, onClick }: any) => {
     const match = useMatch(href);
@@ -66,7 +71,7 @@ export const PlatformLayout = () => {
     return (
       <motion.div animate={controls} className="nav-card" onClick={handleClick}>
         <div className="img">{Icon}</div>
-        <div className="content">{title}</div>
+        <div className="content">{t(title)}</div>
       </motion.div>
     );
   };
@@ -129,7 +134,7 @@ export const PlatformLayout = () => {
 
               <NavCard
                 href={"logout"}
-                title={"logout"}
+                title={t(en.logout)}
                 Icon={<LogoutIcon />}
                 onClick={handleLogout}
               />
