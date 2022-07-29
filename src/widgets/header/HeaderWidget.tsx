@@ -24,7 +24,7 @@ export const HeaderWidget = () => {
       <SettingsDialogWidget />
       <Navbar expand="sm">
         <Container fluid>
-          <Navbar.Brand>Boss Platform</Navbar.Brand>
+          <Navbar.Brand className="logo">Boss Platform</Navbar.Brand>
 
           <Navbar.Toggle />
           <Navbar.Collapse>
@@ -33,7 +33,7 @@ export const HeaderWidget = () => {
               className="ms-auto user pointer"
             >
               <UserIcon />
-              <Text color={colors.onPrimary}>{user?.name}</Text>
+              <Text color={colors.onSurface}>{user?.name}</Text>
             </Nav>
 
             <Nav

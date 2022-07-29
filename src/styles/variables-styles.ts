@@ -1,4 +1,8 @@
 // ===================================================
+
+import { useSelector } from "react-redux";
+import { selectColorMode } from "../redux/app/appSlice";
+
 // colors
 const primary = "#f6cf50";
 const onPrimary = "#ffffff";
@@ -43,7 +47,31 @@ export const colors = {
   borderDark,
   error,
   danger,
-  link
+  link,
+};
+
+export const useColors = () => {
+  const colorMode = useSelector(selectColorMode);
+  const all = {
+    primary,
+    onPrimary,
+    link,
+  };
+
+  if (colorMode == "light")
+    return {
+      background,
+      surface,
+      onSurface,
+      ...all,
+    };
+  else
+    return {
+      background: backgroundDark,
+      surface: surfaceDark,
+      onSurface: onSurfaceDark,
+      ...all,
+    };
 };
 
 // ===================================================

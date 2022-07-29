@@ -2,9 +2,19 @@
 @import "../../styles/themes.scss";
 #header-style {
   height: $header-height;
-  background-color: $primary-color;
 
-  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include themed() {
+    background: t("primary");
+    border-bottom: 2px solid t("border");
+
+    .logo {
+      color: t("on-primary");
+    }
+  }
 
   .user {
     gap: 10px;
@@ -17,7 +27,6 @@
     @include themed() {
       color: t("on-sf");
     }
-
     font-weight: bold;
   }
 }

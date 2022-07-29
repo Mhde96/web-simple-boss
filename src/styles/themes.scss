@@ -2,6 +2,9 @@
 
 $themes: (
   light: (
+    primary: $primary-color,
+    on-primary: #ffffff,
+
     bg: $background-color,
     on-bg: $on-background-color,
 
@@ -15,6 +18,9 @@ $themes: (
     error: $error,
   ),
   dark: (
+    primary: $primary-color,
+    on-primary: #000000,
+
     bg: $background-dark-color,
     on-bg: $on-background-dark-color,
 

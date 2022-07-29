@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectAccounts } from "../../../redux/data/dataSlice";
 import { EditIcon } from "../../../assets/icons/EditIcon";
-import { colors } from "../../../styles/variables-styles";
+import { colors, useColors } from "../../../styles/variables-styles";
 import { dateFormatUi } from "../../../utils/date-format";
 
 type JournalCardType = journalType & {
@@ -36,6 +36,7 @@ export const JournalCard = ({
   index,
   entries,
 }: JournalCardType) => {
+  const colors = useColors();
   const [active, setActive] = useState(false);
   const accounts = useSelector(selectAccounts);
 

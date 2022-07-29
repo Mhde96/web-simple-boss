@@ -1,11 +1,13 @@
 import { MotionProps } from "framer-motion";
-import { colors } from "../../styles/variables-styles";
+import { useColors } from "../../styles/variables-styles";
+// import { colors } from "../../styles/variables-styles";
 
 export const CardAnimationProps = (props: {
   index?: number;
   active?: boolean;
 }): MotionProps => {
   const { index, active } = props;
+  const colors = useColors();
 
   return {
     initial: {
