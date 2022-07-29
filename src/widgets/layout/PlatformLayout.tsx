@@ -54,9 +54,9 @@ export const PlatformLayout = () => {
     useEffect(() => {
       if (active)
         controls.start({
-          background: colors.primary,
-          color: colors.onPrimary,
-          fill: colors.onPrimary,
+          background: colors.background,
+          color: colors.onSurface,
+          // fill: colors.onPrimary,
         });
     }, [active]);
 

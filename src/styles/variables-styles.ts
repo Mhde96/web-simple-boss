@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectColorMode } from "../redux/app/appSlice";
 
 // colors
-const primary = "#f6cf50";
+const primary = "#b5482a";
 const onPrimary = "#ffffff";
 
 const secondary = "#fb8500";
@@ -63,6 +63,8 @@ export const useColors = () => {
       background,
       surface,
       onSurface,
+
+      border,
       ...all,
     };
   else
@@ -70,6 +72,8 @@ export const useColors = () => {
       background: backgroundDark,
       surface: surfaceDark,
       onSurface: onSurfaceDark,
+
+      border: borderDark,
       ...all,
     };
 };
