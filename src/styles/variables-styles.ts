@@ -63,6 +63,8 @@ export const useColors = () => {
       background,
       surface,
       onSurface,
+
+      border,
       ...all,
     };
   else
@@ -70,6 +72,8 @@ export const useColors = () => {
       background: backgroundDark,
       surface: surfaceDark,
       onSurface: onSurfaceDark,
+
+      border: borderDark,
       ...all,
     };
 };

@@ -15,7 +15,10 @@ export const CardAnimationProps = (props: {
       borderRadius: 5,
     },
     animate: {
-      background: active ? colors.primary : colors.surface,
+      background: 'white',
+      border: active
+        ? "1px solid " + colors.primary
+        : "1px solid " + colors.border,
       color: colors.onSurface,
       opacity: 1,
       padding: "6px 20px",
@@ -25,8 +28,10 @@ export const CardAnimationProps = (props: {
       },
     },
     whileHover: {
-      background: colors.primary,
-      color: colors.onPrimary,
+      // background: colors.background,
+      border: "1px solid " + colors.primary,
+
+      color: colors.primary,
     },
   };
 };

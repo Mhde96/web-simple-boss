@@ -37,13 +37,14 @@
 #platform-layout-style {
   height: 100vh;
   @include themed() {
-    background-color: t("bg");
+    background-color: t("sf");
   }
   .platform-conainer {
   }
   .sidebar-container {
     @include themed() {
       background-color: t("sf");
+      border-right: 1px solid t("border");
     }
 
     height: $body-height;
@@ -62,7 +63,7 @@
   .nav-card {
     display: flex;
     @include themed() {
-      background: t("bg");
+      background: t("sf");
       color: t("text");
       fill: t("text");
     }

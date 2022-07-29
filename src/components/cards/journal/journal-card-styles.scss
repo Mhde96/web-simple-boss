@@ -2,7 +2,8 @@
 @import "../../../styles/themes.scss";
 #journal-card-styles {
   @include themed() {
-    background-color: t("sf");
+    background-color: t("bg");
+  
   }
 
   margin-bottom: 10px;
