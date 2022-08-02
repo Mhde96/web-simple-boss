@@ -16,6 +16,7 @@ import { selectAccounts } from "../../redux/data/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { accountType } from "./account-type";
 import * as yup from "yup";
+import { ModalWrap } from "../../components/wrap/ModalWrap";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -58,7 +59,7 @@ export const AccountDialog = ({}: any) => {
   const handleClose = () => navigate(-1);
 
   return (
-    <Modal backdrop="static" show={account_id} onHide={handleClose}>
+    <ModalWrap backdrop="static" show={account_id} onHide={handleClose}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>Account</Modal.Title>
@@ -99,15 +100,15 @@ export const AccountDialog = ({}: any) => {
           </>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          {/* <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button type="submit" variant="primary">
+          </Button> */}
+          {/* <Button type="submit" variant="primary">
             Save
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Form>
-    </Modal>
+    </ModalWrap>
   );
 };
 

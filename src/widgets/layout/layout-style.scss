@@ -2,34 +2,37 @@
 @import "../../styles/themes.scss";
 
 #auth-layout-style {
-  background-color: $primary-color;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  .auth-container {
-    background-color: $background-color;
-
+  @include themed() {
+    background-color: $primary-color;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    .auth-container {
+      background-color: t("bg");
 
-    border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 700px;
+      border-radius: 15px;
 
-    @media (min-width: $xs) {
-      padding: 20px;
-      width: 90%;
-    }
-    @media (min-width: $lg) {
-      padding: 40px;
-      width: 600px;
-    }
-    @media (min-width: $xl) {
-      padding: 80px;
-      width: 600px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      height: 700px;
+
+      @media (min-width: $xs) {
+        padding: 20px;
+        width: 90%;
+      }
+      @media (min-width: $lg) {
+        padding: 40px;
+        width: 600px;
+      }
+      @media (min-width: $xl) {
+        padding: 80px;
+        width: 600px;
+      }
     }
   }
 }

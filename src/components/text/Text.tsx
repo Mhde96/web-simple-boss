@@ -2,6 +2,7 @@ import { TextPropsType } from "./text-type";
 import "../../index.scss";
 import "./text-style.scss";
 import classNames from "classnames";
+import { useColors } from "../../styles/variables-styles";
 export const Text = ({
   children,
   fs,
@@ -10,6 +11,8 @@ export const Text = ({
   breakSpaces,
   color,
 }: TextPropsType) => {
+  // const colors = useColors();
+  // color = color ? color : colors.text;
   const classes = classNames(fs, {
     bold,
     center,

@@ -13,7 +13,7 @@ import { ProfitAndLossAccountContainer } from "./containers/financial-statement/
 import { TradingAccountContainer } from "./containers/financial-statement/TradingAccountContainer";
 import { TrialBalanceContainer } from "./containers/financial-statement/TrialBalanceContainer";
 import { ForgetPasswordContainer } from "./containers/forget-password/ForgetPasswordContainer";
-import { JournalEntryContainer } from "./containers/journal-entry/JournalEntryContainer";
+import { EntriesContainer } from "./containers/entry/EntriesContainer";
 import { JournalsContainer } from "./containers/journals/JournalsContainer";
 import { LoginContainer } from "./containers/login/LoginContainer";
 import { OtbContainer } from "./containers/otb-code/OtbContainer";
@@ -25,6 +25,7 @@ import { fetchAccountsAsync, fetchJournalsAsync } from "./redux/data/dataAsync";
 import { useAppDispatch } from "./redux/hooks";
 import { AuthLayout } from "./widgets/layout/AuthLayout";
 import { PlatformLayout } from "./widgets/layout/PlatformLayout";
+import { HomeContainer } from "./containers/home/HomeContainer";
 
 export const Navigation = () => {
   const dispatch = useAppDispatch();
@@ -55,9 +56,10 @@ export const Navigation = () => {
             )
           }
         >
+          <Route index element={<HomeContainer />} />
           <Route
             path={endroutes.journalentaries().path}
-            element={<JournalEntryContainer />}
+            element={<EntriesContainer />}
           />
           <Route
             path={endroutes.journals.path}

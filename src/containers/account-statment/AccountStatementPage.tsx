@@ -11,8 +11,10 @@ import { PageTransitionProps } from "../../components/animations/AnimationPagePr
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { endroutes } from "../../constant/endroutes";
+import { useColorMemo } from "../../hook/useColorMemo";
 export const AccountStatmentPage = (props: AccountStatementPagePropsType) => {
   const { selectedAccount } = props;
+  const colorMode = useColorMemo();
   const navigate = useNavigate();
   const accounts = props.accounts.map((item: any) => ({
     value: item.key,
@@ -34,7 +36,7 @@ export const AccountStatmentPage = (props: AccountStatementPagePropsType) => {
       <Break />
 
       <DataGrid
-        className={"rdg-light fill-grid data-grid"}
+        className={`rdg-${colorMode} fill-grid data-grid`}
         // components={{ rowRenderer }}
 
         onRowClick={(d: any) => {

@@ -1,22 +1,25 @@
 import { useFormik } from "formik";
 import _ from "lodash";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { endroutes } from "../../constant/endroutes";
+import { en } from "../../helper/languages/en";
 import { selectAccounts, selectJournals } from "../../redux/data/dataSlice";
 import { AccountStatementPagePropsType } from "./account-statement-type";
 import { AccountStatmentPage } from "./AccountStatementPage";
 
 export const AccountStatmentContainer = () => {
   const { key } = useParams();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const journals = useSelector(selectJournals);
   const accounts = useSelector(selectAccounts);
 
   const [entries, setEntries] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState({
-    label: "Select your Account",
+    label: t(en.select_account),
     value: "",
   });
   const account = accounts.find((account) => account.key == key)?.id;

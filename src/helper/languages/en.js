@@ -1,7 +1,10 @@
 export const en = {
   journals: "Journals",
+  entries: "Entries",
+
   accounts: "Accounts",
   account_statement: "Account Statement",
+  statement: "Statement",
   trial_balance: "Trial Balance",
   trading: "Trading",
   profit_and_loss: "Profit And Loss",
@@ -11,4 +14,38 @@ export const en = {
 
   // auth
   logout: "Logout",
+  change_password: "Change Password",
+  old_passowrd: "Old Password",
+  new_passowrd: "New Password",
+
+  // main
+  new: "New",
+  add: "Add",
+  update: "Update",
+  delete: "Delete",
+  rows: "Rows",
+  description: "description",
+  account: "Account",
+  debit: "Debit",
+  credit: "Credit",
+  date: "Date",
+  number: "Number",
+  count: "Count",
+  value: "Value",
+  total: "Total",
+  profile: "Profile",
+  name: "Name",
+  settings: "Settings",
+  theme: "Theme",
+  dark: "Dark",
+  light: "Light",
+  auto: "Auto",
+  language: "Language",
+  yes: "Yes",
+  no: "No",
+  logout: "Logout",
+  confirm_logout: "are you sure you want to logout ",
+  accept: "Accept",
+
+  select_account: "Select Account",
 };

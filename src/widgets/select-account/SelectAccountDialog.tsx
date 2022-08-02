@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Button, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { ModalWrap } from "../../components/wrap/ModalWrap";
 import { selectAccounts } from "../../redux/data/dataSlice";
 import { SelectAccountDialogPropsType } from "./select-account-dialog-type";
 export const SelectAccountDialog = (props: SelectAccountDialogPropsType) => {
@@ -14,7 +15,7 @@ export const SelectAccountDialog = (props: SelectAccountDialogPropsType) => {
 
   return (
     <>
-      <Modal show={open} onHide={handleClose}>
+      <ModalWrap show={open} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
@@ -33,7 +34,7 @@ export const SelectAccountDialog = (props: SelectAccountDialogPropsType) => {
             Save Changes
           </Button>
         </Modal.Footer> */}
-      </Modal>
+      </ModalWrap>
     </>
   );
 };

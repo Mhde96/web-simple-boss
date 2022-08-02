@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { I18nextProvider } from "react-i18next";
 import { Provider, useSelector } from "react-redux";
 import i18n from "./helper/i18n";
@@ -8,7 +8,9 @@ import { useAppDispatch } from "./redux/hooks";
 import { store } from "./redux/store";
 import { Navigation } from "./Routes";
 import { ConfirmBoxWidget } from "./widgets/confirm-box/ConfirmBoxWidget";
-import "./styles/themes.scss"
+import "./styles/themes.scss";
+import { getColorMode } from "./utils/getColorMode";
+import { useColorMemo } from "./hook/useColorMemo";
 export const App = () => {
   return (
     <Provider store={store}>
@@ -19,7 +21,8 @@ export const App = () => {
 
 const AppProvidedByRedux = () => {
   const dispatch = useAppDispatch();
-  const colorMode = useSelector(selectColorMode);
+  const colorMode = useColorMemo();
+
   useEffect(() => {
     dispatch(refreshTokenAsync());
   }, []);

@@ -1,4 +1,4 @@
-import { entryType } from "../journal-entry/journal-entry-type";
+import { entryType } from "../entry/journal-entry-type";
 
 export type journalType = {
   id?: number;

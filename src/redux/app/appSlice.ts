@@ -17,10 +17,18 @@ const getLanguage = () => {
     return language;
   }
 };
+
+const getColorMode = () => {
+  let colorMode = cookies.get(cookiesKey.colorMode);
+  // const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  if (!colorMode) return "auto";
+  else return colorMode;
+};
 const initialState: AppStateType = {
   user: cookies.get("user"),
   status: false,
-  colorMode: "light",
+  colorMode: getColorMode(),
   language: getLanguage(),
   confirm: {
     show: false,
@@ -57,8 +65,8 @@ export const appSlice = createSlice({
       state.confirm = { ...initialState.confirm };
     },
     colorMode: (state, { payload }) => {
-      if (payload) state.colorMode = payload;
-      else state.colorMode = state.colorMode == "dark" ? "light" : "dark";
+      cookies.set(cookiesKey.colorMode, payload);
+      state.colorMode = payload;
     },
 
     language: (state, { payload }) => {
@@ -74,5 +82,7 @@ export const selectStatus = (state: RootState): StatusType =>
   state.appReducer.status;
 export const selectColorMode = (state: RootState): string =>
   state.appReducer.colorMode;
+export const selectLanguage = (state: RootState): string =>
+  state.appReducer.language;
 
 export default appSlice;

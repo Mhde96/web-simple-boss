@@ -1,11 +1,18 @@
 import { FinancialStatementNewCard } from "../../components/cards/financial-statement/FinancialStatementNewCard";
+import { useColors } from "../../styles/variables-styles";
+import { motion } from "framer-motion";
+import { PageTransitionProps } from "../../components/animations/AnimationPageProps";
 
 export const FinancialStatementNewPage = (props: any) => {
-  
+  const colors = useColors();
+  const style = {
+    background: colors.surface,
+
+    border: "1px solid " + colors.border,
+  };
+
   return (
-    <div
-      style={{ background: "white", height: "100%", border: "1px solid black" }}
-    >
+    <motion.div {...PageTransitionProps} style={{ height: "100%" }}>
       <FinancialStatementNewCard
         name="account"
         value1="جزئي"
@@ -20,6 +27,6 @@ export const FinancialStatementNewPage = (props: any) => {
           value3={account.value3}
         />
       ))}
-    </div>
+    </motion.div>
   );
 };

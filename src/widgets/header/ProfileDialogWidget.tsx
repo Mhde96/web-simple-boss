@@ -1,14 +1,20 @@
 import { useFormik } from "formik";
 import { useMemo } from "react";
 import { Button, Modal, Nav } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { Input } from "../../components/input/Input";
 import { Text } from "../../components/text/Text";
+import { ModalWrap } from "../../components/wrap/ModalWrap";
+import { en } from "../../helper/languages/en";
 import { selectUser } from "../../redux/app/appSlice";
+import { useColors } from "../../styles/variables-styles";
 
 export const ProfileDialogWidget = () => {
+  const { t } = useTranslation();
+  const colors = useColors();
   // redux
   const user = useSelector(selectUser);
 
@@ -20,10 +26,9 @@ export const ProfileDialogWidget = () => {
   const handleClose = () => navigate(-1);
 
   // Formik
-  const { values, setValues , handleSubmit} = useFormik({
+  const { values, setValues, handleSubmit } = useFormik({
     initialValues: { ...user, isChangePassword: false },
     onSubmit: () => {
-
       handleClose();
     },
   });
@@ -33,40 +38,41 @@ export const ProfileDialogWidget = () => {
     setValues({ ...values, isChangePassword: !values.isChangePassword });
   };
 
+  const backgroundStyle = {
+    backgroundColor: colors.surface,
+    color: colors.text,
+  };
+
   return (
-    <Modal show={isOpen} onHide={handleClose}>
-      <Modal.Header>
-        <Modal.Title>User Profile</Modal.Title>
+    <ModalWrap show={isOpen} onHide={handleClose}>
+      <Modal.Header style={{ ...backgroundStyle }}>
+        <Modal.Title>{t(en.profile)}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Input placeholder="your name" value={user?.name} />
+      <Modal.Body style={backgroundStyle}>
+        <Input placeholder={t(en.name)} value={user?.name} />
         <br />
-        <Input
-          disabled
-          placeholder="your email"
-          value={ user?.email}
-        />
+        <Input disabled placeholder="your email" value={user?.email} />
 
         <br />
         <Nav.Link onClick={handleOpenChangePassword} className="rmp">
-          change password
+          {t(en.change_password)}
         </Nav.Link>
 
         {values.isChangePassword && (
           <>
             <br />
-            <Input placeholder="old password" />
+            <Input placeholder={t(en.old_passowrd)} />
             <br />
-            <Input placeholder="new password" />
+            <Input placeholder={t(en.new_passowrd)} />
           </>
         )}
       </Modal.Body>
 
-      <Modal.Footer>
+      <Modal.Footer style={backgroundStyle}>
         <Button onClick={handleClose}>Close</Button>
-        <Button onClick={()=>handleSubmit()}>Submit</Button>
+        <Button onClick={() => handleSubmit()}>Submit</Button>
       </Modal.Footer>
-    </Modal>
+    </ModalWrap>
   );
 };
 

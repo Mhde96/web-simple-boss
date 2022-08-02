@@ -8,6 +8,8 @@ import Accordion from "react-bootstrap/Accordion";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
 import "./journals-page-styles.scss";
+import { useTranslation } from "react-i18next";
+import { en } from "../../helper/languages/en";
 
 const container = {
   hidden: { opacity: 0 },
@@ -23,6 +25,7 @@ const container = {
 
 export const JournalsPage = (props: JournalPagePropsType) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <div id="journals-page-styles">
       <LayoutGroup>
@@ -33,10 +36,10 @@ export const JournalsPage = (props: JournalPagePropsType) => {
           animate="show"
         >
           <JournalCard
-            description="description"
-            date="date"
+            description={t(en.description)}
+            date={t(en.date)}
             bold
-            number={"Number"}
+            number={t(en.number)}
             isHeader
           />
           <AnimatePresence>
@@ -54,24 +57,26 @@ export const JournalsPage = (props: JournalPagePropsType) => {
           </AnimatePresence>
         </motion.div>
       </LayoutGroup>
-      <div style={{}}>
-        <hr />
-        <div
-          style={{
-            margin: "10px 0px",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div>Count {props.journals.length}</div>
-          <Button
-            onClick={() => navigate(endroutes.journalentaries().newJournal)}
-          >
-            New Journal
-          </Button>
+      <hr />
+
+      <div
+        style={{
+          margin: "0px 0px 10px 0px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div className="f4 d-flex">
+          <div className="px-1">{t(en.count) + ' ( '}</div>
+          <div>{props.journals.length + ' )'}</div>
         </div>
+        <Button
+          onClick={() => navigate(endroutes.journalentaries().newJournal)}
+        >
+          New Journal
+        </Button>
       </div>
     </div>
   );

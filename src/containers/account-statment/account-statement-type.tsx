@@ -1,6 +1,9 @@
 import { endroutes } from "../../constant/endroutes";
+import i18n from "../../helper/i18n";
+import { en } from "../../helper/languages/en";
 import { accountType } from "../accounts/account-type";
 
+const t = i18n.t;
 export enum columnsKey {
   id = "id",
   number = "number",
@@ -13,25 +16,25 @@ export enum columnsKey {
 
 export const account_table_columns = [
   // { key: columnsKey.id, name: columnsKey.id },
-  { key: columnsKey.number, name: columnsKey.number },
+  { key: columnsKey.number, name: t(en.number) },
   {
     key: columnsKey.description,
-    name: columnsKey.description,
+    name: t(en.description),
     summaryFormatter: (props: any) => {
       return <strong>{props.row.difference}</strong>;
     },
   },
- 
+
   {
     key: columnsKey.credit,
-    name: columnsKey.credit,
+    name: t(en.credit),
     summaryFormatter: (props: any) => {
       return <strong>{props.row.totalCredit}</strong>;
     },
   },
   {
     key: columnsKey.debit,
-    name: columnsKey.debit,
+    name: t(en.debit),
     summaryFormatter: (props: any) => {
       return <strong>{props.row.totalDebit}</strong>;
     },

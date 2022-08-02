@@ -21,21 +21,23 @@ import { NavLinkType } from "./layout-type";
 import { useAnimationControls, motion } from "framer-motion";
 import { useEffect, useMemo } from "react";
 import { matchPath, useMatch } from "react-router";
-import { colors } from "../../styles/variables-styles";
+import { useColors } from "../../styles/variables-styles";
 import appSlice from "../../redux/app/appSlice";
 import { IncomeStatementIcon } from "../../assets/icons/IncomeStatementIcon";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
+import { HomeIcon } from "../../assets/icons/HomeIcon";
 
 export const PlatformLayout = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const colors = useColors();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(
       appSlice.actions.openConfirmBox({
-        title: "Logout",
-        message: "are you sure you want to logout ",
+        title: t(en.logout),
+        message: t(en.confirm_logout),
         handleSubmit: () => {
           dispatch(logoutAsync());
         },
@@ -43,8 +45,6 @@ export const PlatformLayout = () => {
     );
     //
   };
-
-  console.log("i18n : ", i18n.language);
 
   const NavCard = ({ title, href, Icon, onClick }: any) => {
     const match = useMatch(href);
@@ -84,6 +84,11 @@ export const PlatformLayout = () => {
         <Row>
           <Col className="sidebar-container" xs={2}>
             <Stack gap={2}>
+              <NavCard
+                href={endroutes.home.path}
+                title={endroutes.home.title}
+                Icon={<HomeIcon />}
+              />
               <NavCard
                 href={endroutes.journals.path}
                 title={endroutes.journals.title}

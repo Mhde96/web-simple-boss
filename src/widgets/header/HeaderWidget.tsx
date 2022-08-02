@@ -7,7 +7,7 @@ import { SettingsIcon } from "../../assets/icons/SettingsIcon";
 import { UserIcon } from "../../assets/icons/UserIcon";
 import { Text } from "../../components/text/Text";
 import { selectUser } from "../../redux/app/appSlice";
-import { colors } from "../../styles/variables-styles";
+import { useColors } from "../../styles/variables-styles";
 import {
   openSettingsDialog,
   SettingsDialogWidget,
@@ -15,6 +15,7 @@ import {
 import "./header-style.scss";
 import { OpenProfileDialog, ProfileDialogWidget } from "./ProfileDialogWidget";
 export const HeaderWidget = () => {
+  const colors = useColors();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,10 +33,16 @@ export const HeaderWidget = () => {
               onClick={() => OpenProfileDialog(location, navigate)}
               className="ms-auto user pointer"
             >
-              <UserIcon />
               <Text color={colors.onSurface}>{user?.name}</Text>
+              <UserIcon />
             </Nav>
-
+            <Nav
+              onClick={() => openSettingsDialog(location, navigate)}
+              className="user pointer"
+              style={{ padding: "0 20px" }}
+            >
+              <img src="assets/images/calculator.png" width={24} height={24} />
+            </Nav>
             <Nav
               onClick={() => openSettingsDialog(location, navigate)}
               className="user pointer"

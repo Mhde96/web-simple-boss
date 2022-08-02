@@ -2,7 +2,7 @@ import _ from "lodash";
 import { useSelector } from "react-redux";
 import { selectAccounts, selectJournals } from "../../redux/data/dataSlice";
 import { accountType } from "../accounts/account-type";
-import { entryType } from "../journal-entry/journal-entry-type";
+import { entryType } from "../entry/journal-entry-type";
 import { journalType } from "../journals/journal-type";
 
 const trial_balance_ammount = (

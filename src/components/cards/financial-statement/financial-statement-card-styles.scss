@@ -1,3 +1,5 @@
+@import "../../../styles/themes.scss";
+
 #financial-statement-card-styles {
   display: flex;
   flex: 1;
@@ -13,32 +15,33 @@
 }
 
 #financial-statement-card-new-styles {
-  & {
-    display: flex;
-    border-bottom: 1px solid gray;
+  @include themed() {
+    & {
+      display: flex;
+      border-bottom: 1px solid t("border");
+      color: t("text");
+    }
 
-    // border-left: 1px solid black;;
-  }
+    * {
+      flex: 1;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      justify-content: center;
+    }
 
-  * {
-    flex: 1;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    justify-content: center;
-  }
+    .border-right-style {
+      border-right: 1px solid t("border");
+    }
 
-  .border-right-style {
-    border-right: 1px solid gray;
-  }
+    .bold {
+      font-weight: bold;
+    }
 
-  .bold {
-    font-weight: bold;
-  }
-
-  .value3 {
-    // border-top: 1px solid black;
-    // border-bottom: 1px solid black;
+    .value3 {
+      // border-top: 1px solid black;
+      // border-bottom: 1px solid black;
+    }
   }
 }

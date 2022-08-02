@@ -4,4 +4,5 @@ export type InputPropsType = {
   value?: any;
   error?: string;
   disabled?: boolean;
+  type?: "date";
 };

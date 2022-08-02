@@ -1,0 +1,15 @@
+@import "../../styles/variable.scss";
+#entries-styles {
+  height: calc($body-height - 20px);
+  display: flex;
+  flex-direction: column;
+  .operation-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 10px 0px;
+  }
+  .data-grid {
+    height: 100%;
+  }
+}

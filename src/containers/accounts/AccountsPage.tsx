@@ -5,8 +5,10 @@ import { AccountCard } from "../../components/cards/account/AccountCard";
 import { AccountsPropsType } from "./account-type";
 import { AccountDialog, OpenAccountDialog } from "./AccountDialog";
 import "./account-page-styles.scss";
+import { useTranslation } from "react-i18next";
+import { en } from "../../helper/languages/en";
 export const AccountsPage = (props: AccountsPropsType) => {
-  const [show, setShow] = useState(false);
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -18,11 +20,11 @@ export const AccountsPage = (props: AccountsPropsType) => {
         }}
         style={{ width: 100 }}
       >
-        Add
+        {t(en.add)}
       </Button>
       <hr />
 
-      <AccountCard name={"name"} />
+      <AccountCard name={t(en.account)}/>
       {props.accounts.map((item: any, index) => (
         <div key={index}>
           <AccountCard

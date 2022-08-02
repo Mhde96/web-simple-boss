@@ -15,7 +15,7 @@ export const CardAnimationProps = (props: {
       borderRadius: 5,
     },
     animate: {
-      background: 'white',
+      background:colors.surface,
       border: active
         ? "1px solid " + colors.primary
         : "1px solid " + colors.border,

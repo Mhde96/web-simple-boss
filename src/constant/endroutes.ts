@@ -1,6 +1,7 @@
 import { en } from "../helper/languages/en";
 
 export const endroutes = {
+  home: { title: "Home", path: "" },
   login: "/login",
   register: "/register",
   forgetpassword: "/forgetpassword",

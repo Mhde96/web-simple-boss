@@ -2,9 +2,12 @@
 
 import { useSelector } from "react-redux";
 import { selectColorMode } from "../redux/app/appSlice";
+import { getColorMode } from "../utils/getColorMode";
 
 // colors
 const primary = "#b5482a";
+const primaryShade = "#a24025";
+const primaryTint = "#bc5a3f";
 const onPrimary = "#ffffff";
 
 const secondary = "#fb8500";
@@ -21,6 +24,9 @@ const surfaceDark = "#242526";
 
 const onSurface = "#000000";
 const onSurfaceDark = "#ffffff";
+
+const text = "#212121";
+const textDark = "#f7f8fa";
 
 const border = "#ced0d4";
 const borderDark = "#393a3b";
@@ -51,10 +57,18 @@ export const colors = {
 };
 
 export const useColors = () => {
-  const colorMode = useSelector(selectColorMode);
+  let colorMode = useSelector(selectColorMode);
+
+  if (colorMode == "auto") {
+    colorMode = getColorMode();
+  }
+
   const all = {
     primary,
+    primaryShade,
+    primaryTint,
     onPrimary,
+
     link,
   };
 
@@ -65,6 +79,7 @@ export const useColors = () => {
       onSurface,
 
       border,
+      text,
       ...all,
     };
   else
@@ -74,6 +89,7 @@ export const useColors = () => {
       onSurface: onSurfaceDark,
 
       border: borderDark,
+      text: textDark,
       ...all,
     };
 };
