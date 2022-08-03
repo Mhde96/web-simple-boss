@@ -9,6 +9,10 @@ import { Text } from "../../components/text/Text";
 import { selectUser } from "../../redux/app/appSlice";
 import { useColors } from "../../styles/variables-styles";
 import {
+  CalculatorWidget,
+  openCalculatorDialog,
+} from "../calculator/CalculatorWidget";
+import {
   openSettingsDialog,
   SettingsDialogWidget,
 } from "../settings/SettingsWidget";
@@ -23,6 +27,7 @@ export const HeaderWidget = () => {
     <div id="header-style">
       <ProfileDialogWidget />
       <SettingsDialogWidget />
+      <CalculatorWidget />
       <Navbar expand="sm">
         <Container fluid>
           <Navbar.Brand className="logo">Boss Platform</Navbar.Brand>
@@ -37,7 +42,7 @@ export const HeaderWidget = () => {
               <UserIcon />
             </Nav>
             <Nav
-              onClick={() => openSettingsDialog(location, navigate)}
+              onClick={() => openCalculatorDialog(location, navigate)}
               className="user pointer"
               style={{ padding: "0 20px" }}
             >
