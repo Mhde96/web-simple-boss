@@ -1,5 +1,6 @@
 export const en = {
   journals: "Journals",
+  add_journal: "Add Journal",
   entries: "Entries",
 
   accounts: "Accounts",
@@ -11,6 +12,11 @@ export const en = {
   income_statement: "Income Statement",
   balance_sheet: "Balance Sheet",
   about: "About us",
+  blog: "Blog",
+  accounts_types: "Accounts Types",
+
+  journal_card_1: "Check Your Journals",
+  journal_card_3: "add your journals to get your results",
 
   // auth
   logout: "Logout",
@@ -23,6 +29,7 @@ export const en = {
   add: "Add",
   update: "Update",
   delete: "Delete",
+  delete_message: "are you sure you want to delete this elment",
   rows: "Rows",
   description: "description",
   account: "Account",
@@ -35,6 +42,8 @@ export const en = {
   total: "Total",
   profile: "Profile",
   name: "Name",
+  account_name: "Account Name",
+  account_key: "Account Key",
   settings: "Settings",
   theme: "Theme",
   dark: "Dark",
@@ -46,6 +55,8 @@ export const en = {
   logout: "Logout",
   confirm_logout: "are you sure you want to logout ",
   accept: "Accept",
-
+  home: "Home",
+  close: "Close",
+  save: "Save",
   select_account: "Select Account",
 };

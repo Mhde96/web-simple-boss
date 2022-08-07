@@ -1,15 +1,17 @@
+import { en } from "../helper/languages/en";
+
 export const financial_statement_obg = {
   balance_sheet: {
     value: "0",
-    label: "Balance Sheet",
+    label: en.balance_sheet,
   },
   profit_loss: {
     value: "1",
-    label: "Profit And Loss Account",
+    label: en.profit_and_loss,
   },
   trading: {
     value: "2",
-    label: "trading Account",
+    label: en.trading,
   },
 };
 

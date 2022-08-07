@@ -26,6 +26,7 @@ import { useAppDispatch } from "./redux/hooks";
 import { AuthLayout } from "./widgets/layout/AuthLayout";
 import { PlatformLayout } from "./widgets/layout/PlatformLayout";
 import { HomeContainer } from "./containers/home/HomeContainer";
+import { BlogContainer } from "./containers/system/blog/BlogContainer";
 
 export const Navigation = () => {
   const dispatch = useAppDispatch();
@@ -100,6 +101,7 @@ export const Navigation = () => {
           />
 
           <Route path={endroutes.about.path} element={<AboutContainer />} />
+          <Route path={endroutes.blog.path} element={<BlogContainer />} />
         </Route>
 
         <Route element={<AuthLayout />}>

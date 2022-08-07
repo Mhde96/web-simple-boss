@@ -11,7 +11,7 @@ import { useColors } from "../../styles/variables-styles";
 import {
   CalculatorWidget,
   openCalculatorDialog,
-} from "../calculator/CalculatorWidget";
+} from "../../features/calculator/Calculator";
 import {
   openSettingsDialog,
   SettingsDialogWidget,

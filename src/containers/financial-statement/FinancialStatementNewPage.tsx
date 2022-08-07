@@ -2,8 +2,11 @@ import { FinancialStatementNewCard } from "../../components/cards/financial-stat
 import { useColors } from "../../styles/variables-styles";
 import { motion } from "framer-motion";
 import { PageTransitionProps } from "../../components/animations/AnimationPageProps";
+import { useTranslation } from "react-i18next";
+import { en } from "../../helper/languages/en";
 
 export const FinancialStatementNewPage = (props: any) => {
+  const { t } = useTranslation();
   const colors = useColors();
   const style = {
     background: colors.surface,
@@ -14,10 +17,10 @@ export const FinancialStatementNewPage = (props: any) => {
   return (
     <motion.div {...PageTransitionProps} style={{ height: "100%" }}>
       <FinancialStatementNewCard
-        name="account"
-        value1="جزئي"
-        value2="كللي"
-        value3="كللي"
+        name={t(en.account)}
+        value1={t(en.value)}
+        value2={t(en.total)}
+        value3={t(en.total)}
       />
       {props?.statement()?.map((account: any) => (
         <FinancialStatementNewCard

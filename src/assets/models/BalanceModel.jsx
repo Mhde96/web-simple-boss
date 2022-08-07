@@ -20,9 +20,9 @@ export function BalanceModel(props) {
   });
 
   const { nodes, materials } = useGLTF(path);
-  console.log(materials);
+
   return (
-    <group scale={0.1} position={[0,-1.5,0]} {...props} dispose={null}>
+    <group scale={0.1} position={[0, -1.5, 0]} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[0, 0, -1.62]} rotation={[-Math.PI / 2, 0, 0]}>

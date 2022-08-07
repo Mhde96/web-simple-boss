@@ -17,6 +17,8 @@ import { useAppDispatch } from "../../redux/hooks";
 import { accountType } from "./account-type";
 import * as yup from "yup";
 import { ModalWrap } from "../../components/wrap/ModalWrap";
+import { useTranslation } from "react-i18next";
+import { en } from "../../helper/languages/en";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -24,6 +26,7 @@ const validationSchema = yup.object().shape({
   key: yup.string().required(),
 });
 export const AccountDialog = ({}: any) => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const { search } = useLocation();
   const navigate = useNavigate();
@@ -68,14 +71,14 @@ export const AccountDialog = ({}: any) => {
           <Input
             onChange={handleChange("name")}
             value={values?.name}
-            placeholder="Account Name "
+            placeholder={t(en.account_name)}
             error={errors?.name}
           />
           <br />
           <Input
             onChange={handleChange("key")}
             value={values?.key}
-            placeholder="Account key "
+            placeholder={t(en.account_key)}
             error={errors?.key}
           />
           <br />
@@ -85,7 +88,7 @@ export const AccountDialog = ({}: any) => {
                 key={index}
                 name="financial_statement"
                 type="radio"
-                label={item.label}
+                label={t(item.label)}
                 checked={
                   item?.value == values.financial_statement ? true : false
                 }
@@ -100,12 +103,12 @@ export const AccountDialog = ({}: any) => {
           </>
         </Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button> */}
-          {/* <Button type="submit" variant="primary">
-            Save
-          </Button> */}
+          <Button variant="secondary" onClick={handleClose}>
+            {t(en.close)}
+          </Button>
+          <Button type="submit" variant="primary">
+            {t(en.save)}
+          </Button>
         </Modal.Footer>
       </Form>
     </ModalWrap>

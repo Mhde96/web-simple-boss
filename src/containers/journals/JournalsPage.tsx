@@ -69,13 +69,13 @@ export const JournalsPage = (props: JournalPagePropsType) => {
         }}
       >
         <div className="f4 d-flex">
-          <div className="px-1">{t(en.count) + ' ( '}</div>
-          <div>{props.journals.length + ' )'}</div>
+          <div className="px-1">{t(en.count) + " ( "}</div>
+          <div>{props.journals.length + " )"}</div>
         </div>
         <Button
           onClick={() => navigate(endroutes.journalentaries().newJournal)}
         >
-          New Journal
+          {t(en.add_journal)}
         </Button>
       </div>
     </div>

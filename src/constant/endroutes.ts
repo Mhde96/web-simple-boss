@@ -1,7 +1,7 @@
 import { en } from "../helper/languages/en";
 
 export const endroutes = {
-  home: { title: "Home", path: "" },
+  home: { title: en.home, path: "" },
   login: "/login",
   register: "/register",
   forgetpassword: "/forgetpassword",
@@ -9,6 +9,7 @@ export const endroutes = {
   otp: "/otp",
   thankyou: "/thankyou",
   about: { path: "/about-us", title: en.about },
+  blog: { path: "/blog", title: en.blog },
   journals: { path: "/journals", title: en.journals },
   accounts: { path: "/accounts", title: en.accounts },
   journalentaries: (id?: number | string) => {

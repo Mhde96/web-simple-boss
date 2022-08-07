@@ -1,5 +1,5 @@
+@import "../../styles/variable.scss";
 #home-styles {
-  height: 100%;
   display: flex;
 
   .cards {
@@ -7,5 +7,6 @@
   }
   .canvas {
     width: 50%;
+    max-height: 50vh;
   }
 }

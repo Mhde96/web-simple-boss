@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { EmptyData } from "../../components/data/EmptyData";
 import { ConfirmationDeleteDialog } from "../../components/dialogs/ConfirmationDeleteDialog";
 import { endroutes } from "../../constant/endroutes";
 import {
@@ -54,6 +55,8 @@ export const JournalsContainer = () => {
     handleNavigateToEntries,
     DeleteJournalAsync,
   };
+
+  // return <EmptyData />;
   return (
     <>
       <ConfirmationDeleteDialog

@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 import { Modal } from "react-bootstrap";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { ModalWrap } from "../../components/wrap/ModalWrap";
+import { CalculatorWarper } from "./CalculatorWarper";
+
+import "./index.css";
 const link = "calculator";
 
 export const CalculatorWidget = () => {
@@ -12,8 +16,8 @@ export const CalculatorWidget = () => {
   const handleClose = () => navigate(-1);
 
   return (
-    <Modal show={isOpen} onHide={handleClose} placement="end">
-      <Modal.Header>Calculator</Modal.Header>
+    <Modal  show={isOpen} onHide={handleClose} dialogClassName="modal-width">
+      <CalculatorWarper />
     </Modal>
   );
 };

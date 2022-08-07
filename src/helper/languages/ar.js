@@ -2,6 +2,7 @@ import { en } from "./en";
 
 export const ar = {
   [en.journals]: "دفتر اليومية",
+  [en.add_journal]: " اضافة سند",
   [en.entries]: "سندات القيد",
 
   [en.accounts]: "الحسابات",
@@ -13,6 +14,11 @@ export const ar = {
   [en.income_statement]: "قائمة الدخل",
   [en.balance_sheet]: "الميزانية الختامية",
   [en.about]: "معلومات عنا",
+  [en.blog]: "مقالات",
+  [en.accounts_types]: "انواع الحسابات",
+
+  [en.journal_card_1]: "تحقق من حساباتك",
+  [en.journal_card_3]: "اضف سندات القيد خاصتك لتصل الى نتيجتك",
 
   // auth
   [en.logout]: "تسجيل خروج",
@@ -25,6 +31,7 @@ export const ar = {
   [en.add]: "اضافة",
   [en.update]: "تعديل",
   [en.delete]: "حذف",
+  [en.delete_message]: "هل انت متأكد من انك تريد حذف هذا العنصر",
   [en.rows]: "الأسطر",
 
   [en.description]: "الوصف",
@@ -38,6 +45,8 @@ export const ar = {
   [en.total]: "الأجمالي",
   [en.profile]: "الصفحة الشخصية",
   [en.name]: "الأسم",
+  [en.account_name]: "أسم الحساب",
+  [en.account_key]: "رمز الحساب",
   [en.settings]: "الأعدادات",
   [en.theme]: "الالوان",
   [en.dark]: "مظلم",
@@ -49,6 +58,9 @@ export const ar = {
   [en.logout]: "تسجيل خروج",
   [en.confirm_logout]: "هل انت متأكد من تسجيل الخروج",
   [en.accept]: "موافق",
+  [en.home]: "الرئيسية",
+  [en.close]: "أغلاق",
+  [en.save]: "حفظ",
 
   [en.select_account]: "اختر حساب",
 };

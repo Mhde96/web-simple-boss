@@ -1,0 +1,15 @@
+@import "../../../styles/themes.scss";
+#home-card-styles {
+  @include themed() {
+    background: t("sf");
+    color: t("text");
+    border-color: t('border');
+
+
+    .header{
+        background: t('bg');
+    }
+  }
+
+
+}

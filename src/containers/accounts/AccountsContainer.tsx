@@ -1,8 +1,13 @@
+import { t } from "i18next";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { EmptyData } from "../../components/data/EmptyData";
 import { ConfirmationDeleteDialog } from "../../components/dialogs/ConfirmationDeleteDialog";
 import { endroutes } from "../../constant/endroutes";
+import { en } from "../../helper/languages/en";
+import appSlice from "../../redux/app/appSlice";
 import {
   deleteAccountAsync,
   fetchAccountsAsync,
@@ -20,21 +25,29 @@ const columns: any = [
 ];
 
 export const AccountsContainer = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const accounts = useSelector(selectAccounts);
 
   // Redux Async Functions
   const DeleteAccountAsync = (account: accountType, isDelete: boolean) => {
-    if (isDelete && account.id) {
-      dispatch(deleteAccountAsync(account));
-    } else
-      setShowConfirmationDialog({
-        show: true,
-        data: account,
+    dispatch(
+      appSlice.actions.openConfirmBox({
         title: account.name,
-        body: "are you sure you want to delete " + account.name,
-      });
+        message: t(en.delete_message) ,
+        handleSubmit: () => dispatch(deleteAccountAsync(account)),
+      })
+    );
+    // if (isDelete && account.id) {
+    //   dispatch(deleteAccountAsync(account));
+    // } else
+    //   setShowConfirmationDialog({
+    //     show: true,
+    //     data: account,
+    //     title: account.name,
+    //     body: "are you sure you want to delete " + account.name,
+    //   });
   };
 
   const handleNavigateAccount = (key: string) =>
@@ -57,15 +70,17 @@ export const AccountsContainer = () => {
     DeleteAccountAsync,
     handleNavigateAccount,
   };
+
+  // if (true) return <EmptyData />;
   return (
     <>
-      <ConfirmationDeleteDialog
+      {/* <ConfirmationDeleteDialog
         data={showConfirmationDialog}
         setData={setShowConfirmationDialog}
         handleSubmit={() =>
           DeleteAccountAsync(showConfirmationDialog.data, true)
         }
-      />
+      /> */}
       <AccountDialog />
       <AccountsPage {...props} />
     </>
