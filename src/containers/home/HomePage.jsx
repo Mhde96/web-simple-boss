@@ -24,49 +24,33 @@ export const HomePage = () => {
   return (
     <div id="home-styles">
       <div className="cards">
-        <Row style={{ height: 240 }}>
+        <Row className="account-chart-container">
           <Col xs={12}>
             <AccountChart />
           </Col>
         </Row>
-        {/* <br />
-        <Row style={{ height: 350 }}>
+
+        <Row className="journals-container">
           <Col xs={12}>
-            <JournalChart />
+            <HomeCard
+              title={t(en.journals)}
+              buttonTitle={t(en.journal_card_1)}
+              // subHead={`you have ${journals.length} Journals`}
+              description={t(en.journal_card_3)}
+              onClick={() => navigate(endroutes.journals.path)}
+            />
           </Col>
-        </Row> */}
-        <br />
+        </Row>
 
-        <HomeCard
-          title={t(en.journals)}
-          buttonTitle={t(en.journal_card_1)}
-          // subHead={`you have ${journals.length} Journals`}
-          description={t(en.journal_card_3)}
-          onClick={() => navigate(endroutes.journals.path)}
-        />
-
-        <br />
-        <Card
-          style={{
-            background: colors.surface,
-            color: colors.text,
-            borderColor: colors.border,
-          }}
-        >
-          <Card.Header style={{ background: colors.background }}>
-            <Card.Title>Movie</Card.Title>
-            <Card.Title>
-              do you know there is a movie about Accountant
-            </Card.Title>
-          </Card.Header>
-          <Card.Body style={{ padding: 0 }}>
+        <Row className="player-container">
+          <Col>
             <ReactPlayer
-              height={300}
+              height={"100%"}
               width={"auto"}
               url="https://www.youtube.com/watch?v=DBfsgcswlYQ"
             />
-          </Card.Body>
-        </Card>
+          </Col>
+        </Row>
       </div>
       <div style={{ width: 20 }} />
       <div className="canvas">

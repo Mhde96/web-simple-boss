@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 import { endroutes } from "../../constant/endroutes";
 import { en } from "../../helper/languages/en";
+import { useBreakpoints } from "../../hook/useBreakPoint";
 import { selectAccounts } from "../../redux/data/dataSlice";
 import { useColors } from "../../styles/variables-styles";
 
@@ -37,7 +38,9 @@ const renderCustomizedLabel = ({
 };
 
 export const AccountChart = () => {
+  const { isTablet, isLaptop } = useBreakpoints();
   const { t } = useTranslation();
+
   const colors = useColors();
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -76,57 +79,75 @@ export const AccountChart = () => {
     );
   };
 
-  return (
-    <Card
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "row",
-        background: colors.background,
-        borderColor: colors.border,
-        color: colors.text,
-      }}
-    >
-      <Card.Body style={{}}>
-        <div>{t(en.accounts_types)}</div>
-        <br />
-        <Title value={t(en.trading)} color="#0088FE" />
-        <Title value={t(en.profit_and_loss)} color="#00C49F" />
-        <Title value={t(en.balance_sheet)} color="#FFBB28" />
-
-        <br />
-        <Button
-          onClick={() => {
-            navigate(endroutes.accounts.path);
-          }}
+  const Chart = () => (
+    <ResponsiveContainer width="100%" height="100%">
+      <PieChart width={400} height={400}>
+        <Pie
+          data={dataChart()}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={80}
+          fill="#8884d8"
+          dataKey="value"
         >
-          {t(en.add) + ' ' + t(en.account)}
-        </Button>
-      </Card.Body>
-      <Card.Body style={{}}>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart width={400} height={400}>
-            <Pie
-              data={dataChart()}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {dataChart().map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-      </Card.Body>
-    </Card>
+          {dataChart().map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieChart>
+    </ResponsiveContainer>
   );
+
+  if (isLaptop)
+    return (
+      <Card
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "row",
+          background: colors.background,
+          borderColor: colors.border,
+          color: colors.text,
+        }}
+      >
+        <Card.Body style={{}}>
+          <div>{t(en.accounts_types)}</div>
+          <br />
+          <Title value={t(en.trading)} color="#0088FE" />
+          <Title value={t(en.profit_and_loss)} color="#00C49F" />
+          <Title value={t(en.balance_sheet)} color="#FFBB28" />
+
+          <br />
+          <Button
+            onClick={() => {
+              navigate(endroutes.accounts.path);
+            }}
+          >
+            {t(en.add) + " " + t(en.account)}
+          </Button>
+        </Card.Body>
+        <Card.Body>
+          <Chart />
+        </Card.Body>
+      </Card>
+    );
+  else
+    return (
+      <Card
+        style={{
+          height: "100%",
+          background: colors.background,
+          borderColor: colors.border,
+          color: colors.text,
+        }}
+      >
+        <Card.Header>{t(en.accounts_types)}</Card.Header>
+        <Card.Body style={{ background: colors.surface }}>
+          <Chart />
+        </Card.Body>
+      </Card>
+    );
 };

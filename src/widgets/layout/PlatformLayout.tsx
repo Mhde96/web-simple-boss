@@ -8,7 +8,7 @@ import { InfoIcon } from "../../assets/icons/InfoIcon";
 import { JournalIcon } from "../../assets/icons/JournalIcon";
 import { LogoutIcon } from "../../assets/icons/LogoutIcon";
 import { ProfitIcon } from "../../assets/icons/ProfitIcon";
-import { StatementIcon } from "../../assets/icons/StatementIcon";
+
 import { TradeIcon } from "../../assets/icons/TradeIcon";
 import { TrialIcon } from "../../assets/icons/TrialIcon";
 import { endroutes } from "../../constant/endroutes";
@@ -26,11 +26,12 @@ import appSlice from "../../redux/app/appSlice";
 import { IncomeStatementIcon } from "../../assets/icons/IncomeStatementIcon";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
-import { HomeIcon } from "../../assets/icons/HomeIcon";
+
 import { JoyrideHelper } from "../../features/joyride/JoyrideHelper";
 import { joyride_story } from "../../features/joyride/joyride_story";
 import { SearchIcon } from "../../assets/icons/SearchIcon";
 import { NewsIcon } from "../../assets/icons/NewsIcon";
+import { ReactSVG } from "react-svg";
 
 export const PlatformLayout = () => {
   const { t } = useTranslation();
@@ -51,7 +52,7 @@ export const PlatformLayout = () => {
     //
   };
 
-  const NavCard = ({ title, href, Icon, onClick, className }: any) => {
+  const NavCard = ({ title, href, icon, onClick, className }: any) => {
     const match = useMatch(href);
     const active = useMemo(() => match?.pathname.includes(href), []);
     const controls = useAnimationControls();
@@ -79,7 +80,11 @@ export const PlatformLayout = () => {
         className={"nav-card " + className}
         onClick={handleClick}
       >
-        <div className="img">{Icon}</div>
+        <ReactSVG
+          className="img"
+          style={{ fill: "white", width: 24 }}
+          src={icon}
+        />
         <div className="content">{t(title)}</div>
       </motion.div>
     );
@@ -98,18 +103,18 @@ export const PlatformLayout = () => {
               <NavCard
                 href={endroutes.home.path}
                 title={endroutes.home.title}
-                Icon={<HomeIcon />}
+                icon="assets/icons/home.svg"
               />
               <NavCard
                 className={joyride_story.step1.className}
                 href={endroutes.accounts.path}
                 title={endroutes.accounts.title}
-                Icon={<StatementIcon />}
+                icon="assets/icons/statement.svg"
               />
               <NavCard
                 href={endroutes.journals.path}
                 title={endroutes.journals.title}
-                Icon={<JournalIcon />}
+                icon="assets/icons/journal.svg"
                 className={joyride_story.step2.className}
               />
 
@@ -117,52 +122,53 @@ export const PlatformLayout = () => {
                 <NavCard
                   href={endroutes.account_statment().null_path}
                   title={endroutes.account_statment().title}
-                  Icon={<SearchIcon />}
+                  icon="assets/icons/search.svg"
                 />
 
                 <NavCard
                   href={endroutes.trial_balance.path}
                   title={endroutes.trial_balance.title}
-                  Icon={<TrialIcon />}
+                  icon="assets/icons/trial.svg"
                 />
+
                 <NavCard
                   href={endroutes.trading_account.path}
                   title={endroutes.trading_account.title}
-                  Icon={<TradeIcon />}
+                  icon="assets/icons/trade.svg"
                 />
                 <NavCard
                   href={endroutes.profit_and_loss_account.path}
                   title={endroutes.profit_and_loss_account.title}
-                  Icon={<ProfitIcon />}
+                  icon="assets/icons/profit.svg"
                 />
                 <NavCard
                   href={endroutes.income_statement.path}
                   title={endroutes.income_statement.title}
-                  Icon={<IncomeStatementIcon />}
+                  icon="assets/icons/incomestatement.svg"
                 />
                 <NavCard
                   href={endroutes.balancesheet.path}
                   title={endroutes.balancesheet.title}
-                  Icon={<BalanceIcon />}
+                  icon="assets/icons/balance.svg"
                 />
               </Stack>
 
               <NavCard
                 href={endroutes.about.path}
                 title={endroutes.about.title}
-                Icon={<InfoIcon />}
+                icon="assets/icons/info.svg"
               />
               <NavCard
                 href={endroutes.blog.path}
                 title={"Blog"}
-                Icon={<NewsIcon />}
+                icon="assets/icons/news.svg"
               />
 
               <NavCard
                 href={"logout"}
                 title={t(en.logout)}
-                Icon={<LogoutIcon />}
                 onClick={handleLogout}
+                icon="assets/icons/logout.svg"
               />
             </Stack>
           </Col>

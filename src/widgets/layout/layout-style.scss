@@ -65,27 +65,24 @@
 
   .nav-card {
     display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+
     @include themed() {
       background: t("sf");
       color: t("text");
       fill: t("text");
     }
 
-    padding: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-
-    * {
-      display: flex;
-      align-items: center;
-    }
     .img {
-      flex: 1;
-      justify-content: end;
+      // padding-right: 16px;
     }
 
     .content {
-      flex: 4;
+      display: flex;
+      flex: 1;
       justify-content: center;
     }
   }
