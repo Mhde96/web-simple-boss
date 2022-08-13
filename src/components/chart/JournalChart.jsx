@@ -8,7 +8,11 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  LineChart,
+  Line,
+  Legend,
 } from "recharts";
+
 import { useColors } from "../../styles/variables-styles";
 
 const data = [
@@ -58,6 +62,25 @@ const data = [
 
 export const JournalChart = () => {
   const colors = useColors();
+
+  return (
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart width={500} height={300} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" padding={{ left: 30, right: 30 }} />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="pv"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+      </LineChart>
+    </ResponsiveContainer>
+  );
   return (
     <Card
       style={{
@@ -82,7 +105,12 @@ export const JournalChart = () => {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke={colors.border} fill={colors.primary} />
+          <Area
+            type="monotone"
+            dataKey="uv"
+            stroke={colors.border}
+            fill={colors.primary}
+          />
         </AreaChart>
       </ResponsiveContainer>
     </Card>

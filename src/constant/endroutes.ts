@@ -10,6 +10,7 @@ export const endroutes = {
   thankyou: "/thankyou",
   about: { path: "/about-us", title: en.about },
   blog: { path: "/blog", title: en.blog },
+  contact: { path: "/contact-us", title: en.contact },
   journals: { path: "/journals", title: en.journals },
   accounts: { path: "/accounts", title: en.accounts },
   journalentaries: (id?: number | string) => {

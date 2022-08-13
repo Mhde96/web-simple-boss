@@ -11,7 +11,13 @@ import { ConfirmBoxWidget } from "./widgets/confirm-box/ConfirmBoxWidget";
 import "./styles/themes.scss";
 import { getColorMode } from "./utils/getColorMode";
 import { useColorMemo } from "./hook/useColorMemo";
+import axios from "axios";
 export const App = () => {
+  useEffect(() => {
+    axios.get("/getCSRFToken").then((res) => {
+      console.log(res);
+    });
+  }, []);
   return (
     <Provider store={store}>
       <AppProvidedByRedux />

@@ -1,3 +1,11 @@
+import { Text } from "../../../components/text/Text";
+import { useColors } from "../../../styles/variables-styles";
+
 export const AboutContainer = () => {
-  return <div>About us</div>;
+  const colors = useColors();
+  return (
+    <div>
+      <Text> Version 1.00</Text>
+    </div>
+  );
 };

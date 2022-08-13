@@ -1,4 +1,7 @@
 @import "../../styles/variable.scss";
+$max-width-lg: calc(46vw - 35px);
+$max-width: calc(50vw - 10vw - 20px);
+
 #home-styles {
   display: flex;
 
@@ -12,14 +15,23 @@
     height: calc($body-height - 240px - 150px - 60px);
     max-height: 400px;
   }
+
   .cards {
-    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
   .canvas {
-    width: 50%;
-    max-height: 50vh;
+    // height: calc($body-height - 20px);
+    
+  }
+
+  .home-layout {
+    min-width: $max-width;
+    max-width: $max-width;
+    @media (max-width: $lg) {
+      max-width: $max-width-lg;
+      min-width: $max-width-lg;
+    }
   }
 }

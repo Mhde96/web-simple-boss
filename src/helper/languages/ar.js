@@ -15,6 +15,7 @@ export const ar = {
   [en.balance_sheet]: "الميزانية الختامية",
   [en.about]: "معلومات عنا",
   [en.blog]: "مقالات",
+  [en.contact]: "اتصل بنا",
   [en.accounts_types]: "انواع الحسابات",
 
   [en.journal_card_1]: "تحقق من حساباتك",

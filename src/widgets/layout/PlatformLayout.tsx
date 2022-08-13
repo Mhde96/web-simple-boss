@@ -82,7 +82,7 @@ export const PlatformLayout = () => {
       >
         <ReactSVG
           className="img"
-          style={{ fill: "white", width: 24 }}
+          style={{ fill: "white", minWidth: 24, maxWidth: 24 }}
           src={icon}
         />
         <div className="content">{t(title)}</div>
@@ -96,90 +96,89 @@ export const PlatformLayout = () => {
       <JoyrideHelper />
       <HeaderWidget />
 
-      <Container className="platform-conainer" fluid>
-        <Row>
-          <Col className="sidebar-container" xs={2}>
-            <Stack gap={2}>
-              <NavCard
-                href={endroutes.home.path}
-                title={endroutes.home.title}
-                icon="assets/icons/home.svg"
-              />
-              <NavCard
-                className={joyride_story.step1.className}
-                href={endroutes.accounts.path}
-                title={endroutes.accounts.title}
-                icon="assets/icons/statement.svg"
-              />
-              <NavCard
-                href={endroutes.journals.path}
-                title={endroutes.journals.title}
-                icon="assets/icons/journal.svg"
-                className={joyride_story.step2.className}
-              />
+      <div className="platform-conainer">
+        <div className="sidebar-container">
+          <NavCard
+            href={endroutes.home.path}
+            title={endroutes.home.title}
+            icon="assets/icons/home.svg"
+          />
+          <NavCard
+            className={joyride_story.step1.className}
+            href={endroutes.accounts.path}
+            title={endroutes.accounts.title}
+            icon="assets/icons/statement.svg"
+          />
+          <NavCard
+            href={endroutes.journals.path}
+            title={endroutes.journals.title}
+            icon="assets/icons/journal.svg"
+            className={joyride_story.step2.className}
+          />
 
-              <Stack className={joyride_story.step3.className} gap={2}>
-                <NavCard
-                  href={endroutes.account_statment().null_path}
-                  title={endroutes.account_statment().title}
-                  icon="assets/icons/search.svg"
-                />
+          <Stack className={joyride_story.step3.className}>
+            <NavCard
+              href={endroutes.account_statment().null_path}
+              title={endroutes.account_statment().title}
+              icon="assets/icons/search.svg"
+            />
 
-                <NavCard
-                  href={endroutes.trial_balance.path}
-                  title={endroutes.trial_balance.title}
-                  icon="assets/icons/trial.svg"
-                />
+            <NavCard
+              href={endroutes.trial_balance.path}
+              title={endroutes.trial_balance.title}
+              icon="assets/icons/trial.svg"
+            />
 
-                <NavCard
-                  href={endroutes.trading_account.path}
-                  title={endroutes.trading_account.title}
-                  icon="assets/icons/trade.svg"
-                />
-                <NavCard
-                  href={endroutes.profit_and_loss_account.path}
-                  title={endroutes.profit_and_loss_account.title}
-                  icon="assets/icons/profit.svg"
-                />
-                <NavCard
-                  href={endroutes.income_statement.path}
-                  title={endroutes.income_statement.title}
-                  icon="assets/icons/incomestatement.svg"
-                />
-                <NavCard
-                  href={endroutes.balancesheet.path}
-                  title={endroutes.balancesheet.title}
-                  icon="assets/icons/balance.svg"
-                />
-              </Stack>
+            <NavCard
+              href={endroutes.trading_account.path}
+              title={endroutes.trading_account.title}
+              icon="assets/icons/trade.svg"
+            />
+            <NavCard
+              href={endroutes.profit_and_loss_account.path}
+              title={endroutes.profit_and_loss_account.title}
+              icon="assets/icons/profit.svg"
+            />
+            <NavCard
+              href={endroutes.income_statement.path}
+              title={endroutes.income_statement.title}
+              icon="assets/icons/incomestatement.svg"
+            />
+            <NavCard
+              href={endroutes.balancesheet.path}
+              title={endroutes.balancesheet.title}
+              icon="assets/icons/balance.svg"
+            />
+          </Stack>
 
-              <NavCard
-                href={endroutes.about.path}
-                title={endroutes.about.title}
-                icon="assets/icons/info.svg"
-              />
-              <NavCard
-                href={endroutes.blog.path}
-                title={"Blog"}
-                icon="assets/icons/news.svg"
-              />
+          <NavCard
+            href={endroutes.about.path}
+            title={endroutes.about.title}
+            icon="assets/icons/info.svg"
+          />
+          <NavCard
+            href={endroutes.blog.path}
+            title={"Blog"}
+            icon="assets/icons/news.svg"
+          />
+          <NavCard
+            href={endroutes.contact.path}
+            title={en.contact}
+            icon="assets/icons/phone.svg"
+          />
 
-              <NavCard
-                href={"logout"}
-                title={t(en.logout)}
-                onClick={handleLogout}
-                icon="assets/icons/logout.svg"
-              />
-            </Stack>
-          </Col>
+          <NavCard
+            href={"logout"}
+            title={t(en.logout)}
+            onClick={handleLogout}
+            icon="assets/icons/logout.svg"
+          />
+        </div>
 
-          <Col xs={10}>
-            <div className="outlet-container">
-              <Outlet />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+        <div className="outlet-container">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };

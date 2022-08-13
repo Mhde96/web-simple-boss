@@ -16,22 +16,21 @@ import "./home-styles.scss";
 import { useEffect, useState } from "react";
 import { en } from "../../helper/languages/en";
 import { useTranslation } from "react-i18next";
+import { ArticleHomeCard } from "./ArticleHomeCard";
 export const HomePage = () => {
   const { t } = useTranslation();
   const journals = useSelector(selectJournals);
   const navigate = useNavigate();
   const colors = useColors();
   return (
-    <div id="home-styles">
-      <div className="cards">
-        <Row className="account-chart-container">
-          <Col xs={12}>
+    <div>
+      <div id="home-styles">
+        <div className="cards home-layout">
+          <div className="account-chart-container">
             <AccountChart />
-          </Col>
-        </Row>
+          </div>
 
-        <Row className="journals-container">
-          <Col xs={12}>
+          <div className="journals-container ">
             <HomeCard
               title={t(en.journals)}
               buttonTitle={t(en.journal_card_1)}
@@ -39,48 +38,17 @@ export const HomePage = () => {
               description={t(en.journal_card_3)}
               onClick={() => navigate(endroutes.journals.path)}
             />
-          </Col>
-        </Row>
-
-        <Row className="player-container">
-          <Col>
-            <ReactPlayer
-              height={"100%"}
-              width={"auto"}
-              url="https://www.youtube.com/watch?v=DBfsgcswlYQ"
-            />
-          </Col>
-        </Row>
+          </div>
+        </div>
+        <div style={{ width: 20 }} />
+        <div className="canvas home-layout">
+          <ArticleHomeCard />
+        </div>
       </div>
-      <div style={{ width: 20 }} />
-      <div className="canvas">
-        <Card
-          style={{
-            background: colors.surface,
-            color: colors.text,
-            borderColor: colors.border,
-          }}
-        >
-          <Card.Img src="https://principlesofaccounts.com.sg/wp-content/uploads/2021/04/19.png" />
-        </Card>
-        <br />
-        <Card
-          style={{
-            background: colors.surface,
-            color: colors.text,
-            borderColor: colors.border,
-            height: "100%",
-          }}
-        >
-          <Canvas>
-            <BalanceModel />
-            <axesHelper />
-            <pointLight position={[0, 2, 20]} color={0xb5482a} intensity={1} />
-            <pointLight position={[0, -2, 20]} color={0xb5482a} intensity={1} />
-            <OrbitControls makeDefault />
-          </Canvas>
-        </Card>
-      </div>
+{/* 
+      <div style={{ height: 400 }}>
+        <JournalChart />
+      </div> */}
     </div>
   );
 };

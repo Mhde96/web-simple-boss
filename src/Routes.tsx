@@ -27,6 +27,7 @@ import { AuthLayout } from "./widgets/layout/AuthLayout";
 import { PlatformLayout } from "./widgets/layout/PlatformLayout";
 import { HomeContainer } from "./containers/home/HomeContainer";
 import { BlogContainer } from "./containers/system/blog/BlogContainer";
+import { ContactContainer } from "./containers/system/contact/ContactContainer";
 
 export const Navigation = () => {
   const dispatch = useAppDispatch();
@@ -102,6 +103,7 @@ export const Navigation = () => {
 
           <Route path={endroutes.about.path} element={<AboutContainer />} />
           <Route path={endroutes.blog.path} element={<BlogContainer />} />
+          <Route path={endroutes.contact.path} element={<ContactContainer />} />
         </Route>
 
         <Route element={<AuthLayout />}>

@@ -38,11 +38,14 @@
 }
 
 #platform-layout-style {
-  height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
+
   @include themed() {
     background-color: t("sf");
   }
   .platform-conainer {
+    display: flex;
   }
   .sidebar-container {
     @include themed() {
@@ -50,13 +53,20 @@
       border-right: 1px solid t("border");
     }
 
-    height: $body-height;
-    padding-top: 10px;
+    max-height: $body-height;
+    overflow: auto;
+    padding: 10px;
+
+    min-width: 20vw;
+    @media (max-width: $lg) {
+      min-width: 70px;
+    }
   }
 
   .outlet-container {
-    padding-top: 10px;
+    padding: 10px;
     height: $body-height;
+    width: 100%;
   }
 
   .platform-link {
@@ -70,10 +80,18 @@
     border-radius: 5px;
     cursor: pointer;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     @include themed() {
       background: t("sf");
       color: t("text");
       fill: t("text");
+    }
+
+    @media (max-width: $lg) {
+      max-width: 60px;
     }
 
     .img {
@@ -84,6 +102,9 @@
       display: flex;
       flex: 1;
       justify-content: center;
+      @media (max-width: $lg) {
+        display: none;
+      }
     }
   }
 }

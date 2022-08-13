@@ -13,6 +13,7 @@ export const en = {
   balance_sheet: "Balance Sheet",
   about: "About us",
   blog: "Blog",
+  contact: "Contact-Us",
   accounts_types: "Accounts Types",
 
   journal_card_1: "Check Your Journals",

@@ -11,8 +11,8 @@ export const Text = ({
   breakSpaces,
   color,
 }: TextPropsType) => {
-  // const colors = useColors();
-  // color = color ? color : colors.text;
+  const colors = useColors();
+  color = color ? color : colors.text;
   const classes = classNames(fs, {
     bold,
     center,
