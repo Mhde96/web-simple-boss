@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { ReactSVG } from "react-svg";
 import { Text } from "../../../components/text/Text";
 import { useColors } from "../../../styles/variables-styles";
@@ -13,19 +14,20 @@ export const ContactContainer = () => {
       onClick={() => {
         window.open(url);
       }}
-      style={{ display: "flex", cursor: "pointer" }}
     >
-      <Text>Send A message </Text>
+      <Button style={{ display: "flex" }}>
+        <Text>Send A message </Text>
 
-      <ReactSVG
-        style={{
-          fill: colors.text,
-          minWidth: 24,
-          maxWidth: 24,
-          marginLeft: 10,
-        }}
-        src="assets/icons/whatsapp.svg"
-      />
+        <ReactSVG
+          style={{
+            fill: colors.text,
+            minWidth: 24,
+            maxWidth: 24,
+            marginLeft: 10,
+          }}
+          src="assets/icons/whatsapp.svg"
+        />
+      </Button>
     </div>
   );
 };
