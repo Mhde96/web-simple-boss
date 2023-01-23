@@ -99,7 +99,7 @@ export function CalculatorWarper() {
   }, [input, currentNumber, lastOperator]);
 
   return (
-    <div className="App">
+    <div className="App1">
       <div className="calculator">
         <Display input={input} currentNumber={currentNumber} />
         <div className="keyboard">
@@ -111,7 +111,7 @@ export function CalculatorWarper() {
                   key={index}
                   onClick={() => handleKeyPress(btn)}
                 >
-                  {btn.key}
+                  {btn.key  }
                 </button>
               );
             })}

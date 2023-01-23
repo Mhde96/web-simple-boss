@@ -7,7 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.App {
+.App1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -107,7 +107,8 @@
 }
 
 .calculator .keyboard .button-container .btn:hover {
-  opacity: 0.8;
+  opacity: 0.8 !important; 
+  
 }
 
 .calculator .operator,

@@ -7,7 +7,7 @@ const URL = "https://wa.me";
 
 export const ContactContainer = () => {
   const colors = useColors();
-  let url = `${URL}/${"00971544146171"}`;
+  let url = `${URL}/${"+971522215489"}`;
 
   return (
     <div

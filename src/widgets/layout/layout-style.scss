@@ -96,6 +96,9 @@
 
     .img {
       // padding-right: 16px;
+      @include themed() {
+      fill: t("text");
+    }
     }
 
     .content {

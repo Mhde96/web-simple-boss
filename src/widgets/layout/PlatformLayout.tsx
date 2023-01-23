@@ -82,7 +82,7 @@ export const PlatformLayout = () => {
       >
         <ReactSVG
           className="img"
-          style={{ fill: "white", minWidth: 24, maxWidth: 24 }}
+          style={{  minWidth: 24, maxWidth: 24 }}
           src={icon}
         />
         <div className="content">{t(title)}</div>
