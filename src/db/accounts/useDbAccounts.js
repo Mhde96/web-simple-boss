@@ -6,5 +6,6 @@ const useDbFetchAccounts = () => {
   console.log(accounts);
   return { accounts };
 };
+const DbAddAccount = () => {};
 const DbSaveAccount = () => {};
 const DbDeleteAccount = () => {};

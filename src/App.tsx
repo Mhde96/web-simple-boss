@@ -12,8 +12,10 @@ import "./styles/themes.scss";
 import { getColorMode } from "./utils/getColorMode";
 import { useColorMemo } from "./hook/useColorMemo";
 import axios from "axios";
+import { initDb } from "./db/initDb";
 export const App = () => {
   useEffect(() => {
+    initDb();
     axios.get("/getCSRFToken").then((res) => {
       console.log(res);
     });
