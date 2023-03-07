@@ -1,3 +1,4 @@
+import { useLiveQuery } from "dexie-react-hooks";
 import { t } from "i18next";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -6,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { EmptyData } from "../../components/data/EmptyData";
 import { ConfirmationDeleteDialog } from "../../components/dialogs/ConfirmationDeleteDialog";
 import { endroutes } from "../../constant/endroutes";
+import { db } from "../../db/indexedDb";
 import { en } from "../../helper/languages/en";
 import appSlice from "../../redux/app/appSlice";
 import {
@@ -30,12 +32,24 @@ export const AccountsContainer = () => {
   const dispatch = useAppDispatch();
   const accounts = useSelector(selectAccounts);
 
+  const friend = useLiveQuery(() => db.data.toArray());
+  console.log(friend);
+
+  useEffect(() => {
+    // const addItem = async () => {
+    //   await db.data.add({
+    //     data: [{ name: "box" }],
+    //     age: 2,
+    //   });
+    // };
+    // addItem();
+  }, []);
   // Redux Async Functions
   const DeleteAccountAsync = (account: accountType, isDelete: boolean) => {
     dispatch(
       appSlice.actions.openConfirmBox({
         title: account.name,
-        message: t(en.delete_message) ,
+        message: t(en.delete_message),
         handleSubmit: () => dispatch(deleteAccountAsync(account)),
       })
     );

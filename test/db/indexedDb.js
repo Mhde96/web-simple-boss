@@ -2,8 +2,7 @@ import Dexie from "dexie";
 
 export const db = new Dexie("exampleDatabase");
 db.version(1).stores({
-  data: "++id, *data, name, created_at, updated_at, publisher, editor",
+  data: "++id, *data, name, *categories",
 });
-// const initializeDb = indexedDB.open('name_of_database', version)
-
+//  created_at, updated_at, publisher, editor
 // console.log(db.table("exampleDatabase"));
