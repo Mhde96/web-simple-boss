@@ -12,6 +12,7 @@ export const AccountsPage = (props: AccountsPropsType) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+
   return (
     <div id="account-page-styles">
       <Button
@@ -25,12 +26,12 @@ export const AccountsPage = (props: AccountsPropsType) => {
       <hr />
 
       <AccountCard name={t(en.account)}/>
-      {props.accounts.map((item: any, index) => (
+      {props.accounts?.map((item: any, index) => (
         <div key={index}>
           <AccountCard
             isHeader
             name={item.name}
-            account_key={item.key}
+            account_key={1}
             index={index}
             operations={{
               open: () => props.handleNavigateAccount(item.key),

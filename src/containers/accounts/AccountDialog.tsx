@@ -19,6 +19,7 @@ import * as yup from "yup";
 import { ModalWrap } from "../../components/wrap/ModalWrap";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
+import { DbAddAccount } from "../../db/accounts/useDbAccounts";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -44,6 +45,8 @@ export const AccountDialog = ({}: any) => {
     validateOnChange: false,
     validationSchema,
     onSubmit: (values) => {
+      
+    DbAddAccount(values)
       dispatch(SaveAccountAsync(values, navigate));
     },
   });

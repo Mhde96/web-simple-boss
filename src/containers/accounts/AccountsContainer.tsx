@@ -1,19 +1,14 @@
-import { useLiveQuery } from "dexie-react-hooks";
-import { t } from "i18next";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { EmptyData } from "../../components/data/EmptyData";
-import { ConfirmationDeleteDialog } from "../../components/dialogs/ConfirmationDeleteDialog";
 import { endroutes } from "../../constant/endroutes";
-import { db } from "../../db/indexedDb";
+import { useDbFetchAccounts } from "../../db/accounts/useDbAccounts";
 import { en } from "../../helper/languages/en";
 import appSlice from "../../redux/app/appSlice";
 import {
   deleteAccountAsync,
   fetchAccountsAsync,
-  SaveAccountAsync,
 } from "../../redux/data/dataAsync";
 import { selectAccounts } from "../../redux/data/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
@@ -30,7 +25,9 @@ export const AccountsContainer = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const accounts = useSelector(selectAccounts);
+  // const accounts = useSelector(selectAccounts);
+  const  {accounts}  = useDbFetchAccounts();
+ 
 
   const DeleteAccountAsync = (account: accountType, isDelete: boolean) => {
     dispatch(
@@ -40,7 +37,7 @@ export const AccountsContainer = () => {
         handleSubmit: () => dispatch(deleteAccountAsync(account)),
       })
     );
-    // if (isDelete && account.id) {
+    // if (isDelete && account.id) {x
     //   dispatch(deleteAccountAsync(account));
     // } else
     //   setShowConfirmationDialog({
@@ -72,7 +69,6 @@ export const AccountsContainer = () => {
     handleNavigateAccount,
   };
 
-  // if (true) return <EmptyData />;
   return (
     <>
       {/* <ConfirmationDeleteDialog
