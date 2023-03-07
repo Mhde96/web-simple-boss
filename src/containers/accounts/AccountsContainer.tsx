@@ -32,19 +32,6 @@ export const AccountsContainer = () => {
   const dispatch = useAppDispatch();
   const accounts = useSelector(selectAccounts);
 
-  const friend = useLiveQuery(() => db.data.toArray());
-  console.log(friend);
-
-  useEffect(() => {
-    // const addItem = async () => {
-    //   await db.data.add({
-    //     data: [{ name: "box" }],
-    //     age: 2,
-    //   });
-    // };
-    // addItem();
-  }, []);
-  // Redux Async Functions
   const DeleteAccountAsync = (account: accountType, isDelete: boolean) => {
     dispatch(
       appSlice.actions.openConfirmBox({
