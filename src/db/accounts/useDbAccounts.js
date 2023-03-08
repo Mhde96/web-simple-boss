@@ -16,7 +16,6 @@ export const DbAddAccount = ({ name }) => {
     .where("id")
     .equals(1)
     .modify((data) => {
-      console.log(data);
       data.data.accounts.push({
         id: 1,
         name,
@@ -25,8 +24,16 @@ export const DbAddAccount = ({ name }) => {
       return data;
     });
 };
-export const DbSaveAccount = (account) => {
-  console.log(account);
+
+export const DbSaveAccount = async (account) => {
+  let generateId = 0;
+  if (account.id == undefined) {
+    let data = await db.data.where("id").equals(1).first();
+
+    let count = data.data.accounts.length;
+    generateId = data.data.accounts[count - 1].id + 1;
+  }
+
   db.data
     .where("id")
     .equals(1)
@@ -39,8 +46,27 @@ export const DbSaveAccount = (account) => {
             break;
           }
         }
+      } else {
+        data.data.accounts.push({
+          id: generateId,
+          name: account.name,
+        });
       }
       return data;
     });
 };
-const DbDeleteAccount = () => {};
+
+export const DbDeleteAccount = (account) => {
+  db.data
+    .where("id")
+    .equals(1)
+    .modify((data) => {
+      for (let i = 0; i < data.data.accounts.length; i++) {
+        if (account.id == data.data.accounts[i].id) {
+          data.data.accounts.splice(i, 1);
+          console.log(data);
+          return data;
+        }
+      }
+    });
+};

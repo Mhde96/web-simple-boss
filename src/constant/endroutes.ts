@@ -8,6 +8,7 @@ export const endroutes = {
   changeforgetpassword: "/changeforgetpassword",
   otp: "/otp",
   thankyou: "/thankyou",
+  db: "db",
   about: { path: "/about-us", title: en.about },
   blog: { path: "/blog", title: en.blog },
   contact: { path: "/contact-us", title: en.contact },

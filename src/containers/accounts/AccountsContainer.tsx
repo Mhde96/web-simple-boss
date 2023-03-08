@@ -3,7 +3,11 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { endroutes } from "../../constant/endroutes";
-import { useDbFetchAccounts } from "../../db/accounts/useDbAccounts";
+import {
+  DbDeleteAccount,
+  useDbFetchAccounts,
+} from "../../db/accounts/useDbAccounts";
+import { exportDB } from "../../db/initDb";
 import { en } from "../../helper/languages/en";
 import appSlice from "../../redux/app/appSlice";
 import {
@@ -12,6 +16,7 @@ import {
 } from "../../redux/data/dataAsync";
 import { selectAccounts } from "../../redux/data/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
+import { exportToJson } from "../../utils/exportToJson";
 import { accountType } from "./account-type";
 import { AccountDialog } from "./AccountDialog";
 import { AccountsPage } from "./AccountsPage";
@@ -32,7 +37,10 @@ export const AccountsContainer = () => {
       appSlice.actions.openConfirmBox({
         title: account.name,
         message: t(en.delete_message),
-        handleSubmit: () => dispatch(deleteAccountAsync(account)),
+        handleSubmit: () => {
+          DbDeleteAccount(account);
+          dispatch(deleteAccountAsync(account));
+        },
       })
     );
     // if (isDelete && account.id) {x

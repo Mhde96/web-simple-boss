@@ -5,7 +5,7 @@ import { endroutes } from "../../../constant/endroutes";
 
 export const AuthThankYouContainer = () => {
   const navigate = useNavigate();
-  const handleNavigate = () => navigate("/");
+  const handleNavigate = () => navigate("/db");
   return (
     <div
       style={{
