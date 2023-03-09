@@ -1,13 +1,11 @@
 import { useFormik } from "formik";
 import { useMemo } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import {
   useLocation,
   useNavigate,
   useSearchParams,
   Location,
-  Navigate,
 } from "react-router-dom";
 import { ErrorMessage, Input } from "../../components/input/Input";
 import { financial_statement_array } from "../../constant/account_constant";
@@ -54,7 +52,7 @@ export const AccountDialog = ({}: any) => {
 
   const account_id = useMemo(() => {
     const id = searchParams.get("account");
-
+ 
     if (id != undefined) {
       if (id == "new") {
         setValues({ name: "", financial_statement: "0", key: undefined });

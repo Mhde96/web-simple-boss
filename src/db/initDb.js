@@ -23,17 +23,26 @@ export const createDb = async ({ name }) => {
   });
 };
 
-export const exportDB = async () => {
-  const JsonObject = await db.data.toArray();
+export const exportDB = async ({ id }) => {
+  let data = await db.data.toArray();
+  let JsonObject = data.find((item) => item.id == id);
+
   exportToJson(JsonObject);
 };
 
 export const importDB = async (e) => {
+  console.log('hi');
   const fileReader = new FileReader();
-  fileReader.readAsText(e.target.files[0], "UTF-8");
-  fileReader.onload = (e) => {
-    console.log(JSON.parse(e.target.result));
+  await fileReader.readAsText(e.target.files[0], "UTF-8");
+  let importedData = [];
+  fileReader.onload = async (e) => {
+    importedData = await JSON.parse(e.target.result);
+    delete importedData.id;
+    console.log(importedData);
+    await db.data.add(importedData);
   };
+
+  // db.data.add(importedData)
 };
 
 export const deleteDb = async ({ id }) => {

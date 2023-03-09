@@ -5,7 +5,8 @@ import { Center } from "../../components/Center";
 import { Text } from "../../components/text/Text";
 import { db } from "../../db/indexedDb";
 import { Cookies } from "react-cookie";
-import { createDb, deleteDb } from "../../db/initDb";
+import { createDb, deleteDb, exportDB, importDB } from "../../db/initDb";
+import { Input } from "../../components/input/Input";
 
 export const DbControlContainer = () => {
   const dbArray = useLiveQuery(() => db.data.toArray());
@@ -24,10 +25,13 @@ export const DbControlContainer = () => {
         {dbArray?.map((item) => (
           <>
             <Row>
-              <Col xs={6}>
+              <Col xs={4}>
                 <Button onClick={() => handleChoseDB(item)}>{item.name}</Button>
               </Col>
-              <Col xs={6}>
+              <Col xs={4}>
+                <Button onClick={() => exportDB(item)}>{"export"}</Button>
+              </Col>
+              <Col xs={4}>
                 <Button onClick={() => deleteDb(item)}>{"delete"}</Button>
               </Col>
             </Row>
@@ -37,7 +41,7 @@ export const DbControlContainer = () => {
 
         <Row>
           <Col xs={6}>
-            <Button>{"import"}</Button>
+            <input placeholder="import" type="file" onChange={importDB}/>
           </Col>
           <Col xs={6}>
             <Button onClick={() => createDb({ name: "name" + Math.random() })}>
