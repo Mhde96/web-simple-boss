@@ -18,6 +18,8 @@ import {
 } from "../settings/SettingsWidget";
 import "./header-style.scss";
 import { OpenProfileDialog, ProfileDialogWidget } from "./ProfileDialogWidget";
+import { DbIcon } from "../../assets/icons/DbIcon";
+import { endroutes } from "../../constant/endroutes";
 export const HeaderWidget = () => {
   const colors = useColors();
   const user = useSelector(selectUser);
@@ -42,16 +44,24 @@ export const HeaderWidget = () => {
               <UserIcon />
             </Nav>
             <Nav
+              onClick={() => navigate(endroutes.db)}
+              className="user pointer"
+              style={{ padding: "0 10px" }}
+            >
+              <DbIcon />
+            </Nav>
+            <Nav
               onClick={() => openCalculatorDialog(location, navigate)}
               className="user pointer"
-              style={{ padding: "0 20px" }}
+              style={{ padding: "0 10px" }}
             >
               <img src="assets/images/calculator.png" width={24} height={24} />
             </Nav>
+
             <Nav
               onClick={() => openSettingsDialog(location, navigate)}
               className="user pointer"
-              style={{ padding: "0 20px" }}
+              style={{ padding: "0 10px" }}
             >
               <SettingsIcon />
             </Nav>

@@ -6,15 +6,19 @@ import { Text } from "../../components/text/Text";
 import { db } from "../../db/indexedDb";
 import { Cookies } from "react-cookie";
 import { createDb, deleteDb, exportDB, importDB } from "../../db/initDb";
-import { Input } from "../../components/input/Input";
+import { useNavigate } from "react-router-dom";
+import { endroutes } from "../../constant/endroutes";
 
 export const DbControlContainer = () => {
   const dbArray = useLiveQuery(() => db.data.toArray());
+  const navigate = useNavigate();
 
-  const handleChoseDB = ({ id }) => {
+  const handleChoseDB = async ({ id }) => {
     const cookies = new Cookies();
-    cookies.set("dbId", id);
+    await cookies.set("dbId", id);
+    navigate(endroutes.home.path);
   };
+
   return (
     <>
       <Container>
@@ -41,7 +45,7 @@ export const DbControlContainer = () => {
 
         <Row>
           <Col xs={6}>
-            <input placeholder="import" type="file" onChange={importDB}/>
+            <input placeholder="import" type="file" onChange={importDB} />
           </Col>
           <Col xs={6}>
             <Button onClick={() => createDb({ name: "name" + Math.random() })}>

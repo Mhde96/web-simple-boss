@@ -1,8 +1,17 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../indexedDb";
+import { Cookies } from "react-cookie";
+import { cookiesKey } from "../../constant/cookiesKey";
+import { dbKeys } from "../dbKeys";
+
+const cookies = new Cookies();
+const dbId = () => parseInt(cookies.get(cookiesKey.dbId));
 
 export const useDbFetchAccounts = () => {
-  let data = useLiveQuery(() => db.data.where("id").equals(1).toArray());
+  let data = useLiveQuery(() =>
+    db.data.where(dbKeys.id).equals(dbId()).toArray()
+  );
+
   let accounts = [];
   if (data?.length) {
     accounts = data[0].data.accounts;
@@ -11,32 +20,18 @@ export const useDbFetchAccounts = () => {
   return { accounts };
 };
 
-export const DbAddAccount = ({ name }) => {
-  db.data
-    .where("id")
-    .equals(1)
-    .modify((data) => {
-      data.data.accounts.push({
-        id: 1,
-        name,
-      });
-
-      return data;
-    });
-};
-
 export const DbSaveAccount = async (account) => {
   let generateId = 0;
   if (account.id == undefined) {
-    let data = await db.data.where("id").equals(1).first();
+    let data = await db.data.where(dbKeys.id).equals(dbId()).first();
 
     let count = data.data.accounts.length;
     generateId = data.data.accounts[count - 1].id + 1;
   }
 
   db.data
-    .where("id")
-    .equals(1)
+    .where(dbKeys.id)
+    .equals(dbId())
     .modify((data) => {
       if (account.id) {
         for (let i = 0; i < data.data.accounts.length; i++) {
@@ -58,8 +53,8 @@ export const DbSaveAccount = async (account) => {
 
 export const DbDeleteAccount = (account) => {
   db.data
-    .where("id")
-    .equals(1)
+    .where(dbKeys.id)
+    .equals(dbId())
     .modify((data) => {
       for (let i = 0; i < data.data.accounts.length; i++) {
         if (account.id == data.data.accounts[i].id) {
