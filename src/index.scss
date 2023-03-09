@@ -76,3 +76,10 @@ hr {
 .pointer {
   cursor: pointer;
 }
+
+.primary-border {
+  border: 1px solid;
+  @include themed() {
+    border-color: t("border");
+  }
+}

@@ -3,6 +3,7 @@ export type AppStateType = {
   status: StatusType;
   colorMode: "light" | "dark" | "auto";
   language: "default" | "en" | "ar";
+  db: dbType;
   confirm: {
     show: boolean;
     title: string;
@@ -20,3 +21,8 @@ export type userType =
   | undefined;
 
 export type StatusType = true | false | "data" | null;
+
+export type dbType = {
+  id: number | undefined;
+  name: string;
+};

@@ -1,59 +1,77 @@
 import { useLiveQuery } from "dexie-react-hooks";
-import { Col, Container, Row } from "react-bootstrap";
-import { Button } from "../../components/button/Button";
-import { Center } from "../../components/Center";
-import { Text } from "../../components/text/Text";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { db } from "../../db/indexedDb";
-import { Cookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { createDb, deleteDb, exportDB, importDB } from "../../db/initDb";
-import { useNavigate } from "react-router-dom";
-import { endroutes } from "../../constant/endroutes";
+import { DbCard } from "../../components/cards/db/DbCard";
+import { cookiesKey } from "../../constant/cookiesKey";
+import { CloudPlusIcon } from "../../assets/icons/CloudPlusIcon";
+import "./db-control-page-styles.scss";
+// import "../../styles/components-styles.scss";
+
+import { AddIcon } from "../../assets/icons/AddIcon";
+import { useAppDispatch } from "../../redux/hooks";
+import { changeDbAsync } from "../../redux/app/appAsync";
+// const cookies = new Cookies();
 
 export const DbControlContainer = () => {
+  const dispatch = useAppDispatch();
+  const [cookies, setCookie] = useCookies();
   const dbArray = useLiveQuery(() => db.data.toArray());
-  const navigate = useNavigate();
 
-  const handleChoseDB = async ({ id }) => {
-    const cookies = new Cookies();
-    await cookies.set("dbId", id);
-    navigate(endroutes.home.path);
+  const handleChoseDB = (db) => {
+    setCookie(cookiesKey.dbId, db.id);
+    dispatch(changeDbAsync({ id: db.id, name: db.name }));
   };
 
   return (
-    <>
+    <Card id={"db-control-page-styles"} className="primary-border ">
+      <Card.Header className="header" as="h6">
+        {"Choose your Database"}
+      </Card.Header>
+
+      <br />
       <Container>
-        <Center>
-          <Text fs="f1">Choose your Database</Text>
-        </Center>
-        <br />
-        {dbArray?.map((item) => (
-          <>
-            <Row>
-              <Col xs={4}>
-                <Button onClick={() => handleChoseDB(item)}>{item.name}</Button>
-              </Col>
-              <Col xs={4}>
-                <Button onClick={() => exportDB(item)}>{"export"}</Button>
-              </Col>
-              <Col xs={4}>
-                <Button onClick={() => deleteDb(item)}>{"delete"}</Button>
-              </Col>
-            </Row>
-            <br />
-          </>
+        {dbArray?.map((item, index) => (
+          <DbCard
+            name={item.name}
+            dbId={item.id}
+            index={index}
+            active={cookies[cookiesKey.dbId] == item.id}
+            handleExport={() => exportDB(item)}
+            handleDelete={() => deleteDb(item)}
+            handleClick={() => handleChoseDB(item)}
+          />
         ))}
 
         <Row>
-          <Col xs={6}>
-            <input placeholder="import" type="file" onChange={importDB} />
+          <Col xs={6} />
+          <Col xs={3}>
+            <input
+              type="file"
+              id="file-upload"
+              style={{ display: "none" }}
+              onChange={(e) => {
+                importDB(e);
+                e.target.value = "";
+              }}
+            />
+            <label className="primary-button" for="file-upload">
+              {"Import "} <CloudPlusIcon />
+            </label>
+            {/* <input placeholder="import" type="file" onChange={importDB} /> */}
           </Col>
-          <Col xs={6}>
-            <Button onClick={() => createDb({ name: "name" + Math.random() })}>
-              {"Create"}
-            </Button>
+          <Col xs={3}>
+            <div
+              className="primary-button"
+              onClick={() => createDb({ name: "name" + Math.random() })}
+            >
+              {"Create  "}
+              <AddIcon />
+            </div>
           </Col>
         </Row>
       </Container>
-    </>
+    </Card>
   );
 };

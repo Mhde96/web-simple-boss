@@ -1,0 +1,14 @@
+@import "../../../styles/variable.scss";
+
+#db-card-styles {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  gap: 10px;
+  .name {
+    padding: 5px 10px;
+    flex: 1;
+  }
+}

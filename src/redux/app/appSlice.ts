@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AppStateType, StatusType, userType } from "./app-type";
+import { AppStateType, dbType, StatusType, userType } from "./app-type";
 import { RootState } from "../store";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../../constant/cookiesKey";
@@ -21,15 +21,19 @@ const getLanguage = () => {
 const getColorMode = () => {
   let colorMode = cookies.get(cookiesKey.colorMode);
   // const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
   if (!colorMode) return "auto";
   else return colorMode;
 };
+
 const initialState: AppStateType = {
   user: cookies.get("user"),
   status: false,
   colorMode: getColorMode(),
   language: getLanguage(),
+  db: {
+    id: undefined,
+    name: "",
+  },
   confirm: {
     show: false,
     title: "",
@@ -74,6 +78,11 @@ export const appSlice = createSlice({
       i18n.changeLanguage(payload);
       state.language = payload;
     },
+    changeDb: (state, { payload }) => {
+      console.log(payload);
+      cookies.set(cookiesKey.dbId, payload.id);
+      state.db = payload;
+    },
   },
 });
 
@@ -84,5 +93,6 @@ export const selectColorMode = (state: RootState): string =>
   state.appReducer.colorMode;
 export const selectLanguage = (state: RootState): string =>
   state.appReducer.language;
+export const selectDb = (state: RootState): dbType => state.appReducer.db;
 
 export default appSlice;

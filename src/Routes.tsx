@@ -28,7 +28,6 @@ import { PlatformLayout } from "./widgets/layout/PlatformLayout";
 import { HomeContainer } from "./containers/home/HomeContainer";
 import { BlogContainer } from "./containers/system/blog/BlogContainer";
 import { ContactContainer } from "./containers/system/contact/ContactContainer";
-import { endpoints } from "./constant/endpoints";
 import { DbControlContainer } from "./containers/db-control/DbControlContainer";
 
 export const Navigation = () => {

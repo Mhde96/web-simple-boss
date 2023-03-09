@@ -1,14 +1,12 @@
 import { endpoints } from "../../constant/endpoints";
 import { api } from "../../helper/api";
-import { StatusType, userType } from "./app-type";
+import { dbType, StatusType, userType } from "./app-type";
 import appSlice from "./appSlice";
 import { AppDispatch } from "../store";
 
 import { Dispatch } from "@reduxjs/toolkit";
 import { endroutes } from "../../constant/endroutes";
 import { NavigateFunction } from "react-router-dom";
-
-
 
 export const registerAsync =
   (values: userType, navigate: NavigateFunction) =>
@@ -66,3 +64,8 @@ export const refreshTokenAsync = () => async (dispatch: AppDispatch) => {
 export const logoutAsync = () => async (dispatch: AppDispatch) => {
   dispatch(appSlice.actions.logout());
 };
+
+export const changeDbAsync =
+  (values: dbType) => async (dispatch: AppDispatch) => {
+    dispatch(appSlice.actions.changeDb(values));
+  };

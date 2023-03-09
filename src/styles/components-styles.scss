@@ -1,0 +1,14 @@
+@import "./themes.scss";
+
+.primary-button {
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  @include themed() {
+    background-color: t("primary");
+  }
+}

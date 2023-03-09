@@ -1,0 +1,15 @@
+@import "../../styles/themes.scss";
+@import "../../styles/components-styles.scss";
+
+#db-control-page-styles {
+  padding-bottom: 10px;
+  @include themed() {
+    background: t("sf");
+    color: t("text");
+    border-color: t("border");
+
+    .header {
+      background: t("bg");
+    }
+  }
+}

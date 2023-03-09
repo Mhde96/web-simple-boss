@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
 import { UserIcon } from "../../assets/icons/UserIcon";
 import { Text } from "../../components/text/Text";
-import { selectUser } from "../../redux/app/appSlice";
+import { selectDb, selectUser } from "../../redux/app/appSlice";
 import { useColors } from "../../styles/variables-styles";
 import {
   CalculatorWidget,
@@ -20,9 +20,12 @@ import "./header-style.scss";
 import { OpenProfileDialog, ProfileDialogWidget } from "./ProfileDialogWidget";
 import { DbIcon } from "../../assets/icons/DbIcon";
 import { endroutes } from "../../constant/endroutes";
+import { SyncIcon } from "../../assets/icons/SyncIcon";
+
 export const HeaderWidget = () => {
   const colors = useColors();
   const user = useSelector(selectUser);
+  const db = useSelector(selectDb);
   const navigate = useNavigate();
   const location = useLocation();
   return (
@@ -37,19 +40,27 @@ export const HeaderWidget = () => {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav
+              onClick={() => navigate(endroutes.home.path)}
+              className="ms-auto user pointer"
+            >
+              <DbIcon />
+              <div>
+                <Text color={colors.onSurface}>{db?.name}</Text>
+                <div>
+                  <Text color={colors.onSurface}>{"last sync"}</Text>
+                  <SyncIcon />
+                </div>
+              </div>
+            </Nav>
+
+            <Nav
               onClick={() => OpenProfileDialog(location, navigate)}
               className="ms-auto user pointer"
             >
-              <Text color={colors.onSurface}>{user?.name}</Text>
               <UserIcon />
+              <Text color={colors.onSurface}>{user?.name}</Text>
             </Nav>
-            <Nav
-              onClick={() => navigate(endroutes.db)}
-              className="user pointer"
-              style={{ padding: "0 10px" }}
-            >
-              <DbIcon />
-            </Nav>
+
             <Nav
               onClick={() => openCalculatorDialog(location, navigate)}
               className="user pointer"
