@@ -4,7 +4,7 @@ import { journalType } from "../containers/journals/journal-type";
 
 export const db = new Dexie("accountant");
 db.version(1).stores({
-  data: "++id, *data, name, publisher, created_at, updated_at, publisher, editor, last_sync",
+  data: "++id, *data, name, publisher, created_at, updated_at, publisher, editor, last_sync, description",
 });
 
 type indexedDB = {
@@ -14,6 +14,7 @@ type indexedDB = {
     journals: Array<journalType>;
   }>;
   name: string; // name of database
+  description: string;
   publisher: string;
   created_at: Date;
   editor: string;

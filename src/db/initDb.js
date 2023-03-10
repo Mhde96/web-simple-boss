@@ -2,6 +2,7 @@ import { exportToJson } from "../utils/exportToJson";
 import { db } from "./indexedDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../constant/cookiesKey";
+import { dbKeys } from "./dbKeys";
 
 export const initDb = async () => {
   const cookies = new Cookies();
@@ -16,18 +17,44 @@ export const initDb = async () => {
     });
 };
 
-export const createDb = async ({ name }) => {
+export const createDb = async ({ name, description, user }) => {
   await db.data.add({
     data: { accounts: [], journals: [] },
     name,
+    description,
+
     created_at: new Date(),
-    publisher: "Mohamd Almahdi",
+    publisher: user.name,
 
     updated_at: new Date(),
-    editor: "Mohamd Almahdi",
-
-    
+    editor: user.name,
   });
+};
+
+export const saveDb = async ({ id, name, description, user }) => {
+  if (id) {
+    await db.data
+      .where(dbKeys.id)
+      .equals(id)
+      .modify((data) => {
+        console.log(data);
+        data = { ...data, name, description };
+        console.log(data);
+        return data;
+      });
+  } else {
+    await db.data.add({
+      data: { accounts: [], journals: [] },
+      name,
+      description,
+
+      created_at: new Date(),
+      publisher: user.name,
+
+      updated_at: new Date(),
+      editor: user.name,
+    });
+  }
 };
 
 export const exportDB = async ({ id }) => {

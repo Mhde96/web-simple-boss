@@ -17,7 +17,11 @@ import * as yup from "yup";
 import { ModalWrap } from "../../components/wrap/ModalWrap";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
-import { DbAddAccount, DbSaveAccount, useDbFetchAccounts } from "../../db/accounts/useDbAccounts";
+import {
+  DbAddAccount,
+  DbSaveAccount,
+  useDbFetchAccounts,
+} from "../../db/accounts/useDbAccounts";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -33,7 +37,7 @@ export const AccountDialog = ({}: any) => {
   // redux
   const dispatch = useAppDispatch();
   // const accounts = useSelector(selectAccounts);
-  const {accounts} = useDbFetchAccounts()
+  const { accounts } = useDbFetchAccounts();
 
   const { values, setValues, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
@@ -52,7 +56,7 @@ export const AccountDialog = ({}: any) => {
 
   const account_id = useMemo(() => {
     const id = searchParams.get("account");
- 
+
     if (id != undefined) {
       if (id == "new") {
         setValues({ name: "", financial_statement: "0", key: undefined });
