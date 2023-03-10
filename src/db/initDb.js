@@ -20,6 +20,13 @@ export const createDb = async ({ name }) => {
   await db.data.add({
     data: { accounts: [], journals: [] },
     name,
+    created_at: new Date(),
+    publisher: "Mohamd Almahdi",
+
+    updated_at: new Date(),
+    editor: "Mohamd Almahdi",
+
+    
   });
 };
 

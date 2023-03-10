@@ -29,4 +29,17 @@
     }
     font-weight: bold;
   }
+
+  .db-header-container {
+    display: flex;
+    flex-direction: column;
+  
+
+    div {
+    
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
 }

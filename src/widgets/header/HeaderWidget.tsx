@@ -21,6 +21,7 @@ import { OpenProfileDialog, ProfileDialogWidget } from "./ProfileDialogWidget";
 import { DbIcon } from "../../assets/icons/DbIcon";
 import { endroutes } from "../../constant/endroutes";
 import { SyncIcon } from "../../assets/icons/SyncIcon";
+import moment from "moment";
 
 export const HeaderWidget = () => {
   const colors = useColors();
@@ -44,11 +45,15 @@ export const HeaderWidget = () => {
               className="ms-auto user pointer"
             >
               <DbIcon />
-              <div>
-                <Text color={colors.onSurface}>{db?.name}</Text>
+              <div className="db-header-container">
+                <Text fs="f5" color={colors.onSurface}>
+                  {db?.name}
+                </Text>
                 <div>
-                  <Text color={colors.onSurface}>{"last sync"}</Text>
-                  <SyncIcon />
+                  <Text fs="f6" color={colors.onSurface}>
+                    {moment().startOf('day').fromNow()}
+                  </Text>
+                  <SyncIcon size={12} />
                 </div>
               </div>
             </Nav>

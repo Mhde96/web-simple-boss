@@ -13,13 +13,13 @@ import { ArticleHomeCard } from "./ArticleHomeCard";
 import { DbControlContainer } from "../db-control/DbControlContainer";
 export const HomePage = () => {
   const { t } = useTranslation();
-  const journals = useSelector(selectJournals);
   const navigate = useNavigate();
-  const colors = useColors();
+  
   return (
     <div>
       <div id="home-styles">
         <div className="cards home-layout">
+        <DbControlContainer />
           <div className="account-chart-container">
             <AccountChart />
           </div>
@@ -33,7 +33,7 @@ export const HomePage = () => {
               onClick={() => navigate(endroutes.journals.path)}
             />
           </div>
-          <DbControlContainer />
+        
         </div>
         <div style={{ width: 20 }} />
         <div className="canvas home-layout">
