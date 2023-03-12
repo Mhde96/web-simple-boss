@@ -15,7 +15,7 @@ import { changeDbAsync } from "../../redux/app/appAsync";
 import { DbDialogWidget, OpenDbDialog } from "./DbDialogWidget";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/app/appSlice";
+import { selectDb, selectUser } from "../../redux/app/appSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 // const cookies = new Cookies();
 
@@ -23,11 +23,10 @@ export const DbControlContainer = ({}) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies();
   const dbArray = useLiveQuery(() => db.data.toArray());
+  const dbRedux = useSelector(selectDb);
 
   const handleChooseDB = (db) => {
-    setCookie(cookiesKey.dbId, db.id);
     dispatch(changeDbAsync({ id: db.id, name: db.name }));
   };
 
@@ -46,9 +45,9 @@ export const DbControlContainer = ({}) => {
               name={item.name}
               dbId={item.id}
               index={index}
-              active={cookies[cookiesKey.dbId] == item.id}
+              active={dbRedux.id == item.id}
               handleExport={() => exportDB(item)}
-              handleDelete={() => deleteDb(item)}
+              handleDelete={() => deleteDb(dispatch, item)}
               handleClick={() => handleChooseDB(item)}
             />
           ))}

@@ -14,9 +14,7 @@ import {
   deleteAccountAsync,
   fetchAccountsAsync,
 } from "../../redux/data/dataAsync";
-import { selectAccounts } from "../../redux/data/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import { exportToJson } from "../../utils/exportToJson";
 import { accountType } from "./account-type";
 import { AccountDialog } from "./AccountDialog";
 import { AccountsPage } from "./AccountsPage";

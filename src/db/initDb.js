@@ -3,47 +3,37 @@ import { db } from "./indexedDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../constant/cookiesKey";
 import { dbKeys } from "./dbKeys";
+import { changeDbAsync } from "../redux/app/appAsync";
 
-export const initDb = async () => {
+export const selectDb = async () => {
   const cookies = new Cookies();
-  const dbId = await cookies.get(cookiesKey.dbId);
+  let id = cookies.get(cookiesKey.dbId);
+  let data = [];
 
-  const dbArray = await db.data.toArray();
+  if (id > 0) {
+    data = await db
+      .table("data")
+      .where(dbKeys.id)
+      .equals(parseInt(id))
+      .toArray();
+  } else if (id != undefined) {
+    data = await db.data.toArray();
+  }
 
-  if (dbArray.length == 0)
-    await db.data.add({
-      data: { accounts: [], journals: [] },
-      name: "First DataBase",
-    });
-};
+  data = data[0];
+  // console.log(data)
+  // const { id, name } = data[0];
+  // console.log(data[0]);
+  // return { id, name };
 
-export const createDb = async ({ name, description, user }) => {
-  await db.data.add({
-    data: { accounts: [], journals: [] },
-    name,
-    description,
-
-    created_at: new Date(),
-    publisher: user.name,
-
-    updated_at: new Date(),
-    editor: user.name,
-  });
+  return data;
 };
 
 export const saveDb = async ({ id, name, description, user }) => {
   if (id) {
-    await db.data
-      .where(dbKeys.id)
-      .equals(id)
-      .modify((data) => {
-        console.log(data);
-        data = { ...data, name, description };
-        console.log(data);
-        return data;
-      });
+    db.data.where(dbKeys.id).equals(parseInt(id)).modify({ name, description });
   } else {
-    await db.data.add({
+    db.data.add({
       data: { accounts: [], journals: [] },
       name,
       description,
@@ -75,6 +65,8 @@ export const importDB = async (e) => {
   // db.data.add(importedData)
 };
 
-export const deleteDb = async ({ id }) => {
+export const deleteDb = async (despatch, { id }) => {
   await db.data.delete(id);
+  const table = await db.table("data").toArray();
+  if (table.length > 0) despatch(changeDbAsync(table[0]));
 };

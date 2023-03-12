@@ -18,7 +18,6 @@ import { ModalWrap } from "../../components/wrap/ModalWrap";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
 import {
-  DbAddAccount,
   DbSaveAccount,
   useDbFetchAccounts,
 } from "../../db/accounts/useDbAccounts";
@@ -48,9 +47,11 @@ export const AccountDialog = ({}: any) => {
     validateOnChange: false,
     validationSchema,
     onSubmit: (values) => {
+    
       DbSaveAccount(values);
+      navigate(-1);
       // DbAddAccount(values);
-      dispatch(SaveAccountAsync(values, navigate));
+      // dispatch(SaveAccountAsync(values, navigate));
     },
   });
 

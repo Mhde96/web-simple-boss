@@ -22,11 +22,12 @@ export const useDbFetchAccounts = () => {
 
 export const DbSaveAccount = async (account) => {
   let generateId = 0;
+
   if (account.id == undefined) {
     let data = await db.data.where(dbKeys.id).equals(dbId()).first();
-
     let count = data.data.accounts.length;
-    generateId = data.data.accounts[count - 1].id + 1;
+    if (count > 0) generateId = data.data.accounts[count - 1].id + 1;
+    else generateId == 1
   }
 
   db.data

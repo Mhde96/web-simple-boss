@@ -12,7 +12,7 @@ import {
   useSearchParams,
   Location,
 } from "react-router-dom";
-import { createDb, saveDb } from "../../db/initDb";
+import { saveDb } from "../../db/initDb";
 import { db } from "../../db/indexedDb";
 
 const validationSchema = yup.object().shape({
@@ -22,12 +22,11 @@ const validationSchema = yup.object().shape({
 
 export const DbDialogWidget = () => {
   const [searchParams] = useSearchParams();
-  const { search } = useLocation();
+
   const navigate = useNavigate();
 
   const user = useSelector(selectUser);
   const id = searchParams.get("db");
-  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     navigate(-1);
@@ -45,20 +44,13 @@ export const DbDialogWidget = () => {
       onSubmit: (values) => {
         handleClose();
         resetForm();
-        if (values.id == undefined)
-          createDb({
-            name: values.name,
-            description: values.description,
-            user,
-          });
-        else {
-          saveDb({
-            id: values.id,
-            name: values.name,
-            description: values.description,
-            user,
-          });
-        }
+
+        saveDb({
+          id: values.id,
+          name: values.name,
+          description: values.description,
+          user,
+        });
       },
     });
 
@@ -67,8 +59,11 @@ export const DbDialogWidget = () => {
     let currentDb = data.find((item) => item.id == id);
     setValues(currentDb);
   };
+
   useEffect(() => {
-    handleGetDb();
+     
+
+    if (typeof parseInt(id) === "number" && parseInt(id) > 0) handleGetDb();
   }, [id]);
 
   return (
