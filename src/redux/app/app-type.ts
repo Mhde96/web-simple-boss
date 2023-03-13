@@ -12,13 +12,12 @@ export type AppStateType = {
   };
 };
 
-export type userType =
-  | {
-      id?: number;
-      name: string;
-      email: string;
-    }
-  | undefined;
+export type userType = {
+  id: number;
+  name: string;
+  email: string;
+  last_sync: string;
+};
 
 export type StatusType = true | false | "data" | null;
 

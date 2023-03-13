@@ -27,7 +27,7 @@ export const DbSaveAccount = async (account) => {
     let data = await db.data.where(dbKeys.id).equals(dbId()).first();
     let count = data.data.accounts.length;
     if (count > 0) generateId = data.data.accounts[count - 1].id + 1;
-    else generateId == 1
+    else generateId == 1;
   }
 
   db.data

@@ -4,8 +4,10 @@ import { journalType } from "../containers/journals/journal-type";
 
 export const db = new Dexie("accountant");
 db.version(1).stores({
-  data: "++id, *data, name, publisher, created_at, updated_at, editor, last_sync, description",
+  data: "++id, *data, name, publisher, created_at, updated_at, editor, last_sync, description, user_id",
+  users: "++id, user_id, last_sync",
 });
+
 // db.version(1).stores({
 //   data: "++id, data, name"
 // });

@@ -10,7 +10,7 @@ import { NavigateFunction } from "react-router-dom";
 import { selectDb } from "../../db/initDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../../constant/cookiesKey";
-
+import { IndexedSaveUser } from "../../db/users/UsersDb";
 
 export const registerAsync =
   (values: userType, navigate: NavigateFunction) =>
@@ -46,6 +46,7 @@ export const loginAsync =
       .then((response) => {
         if (response.data.success) {
           dispatch(appSlice.actions.login(response.data.data));
+          IndexedSaveUser(response.data.data);
           navigate(endroutes.thankyou);
         } else {
           alert(response.data.msg);
@@ -61,8 +62,6 @@ export const refreshTokenAsync = () => async (dispatch: AppDispatch) => {
   const db = await selectDb();
   dispatch(changeDbAsync(db));
 
-
-
   api.post(endpoints.refreshToken).then((response) => {
     if (response.data.success) {
       dispatch(appSlice.actions.login({ token: response.data.data }));
@@ -76,7 +75,7 @@ export const logoutAsync = () => async (dispatch: AppDispatch) => {
 
 export const changeDbAsync =
   (values: dbType) => async (dispatch: AppDispatch) => {
-    const cookies = new Cookies()
-    cookies.set(cookiesKey.dbId, values?.id)
+    const cookies = new Cookies();
+    cookies.set(cookiesKey.dbId, values?.id);
     dispatch(appSlice.actions.changeDb(values));
   };
