@@ -1,31 +1,21 @@
 import Dexie from "dexie";
-import { accountType } from "../containers/accounts/account-type";
-import { journalType } from "../containers/journals/journal-type";
 
 export const db = new Dexie("accountant");
 db.version(1).stores({
-  data: "++id, *data, name, publisher, created_at, updated_at, editor, last_sync, description, user_id",
-  users: "++id, user_id, last_sync",
+  data: "++id, *accounts, *journals, name, publisher, created_at, updated_at, editor, last_sync, description, user_id",
+  users: "++id, user_id, last_sync, financial_statement",
 });
 
-// db.version(1).stores({
-//   data: "++id, data, name"
-// });
+const dbArray = [new Dexie("test1"), new Dexie("test2")];
 
-type indexedDB = {
-  id: number;
-  data: Array<{
-    accounts: Array<accountType>;
-    journals: Array<journalType>;
-  }>;
-  name: string; // name of database
-  description: string;
-  publisher: string;
-  created_at: Date;
-  editor: string;
-  updated_at: Date;
-  last_sync: Date;
-};
-// const initializeDb = indexedDB.open('name_of_database', version)
+dbArray.map((db) => {
+  db.version(1).stores({
+    accounts: "++id, name ",
+    // journals: "++id, name",
+  });
 
-// console.log(db.table("exampleDatabase"));
+  db.table("accounts").add({ name: "ahmad" });
+  // db.table("journals").add({ name: "ahmad", id: 1 });
+});
+
+dbArray[0].table("accounts").add({ name: "mahmoud" });

@@ -4,13 +4,11 @@ import { dbType, StatusType, userType } from "./app-type";
 import appSlice from "./appSlice";
 import { AppDispatch } from "../store";
 
-import { Dispatch } from "@reduxjs/toolkit";
 import { endroutes } from "../../constant/endroutes";
 import { NavigateFunction } from "react-router-dom";
-import { selectDb } from "../../db/initDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../../constant/cookiesKey";
-import { IndexedSaveUser } from "../../db/users/UsersDb";
+import { selectSpecificDataIndexedDb } from "../../db/data/dataDb";
 
 export const registerAsync =
   (values: userType, navigate: NavigateFunction) =>
@@ -46,7 +44,6 @@ export const loginAsync =
       .then((response) => {
         if (response.data.success) {
           dispatch(appSlice.actions.login(response.data.data));
-          IndexedSaveUser(response.data.data);
           navigate(endroutes.thankyou);
         } else {
           alert(response.data.msg);
@@ -59,7 +56,7 @@ export const loginAsync =
   };
 
 export const refreshTokenAsync = () => async (dispatch: AppDispatch) => {
-  const db = await selectDb();
+  const db = await selectSpecificDataIndexedDb();
   dispatch(changeDbAsync(db));
 
   api.post(endpoints.refreshToken).then((response) => {

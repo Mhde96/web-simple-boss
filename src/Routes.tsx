@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { endroutes } from "./constant/endroutes";
@@ -21,8 +20,6 @@ import { SignupContainer } from "./containers/register/SignupContainer";
 import { AboutContainer } from "./containers/system/about/AboutContainer";
 
 import { selectUser } from "./redux/app/appSlice";
-import { fetchAccountsAsync, fetchJournalsAsync } from "./redux/data/dataAsync";
-import { useAppDispatch } from "./redux/hooks";
 import { AuthLayout } from "./widgets/layout/AuthLayout";
 import { PlatformLayout } from "./widgets/layout/PlatformLayout";
 import { HomeContainer } from "./containers/home/HomeContainer";
@@ -31,13 +28,7 @@ import { ContactContainer } from "./containers/system/contact/ContactContainer";
 import { DbControlContainer } from "./containers/db-control/DbControlContainer";
 
 export const Navigation = () => {
-  const dispatch = useAppDispatch();
   const user = useSelector(selectUser);
-
-  useEffect(() => {
-    dispatch(fetchAccountsAsync());
-    dispatch(fetchJournalsAsync());
-  }, []);
 
   return (
     <BrowserRouter>

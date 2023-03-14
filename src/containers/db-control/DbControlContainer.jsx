@@ -1,10 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { db } from "../../db/indexedDb";
-import { useCookies } from "react-cookie";
-import { createDb, deleteDb, exportDB, importDB } from "../../db/initDb";
 import { DbCard } from "../../components/cards/db/DbCard";
-import { cookiesKey } from "../../constant/cookiesKey";
 import { CloudPlusIcon } from "../../assets/icons/CloudPlusIcon";
 import "./db-control-page-styles.scss";
 // import "../../styles/components-styles.scss";
@@ -15,8 +12,13 @@ import { changeDbAsync } from "../../redux/app/appAsync";
 import { DbDialogWidget, OpenDbDialog } from "./DbDialogWidget";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectDb, selectUser } from "../../redux/app/appSlice";
+import { selectDb } from "../../redux/app/appSlice";
 import { useLocation, useNavigate } from "react-router-dom";
+import {
+  deleteDataIndexedDb,
+  exportSpecificDataIndexedDb,
+  importDataFromDeviceIndexedDb,
+} from "../../db/data/dataDb";
 // const cookies = new Cookies();
 
 export const DbControlContainer = ({}) => {
@@ -46,8 +48,8 @@ export const DbControlContainer = ({}) => {
               dbId={item.id}
               index={index}
               active={dbRedux.id == item.id}
-              handleExport={() => exportDB(item)}
-              handleDelete={() => deleteDb(dispatch, item)}
+              handleExport={() => exportSpecificDataIndexedDb(item)}
+              handleDelete={() => deleteDataIndexedDb(dispatch, item)}
               handleClick={() => handleChooseDB(item)}
             />
           ))}
@@ -60,14 +62,13 @@ export const DbControlContainer = ({}) => {
                 id="file-upload"
                 style={{ display: "none" }}
                 onChange={(e) => {
-                  importDB(e);
+                  importDataFromDeviceIndexedDb(e);
                   e.target.value = "";
                 }}
               />
               <label className="primary-button" for="file-upload">
                 {"Import "} <CloudPlusIcon />
               </label>
-              {/* <input placeholder="import" type="file" onChange={importDB} /> */}
             </Col>
             <Col xs={3}>
               <div

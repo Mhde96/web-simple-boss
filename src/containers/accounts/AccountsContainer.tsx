@@ -3,11 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { endroutes } from "../../constant/endroutes";
-import {
-  DbDeleteAccount,
-  useDbFetchAccounts,
-} from "../../db/accounts/useDbAccounts";
-import { exportDB } from "../../db/initDb";
+import { DbDeleteAccount, useDbFetchAccounts } from "../../db/data/accountsDb";
 import { en } from "../../helper/languages/en";
 import appSlice from "../../redux/app/appSlice";
 import {

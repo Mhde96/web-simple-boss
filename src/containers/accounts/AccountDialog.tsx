@@ -9,8 +9,6 @@ import {
 } from "react-router-dom";
 import { ErrorMessage, Input } from "../../components/input/Input";
 import { financial_statement_array } from "../../constant/account_constant";
-import { SaveAccountAsync } from "../../redux/data/dataAsync";
-import { selectAccounts } from "../../redux/data/dataSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { accountType } from "./account-type";
 import * as yup from "yup";
@@ -18,9 +16,9 @@ import { ModalWrap } from "../../components/wrap/ModalWrap";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
 import {
-  DbSaveAccount,
+  saveAccountIndexedDb,
   useDbFetchAccounts,
-} from "../../db/accounts/useDbAccounts";
+} from "../../db/data/accountsDb";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -47,8 +45,7 @@ export const AccountDialog = ({}: any) => {
     validateOnChange: false,
     validationSchema,
     onSubmit: (values) => {
-    
-      DbSaveAccount(values);
+      saveAccountIndexedDb(values);
       navigate(-1);
       // DbAddAccount(values);
       // dispatch(SaveAccountAsync(values, navigate));

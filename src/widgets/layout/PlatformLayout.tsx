@@ -1,43 +1,42 @@
-import { Row, Col, Container, Stack } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { Stack } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 import { Outlet, useNavigate } from "react-router-dom";
-import { AccountIcon } from "../../assets/icons/AccountIcon";
-import { BalanceIcon } from "../../assets/icons/BalanceIcon";
-import { InfoIcon } from "../../assets/icons/InfoIcon";
-import { JournalIcon } from "../../assets/icons/JournalIcon";
-import { LogoutIcon } from "../../assets/icons/LogoutIcon";
-import { ProfitIcon } from "../../assets/icons/ProfitIcon";
-
-import { TradeIcon } from "../../assets/icons/TradeIcon";
-import { TrialIcon } from "../../assets/icons/TrialIcon";
 import { endroutes } from "../../constant/endroutes";
 import { logoutAsync } from "../../redux/app/appAsync";
 import { useAppDispatch } from "../../redux/hooks";
 import { HeaderWidget } from "../header/HeaderWidget";
 
 import "./layout-style.scss";
-import { NavLinkType } from "./layout-type";
 import { useAnimationControls, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
-import { matchPath, useMatch } from "react-router";
+import { useEffect, useMemo } from "react";
+import { useMatch } from "react-router";
 import { useColors } from "../../styles/variables-styles";
-import appSlice from "../../redux/app/appSlice";
-import { IncomeStatementIcon } from "../../assets/icons/IncomeStatementIcon";
+import appSlice, { selectUser } from "../../redux/app/appSlice";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
 
 import { JoyrideHelper } from "../../features/joyride/JoyrideHelper";
 import { joyride_story } from "../../features/joyride/joyride_story";
-import { SearchIcon } from "../../assets/icons/SearchIcon";
-import { NewsIcon } from "../../assets/icons/NewsIcon";
 import { ReactSVG } from "react-svg";
+import {
+  fetchAccountsAsync,
+  fetchJournalsAsync,
+} from "../../redux/data/dataAsync";
+import { syncUserDb } from "../../db/mainDb";
 
 export const PlatformLayout = () => {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const colors = useColors();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAccountsAsync());
+    dispatch(fetchJournalsAsync());
+  }, []);
+
+  const user = useSelector(selectUser);
 
   const handleLogout = () => {
     dispatch(
@@ -49,8 +48,11 @@ export const PlatformLayout = () => {
         },
       })
     );
-    //
   };
+
+  useEffect(() => {
+    syncUserDb(user);
+  }, []);
 
   const NavCard = ({ title, href, icon, onClick, className }: any) => {
     const match = useMatch(href);
@@ -82,7 +84,7 @@ export const PlatformLayout = () => {
       >
         <ReactSVG
           className="img"
-          style={{  minWidth: 24, maxWidth: 24 }}
+          style={{ minWidth: 24, maxWidth: 24 }}
           src={icon}
         />
         <div className="content">{t(title)}</div>

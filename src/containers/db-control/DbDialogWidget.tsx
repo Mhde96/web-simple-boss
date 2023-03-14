@@ -12,8 +12,8 @@ import {
   useSearchParams,
   Location,
 } from "react-router-dom";
-import { saveDb } from "../../db/initDb";
 import { db } from "../../db/indexedDb";
+import { createDataIndexedDb, updateDataIndexedDb } from "../../db/data/dataDb";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -45,12 +45,8 @@ export const DbDialogWidget = () => {
         handleClose();
         resetForm();
 
-        saveDb({
-          id: values.id,
-          name: values.name,
-          description: values.description,
-          user,
-        });
+        if (values.id) updateDataIndexedDb(values);
+        else createDataIndexedDb(values);
       },
     });
 
@@ -61,8 +57,6 @@ export const DbDialogWidget = () => {
   };
 
   useEffect(() => {
-     
-
     if (typeof parseInt(id) === "number" && parseInt(id) > 0) handleGetDb();
   }, [id]);
 

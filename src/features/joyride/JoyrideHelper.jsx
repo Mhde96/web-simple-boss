@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 import { cookiesKey } from "../../constant/cookiesKey";
 
 export const JoyrideHelper = () => {
+  // this component only one time
+  // when you open your aplication first time
   const [runJoyride, setRunJoyride] = useState(false);
   const [cookie, setCookie] = useCookies();
 
