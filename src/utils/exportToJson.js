@@ -1,4 +1,5 @@
 export const exportToJson = (objectData) => {
+  console.log('hi')
   let filename = "export.json";
   let contentType = "application/json;charset=utf-8;";
   if (window.navigator && window.navigator.msSaveOrOpenBlob) {
@@ -6,7 +7,11 @@ export const exportToJson = (objectData) => {
       [decodeURIComponent(encodeURI(JSON.stringify(objectData)))],
       { type: contentType }
     );
+    
+    console.log(blob)
     navigator.msSaveOrOpenBlob(blob, filename);
+
+
   } else {
     var a = document.createElement("a");
     a.download = filename;

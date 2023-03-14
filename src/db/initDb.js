@@ -2,7 +2,7 @@ import { exportToJson } from "../utils/exportToJson";
 import { db } from "./indexedDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../constant/cookiesKey";
-import { dbKeys } from "./dbKeys";
+import { dbKeys, dbTableKeys } from "./dbKeys";
 import { changeDbAsync } from "../redux/app/appAsync";
 
 export const selectDb = async () => {
@@ -43,12 +43,25 @@ export const saveDb = async ({ id, name, description, user }) => {
 
       updated_at: new Date(),
       editor: user.name,
+
+      user_id: user.id,
     });
   }
 };
 
 export const exportDB = async ({ id }) => {
   let data = await db.data.toArray();
+  let JsonObject = data.find((item) => item.id == id);
+  exportToJson(JsonObject);
+};
+
+export const exportUserDb = async ({ user_id }) => {
+  let data = await db
+    .table(dbTableKeys.data.table)
+    .where(dbTableKeys.data.user_id)
+    .equals(user_id)
+    .toArray();
+
   let JsonObject = data.find((item) => item.id == id);
   exportToJson(JsonObject);
 };
