@@ -5,6 +5,10 @@ db.version(1).stores({
   data: "++id, *accounts, *journals, name, publisher, created_at, updated_at, editor, last_sync, description, user_id",
   users: "++id, user_id, last_sync, financial_statement",
 });
+// Dexie.getDatabaseNames().then((data) => {
+//   console.log(data);
+// });
+
 
 // const dbArray = [new Dexie("test1"), new Dexie("test2")];
 
