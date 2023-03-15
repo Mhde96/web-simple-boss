@@ -7,7 +7,7 @@ import { accountType } from "../../containers/accounts/account-type";
 import { dataType } from "../../types/indexedDbType";
 
 const cookies = new Cookies();
-const currentDataId = () => parseInt(cookies.get(cookiesKey.dbId));
+export const currentDataId = () => parseInt(cookies.get(cookiesKey.dbId));
 
 export const useDbFetchAccounts = () => {
   let data = useLiveQuery(() =>
@@ -15,15 +15,15 @@ export const useDbFetchAccounts = () => {
       .table(dbTableKeys.data.table)
       .where(dbTableKeys.data.id)
       .equals(currentDataId())
-      .toArray()
+      .first()
   );
 
-  let accounts = [];
-  if (data?.length) {
-    accounts = data[0].accounts;
-  }
+  let accounts = data?.accounts?.length ? data?.accounts : [];
+  // if (data?.length) {
+  //   accounts = data[0].accounts;
+  // }
 
-  return { accounts };
+  return accounts;
 };
 
 export const saveAccountIndexedDb = async (account: accountType) => {

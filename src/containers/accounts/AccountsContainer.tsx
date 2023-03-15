@@ -25,7 +25,7 @@ export const AccountsContainer = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   // const accounts = useSelector(selectAccounts);
-  const { accounts } = useDbFetchAccounts();
+  const  accounts  = useDbFetchAccounts();
   const DeleteAccountAsync = (account: accountType, isDelete: boolean) => {
     dispatch(
       appSlice.actions.openConfirmBox({

@@ -3,6 +3,7 @@ export const dbKeys = {
 };
 
 export const dbTableKeys = {
+  id: "id",
   users: {
     table: "users",
     user_id: "user_id",
@@ -12,5 +13,8 @@ export const dbTableKeys = {
     table: "data",
     id: "id", // main db
     user_id: "user_id",
+  },
+  journals: {
+    table: "journals",
   },
 };

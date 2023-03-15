@@ -25,12 +25,14 @@ import {
   JournalEntryPagePropsType,
 } from "./journal-entry-type";
 import { EntriesPage } from "./EntriesPage";
+import { useDbFetchAccounts } from "../../db/data/accountsDb";
+import { saveJournalsIndexedDb } from "../../db/data/journalsDb";
 
 export const EntriesContainer = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const accounts = useSelector(selectAccounts);
-  const journals = useSelector(selectJournals);
+  const accounts = useDbFetchAccounts();
+  const journals = useDbFetchAccounts();
   const { number } = useParams();
 
   useEffect(() => {
@@ -49,7 +51,10 @@ export const EntriesContainer = () => {
       journalentries: journal_entry_rows(),
     },
     onSubmit: (values) => {
-      JournalApi(values, navigate);
+      // JournalApi(values, navigate);
+      console.log("values +> ", values);
+      saveJournalsIndexedDb(values);
+      // navigate(endroutes.journals.path);
     },
   });
 
@@ -57,7 +62,9 @@ export const EntriesContainer = () => {
     let data: Array<entryType> = [];
     const journal = journals.find((journal) => journal.number == number);
     journal?.journal_entries?.map((item) => {
-      const account = accounts.find((account) => account.id == item.account_id);
+      const account = accounts.find(
+        (account: accountType) => account.id == item.account_id
+      );
       data.push({
         ...item,
         accountName: account?.name,

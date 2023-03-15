@@ -23,7 +23,7 @@ export const selectSpecificDataIndexedDb = async () => {
     data = await db.table(dbTableKeys.data.table).toArray();
     data = data[0];
   }
-
+  
   return data;
 };
 
@@ -34,6 +34,8 @@ export const createDataIndexedDb = async (data: dataType) => {
     description: data.description,
     user_id: data.user_id,
   });
+
+  
 };
 
 export const updateDataIndexedDb = async (data: dataType) => {

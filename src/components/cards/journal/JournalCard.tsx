@@ -13,6 +13,7 @@ import { selectAccounts } from "../../../redux/data/dataSlice";
 import { EditIcon } from "../../../assets/icons/EditIcon";
 import { colors, useColors } from "../../../styles/variables-styles";
 import { dateFormatUi } from "../../../utils/date-format";
+import { useDbFetchAccounts } from "../../../db/data/accountsDb";
 
 type JournalCardType = journalType & {
   bold?: boolean;
@@ -36,9 +37,10 @@ export const JournalCard = ({
   index,
   entries,
 }: JournalCardType) => {
+
   const colors = useColors();
   const [active, setActive] = useState(false);
-  const accounts = useSelector(selectAccounts);
+  const accounts = useDbFetchAccounts()
 
   const classes = classNames(
     {

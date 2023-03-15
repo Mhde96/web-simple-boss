@@ -48,7 +48,7 @@ export const JournalsPage = (props: JournalPagePropsType) => {
                 index={index}
                 pointer
                 key={index}
-                entries={item.journal_entries}
+                entries={item.journalentries}
                 onEdit={() => props.handleNavigateToEntries(item.number)}
                 handleTrash={() => props.DeleteJournalAsync(item)}
                 {...item}

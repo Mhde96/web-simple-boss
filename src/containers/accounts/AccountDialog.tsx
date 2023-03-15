@@ -34,7 +34,7 @@ export const AccountDialog = ({}: any) => {
   // redux
   const dispatch = useAppDispatch();
   // const accounts = useSelector(selectAccounts);
-  const { accounts } = useDbFetchAccounts();
+  const  accounts  = useDbFetchAccounts();
 
   const { values, setValues, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
