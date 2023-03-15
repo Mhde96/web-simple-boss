@@ -1,5 +1,7 @@
 import _ from "lodash";
 import { useSelector } from "react-redux";
+import { useDbFetchAccounts } from "../../db/data/accountsDb";
+import { useFetchJournalsIndexedDb } from "../../db/data/journalsDb";
 import { selectAccounts, selectJournals } from "../../redux/data/dataSlice";
 import { accountType } from "../accounts/account-type";
 import { entryType } from "../entry/journal-entry-type";
@@ -17,7 +19,7 @@ const trial_balance_ammount = (
   }));
 
   journals.map((journal: any) => {
-    journal.journal_entries?.map((entry: any) => {
+    journal.journalentries?.map((entry: any) => {
       const account = _accounts?.find((item) => {
         return item.id == entry.account_id;
       });
@@ -228,17 +230,14 @@ const balance_sheet = (_trial_balance: any, _profit_account: any) => {
     ];
   }
 
-
   const total = _.sumBy(credits, (item: any) => Number(item.credit));
 
   return { debits, credits, total };
 };
 
-
-
 export const useFinancialStatement = () => {
-  const accounts = useSelector(selectAccounts);
-  const journals = useSelector(selectJournals);
+  const accounts = useDbFetchAccounts();
+  const journals = useFetchJournalsIndexedDb();
 
   const _trial_balance_ammount = trial_balance_ammount(accounts, journals);
   const _trial_balance = trial_balance(_trial_balance_ammount);
@@ -246,7 +245,6 @@ export const useFinancialStatement = () => {
   const _trading_account = trading_account(_trial_balance);
   const _profit_account = profit_account(_trial_balance, _trading_account);
   const _balance_sheet = balance_sheet(_trial_balance, _profit_account);
-
 
   return {
     trial_balance_ammount: _trial_balance_ammount,

@@ -26,13 +26,16 @@ import {
 } from "./journal-entry-type";
 import { EntriesPage } from "./EntriesPage";
 import { useDbFetchAccounts } from "../../db/data/accountsDb";
-import { saveJournalsIndexedDb } from "../../db/data/journalsDb";
+import {
+  saveJournalsIndexedDb,
+  useFetchJournalsIndexedDb,
+} from "../../db/data/journalsDb";
 
 export const EntriesContainer = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const accounts = useDbFetchAccounts();
-  const journals = useDbFetchAccounts();
+  const journals = useFetchJournalsIndexedDb();
   const { number } = useParams();
 
   useEffect(() => {
@@ -60,8 +63,11 @@ export const EntriesContainer = () => {
 
   const getData = () => {
     let data: Array<entryType> = [];
-    const journal = journals.find((journal) => journal.number == number);
-    journal?.journal_entries?.map((item) => {
+    const journal = journals.find(
+      (journal: journalType) => journal.number == number
+    );
+
+    journal?.journalentries?.map((item) => {
       const account = accounts.find(
         (account: accountType) => account.id == item.account_id
       );
