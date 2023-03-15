@@ -6,7 +6,6 @@ db.version(1).stores({
   users: "++id, user_id, last_sync, financial_statement",
 });
 
-
 // const dbArray = [new Dexie("test1"), new Dexie("test2")];
 
 // dbArray.map((db) => {
