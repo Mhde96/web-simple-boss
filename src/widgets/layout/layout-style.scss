@@ -4,10 +4,36 @@
 #auth-layout-style {
   @include themed() {
     background-color: $primary-color;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    // .small-container {
+    //   @media (max-width: $lg) {
+    //     background-color: t("bg");
+    //     border-radius: 15px;
+
+    //     .auth-container {
+    //       box-shadow: none !important;
+    //     }
+
+    //     // width: 90%;
+    //   }
+    // }
+
+    .welcome-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: start;
+      height: 100%;
+
+      @media (max-width: $md) {
+        display: none;
+      }
+    }
+
     .auth-container {
       background-color: t("bg");
 
@@ -23,15 +49,16 @@
 
       @media (min-width: $xs) {
         padding: 20px;
-        width: 90%;
+
+        // width: 90%;
       }
       @media (min-width: $lg) {
         padding: 40px;
-        width: 600px;
+        // width: 600px;
       }
       @media (min-width: $xl) {
         padding: 80px;
-        width: 600px;
+        // width: 600px;
       }
     }
   }
@@ -97,8 +124,8 @@
     .img {
       // padding-right: 16px;
       @include themed() {
-      fill: t("text");
-    }
+        fill: t("text");
+      }
     }
 
     .content {

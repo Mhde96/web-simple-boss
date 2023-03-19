@@ -5,4 +5,6 @@ export type TextPropsType = {
   center?: boolean;
   breakSpaces?: boolean;
   color?: string;
+  border?: boolean;
+  maxWidth?: number;
 };

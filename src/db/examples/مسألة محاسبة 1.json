@@ -1,0 +1,515 @@
+{
+  "accounts": [
+    { "name": "الصندوق", "financial_statement": "0", "key": "1", "id": 1 },
+    { "name": "البنك", "financial_statement": "0", "key": "2", "id": 2 },
+    { "name": "رأس المال", "financial_statement": "0", "key": "3", "id": 3 },
+    { "name": "الاثاث", "financial_statement": "0", "key": "5", "id": 4 },
+    { "name": "شركة الامل", "financial_statement": "0", "key": "6", "id": 5 },
+    { "name": "م.ايجار", "financial_statement": "1", "key": "8", "id": 6 },
+    {
+      "name": "ايرادات اخرى",
+      "financial_statement": "1",
+      "key": "12",
+      "id": 7
+    },
+    {
+      "name": "رواتب واجور",
+      "financial_statement": "0",
+      "key": "1234",
+      "id": 8
+    },
+    {
+      "name": "مصروف الانترنت",
+      "financial_statement": "0",
+      "key": "123421",
+      "id": 9
+    },
+    {
+      "name": "مصروف الكهرباء",
+      "financial_statement": "0",
+      "key": "1523",
+      "id": 10
+    },
+    {
+      "name": "مسحوبات شخصية",
+      "financial_statement": "0",
+      "key": "12451236",
+      "id": 11
+    },
+    {
+      "name": "م.دعاية واعلان",
+      "financial_statement": "0",
+      "key": "12126489",
+      "id": 12
+    },
+    {
+      "name": "مصروف ايجار مدفوعة مقدما",
+      "financial_statement": "0",
+      "key": "62234",
+      "id": 13
+    },
+    {
+      "name": "ايرادات مستحقة",
+      "financial_statement": "0",
+      "key": "724523",
+      "id": 14
+    },
+    {
+      "name": "مصروفات كهرباء مستحقة",
+      "financial_statement": "0",
+      "key": "523423",
+      "id": 15
+    }
+  ],
+  "journals": [
+    {
+      "number": 1,
+      "description": "ايداع نصف راس المال في الصندوق والنصف الاخر في البنك\t",
+      "date": "2023/01/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 1,
+          "accountKey": "1",
+          "accountName": "الصندوق",
+          "description": "",
+          "credit": 0,
+          "debit": "5000",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 2,
+          "accountKey": "2",
+          "accountName": "البنك",
+          "description": "",
+          "credit": 0,
+          "debit": "5000",
+          "status": 0
+        },
+        {
+          "id": 3,
+          "account_id": 3,
+          "accountKey": "3",
+          "accountName": "رأس المال",
+          "description": "",
+          "credit": "10000",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 1
+    },
+    {
+      "number": 2,
+      "description": "شراء اثاث نصفه نقدا والباقي على الحساب\t",
+      "date": "2023/02/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 4,
+          "accountKey": "5",
+          "accountName": "الاثاث",
+          "description": "",
+          "credit": 0,
+          "debit": "5000",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 1,
+          "accountKey": "1",
+          "accountName": "الصندوق",
+          "description": "",
+          "credit": "2500",
+          "debit": 0,
+          "status": 0
+        },
+        {
+          "id": 3,
+          "account_id": 5,
+          "accountKey": "6",
+          "accountName": "شركة الامل",
+          "description": "",
+          "credit": "2500",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 2
+    },
+    {
+      "number": 3,
+      "description": "مصروف ايجار مدفوعة بشيك مسحوب على البنك\t",
+      "date": "2023/03/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 6,
+          "accountKey": "8",
+          "accountName": "م.ايجار",
+          "description": "",
+          "credit": 0,
+          "debit": "2500",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 2,
+          "accountKey": "2",
+          "accountName": "البنك",
+          "description": "",
+          "credit": "2500",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 3
+    },
+    {
+      "number": 4,
+      "description": "ايرادات مقبوضة نقدا\t",
+      "date": "2023/04/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 1,
+          "accountKey": "1",
+          "accountName": "الصندوق",
+          "description": "",
+          "credit": 0,
+          "debit": "15000",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 7,
+          "accountKey": "12",
+          "accountName": "ايرادات اخرى",
+          "description": "",
+          "credit": "15000",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 4
+    },
+    {
+      "number": 5,
+      "description": "ايداع نقدي في الحساب الجاري لدى البنك\t",
+      "date": "2023/05/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 2,
+          "accountKey": "2",
+          "accountName": "البنك",
+          "description": "",
+          "credit": 0,
+          "debit": "7000",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 1,
+          "accountKey": "1",
+          "accountName": "الصندوق",
+          "description": "",
+          "credit": "7000",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 5
+    },
+    {
+      "number": 6,
+      "description": "مصروف رواتب واجور مدفوعة نقدا\t",
+      "date": "2023/06/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 8,
+          "accountKey": "1234",
+          "accountName": "رواتب واجور",
+          "description": "",
+          "credit": 0,
+          "debit": "500",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 1,
+          "accountKey": "1",
+          "accountName": "الصندوق",
+          "description": "",
+          "credit": "500",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 6
+    },
+    {
+      "number": 7,
+      "description": "",
+      "date": "2023/07/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 5,
+          "accountKey": "6",
+          "accountName": "شركة الامل",
+          "description": "",
+          "credit": 0,
+          "debit": "1000",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 2,
+          "accountKey": "2",
+          "accountName": "البنك",
+          "description": "",
+          "credit": "1000",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 7
+    },
+    {
+      "number": 8,
+      "description": "اشتراك انترنت لمدة سنة مدفوعة نقدا\t",
+      "date": "2023/08/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 9,
+          "accountKey": "123421",
+          "accountName": "مصروف الانترنت",
+          "description": "",
+          "credit": 0,
+          "debit": "300",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 1,
+          "accountKey": "1",
+          "accountName": "الصندوق",
+          "description": "",
+          "credit": "300",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 8
+    },
+    {
+      "number": 9,
+      "description": "ايرادات عن تسويق العقارات لمدة سنة\t",
+      "date": "2023/09/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 1,
+          "accountKey": "1",
+          "accountName": "الصندوق",
+          "description": "",
+          "credit": 0,
+          "debit": "5000",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 7,
+          "accountKey": "12",
+          "accountName": "ايرادات اخرى",
+          "description": "",
+          "credit": "5000",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 9
+    },
+    {
+      "number": 10,
+      "description": "فاتورة كهرباء مدفوعة بشيك مسحوب على البنك\t",
+      "date": "2023/10/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 10,
+          "accountKey": "1523",
+          "accountName": "مصروف الكهرباء",
+          "description": "",
+          "credit": 0,
+          "debit": "100",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 2,
+          "accountKey": "2",
+          "accountName": "البنك",
+          "description": "",
+          "credit": "100",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 10
+    },
+    {
+      "number": 11,
+      "description": "مسحوبات شخصية من البنك\t",
+      "date": "2023/11/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 11,
+          "accountKey": "12451236",
+          "accountName": "مسحوبات شخصية",
+          "description": "",
+          "credit": 0,
+          "debit": "500",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 2,
+          "accountKey": "2",
+          "accountName": "البنك",
+          "description": "",
+          "credit": "500",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 11
+    },
+    {
+      "number": 12,
+      "description": "مصروف دعاية واعلان مدفوعة بشيك مسحوب على البنك\t",
+      "date": "2023/12/01",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 12,
+          "accountKey": "12126489",
+          "accountName": "م.دعاية واعلان",
+          "description": "",
+          "credit": 0,
+          "debit": "250",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 2,
+          "accountKey": "2",
+          "accountName": "البنك",
+          "description": "",
+          "credit": "250",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 12
+    },
+    {
+      "number": 13,
+      "description": "يتم استبعاد مبلغ الايجار المدفوع مقدما عن السنة المالية القادمة وهي عن شهري 1 و 2 لعام 2016, والتي تساوي = 12/2500*2=416.650$ تقريبا.",
+      "date": "2023/12/31",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 13,
+          "accountKey": "62234",
+          "accountName": "مصروف ايجار مدفوعة مقدما",
+          "description": "",
+          "credit": 0,
+          "debit": "416.650",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 6,
+          "accountKey": "8",
+          "accountName": "م.ايجار",
+          "description": "",
+          "credit": "416.650",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 13
+    },
+    {
+      "number": 14,
+      "description": "يتم اثبات الايرادات المستحقة في الفترة المالية الحالية والتي لم تسجل في دفتر اليومية, والتي تساوي = 300",
+      "date": "2023/12/31",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 14,
+          "accountKey": "724523",
+          "accountName": "ايرادات مستحقة",
+          "description": "",
+          "credit": 0,
+          "debit": "300",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 7,
+          "accountKey": "12",
+          "accountName": "ايرادات اخرى",
+          "description": "",
+          "credit": "300",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 14
+    },
+    {
+      "number": 15,
+      "description": "يتم اثبات فاتورة الكهرباء المستحقة في شهر 12 من الفترة المالية الحالية, والتي تساوي 150.",
+      "date": "2023/12/31",
+      "journalentries": [
+        {
+          "id": 1,
+          "account_id": 9,
+          "accountKey": "123421",
+          "accountName": "مصروف الانترنت",
+          "description": "",
+          "credit": 0,
+          "debit": "150",
+          "status": 0
+        },
+        {
+          "id": 2,
+          "account_id": 15,
+          "accountKey": "523423",
+          "accountName": "مصروفات كهرباء مستحقة",
+          "description": "",
+          "credit": "150",
+          "debit": 0,
+          "status": 0
+        }
+      ],
+      "id": 15
+    }
+  ],
+  "name": "مسألة محاسبة 1",
+  "created_at": "2023-03-19T16:03:47.759Z",
+  "description": "<p right;\\\"=\"\" style=\"text-align: right;\">.في 01/01 بدات المنشاة اعمالها براس مال 10000$, اودعت نصفه في البنك والنصف الاخر في صندوق المنشأة</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 02/01 شراء اثاث من شركة الامل بقيمة 5000$, دفعت نصفه نقدا والباقي على الحساب </p><p right;\\\"=\"\" style=\"text-align: right;\">.في 03/01 دفعت المنشاة 2500$ بدل ايجار لمدة سنة مدفوعة بشيك مسحوب على البنك</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 04/01 قبضت المنشاة مبلغ وقدره 15000$ نقدا, وذلك عن ايرادات بدل سمسرة</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 05/01 سحبت المنشاة 7000$ من الصندوق واودعته في حسابها الجاري لدى البنك</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 06/01 دفعت المنشاة رواتب واجور بقيمة 500$ نقدا</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 07/01 دفعة بالحساب الى شركة الامل بقيمة 1000$ بشيك مسحوب على البنك</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 08/01 دفعت المنشاة 300$ نقدا وذلك عن اشتراك انترنت لمدة 4اشهر</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 09/01 قبضت المنشاة 5000$ نقدا وذلك عن ايرادات لتسويق العقارات</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 10/01 دفعت المنشاة فواتير كهرباء بقيمة 100$ بشيك مسحوب على البنك</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 11/01 سحب صاحب المنشاة لاغراضه الشخصية مبلغ 500$ من حساب البنك</p><p right;\\\"=\"\" style=\"text-align: right;\">.في 12/01 دفعت المنشاة 250$ مصروف دعاية واعلان بشيك مسحوب على البنك</p><p right;\\\"=\"\" style=\"text-align: right;\">وعند الجرد في 31/12/2015 ظهر الاتي: ان عقد الايجار مدفوع عن الفترة من تاريخ 01/03/2015 وحتى 01/03/2016.هنالك ايرادات مستحقة بقيمة 300$ لم يتم تسجيلها في الدفاتر.توجد فاتورة كهرباء لم تسجل بقيمة 150$ مستحقة في شهر </p><p right;\\\"=\"\" style=\"text-align: right;\">12المطلوب : تسجيل العمليات السابقة في دفتر اليومية .ترحيل العمليات المالية للحسابات في دفتر الاستاذ وترصيد الحسابات.اعداد ميزان المراجعة قبل وبعد التسويات الجرديةتسجيل قيود التسوية الجردية</p><p right;\\\"=\"\" style=\"text-align: right;\"><a href=\"https://accountinggate.com/arabic/accounting-examples/index.html\" style=\"font-size: var(--bs-body-font-size); font-weight: var(--bs-body-font-weight);\">https://accountinggate.com/arabic/accounting-examples/index.html</a><br></p>",
+  "editor": "",
+  "last_sync": "2023-03-19T16:03:47.759Z",
+  "publisher": "",
+  "updated_at": "2023-03-19T16:03:47.759Z",
+  "id": 4,
+  "describe": "<p style=\"text-align: right;\">في 01/01 بدات المنشاة اعمالها براس مال 10000$, اودعت نصفه في البنك والنصف الاخر في صندوق المنشأة .</p><p style=\"text-align: right;\">في 02/01 شراء اثاث من شركة الامل بقيمة 5000$, دفعت نصفه نقدا والباقي على الحساب .</p><p style=\"text-align: right;\">في 03/01 دفعت المنشاة 2500$ بدل ايجار لمدة سنة مدفوعة بشيك مسحوب على البنك .</p><p style=\"text-align: right;\">في 04/01 قبضت المنشاة مبلغ وقدره 15000$ نقدا, وذلك عن ايرادات بدل سمسرة.</p><p style=\"text-align: right;\">في 05/01 سحبت المنشاة 7000$ من الصندوق واودعته في حسابها الجاري لدى البنك .</p><p style=\"text-align: right;\">في 06/01 دفعت المنشاة رواتب واجور بقيمة 500$ نقدا .</p><p style=\"text-align: right;\">في 07/01 دفعة بالحساب الى شركة الامل بقيمة 1000$ بشيك مسحوب على البنك .</p><p style=\"text-align: right;\">في 08/01 دفعت المنشاة 300$ نقدا وذلك عن اشتراك انترنت لمدة 4اشهر .</p><p style=\"text-align: right;\">في 09/01 قبضت المنشاة 5000$ نقدا وذلك عن ايرادات لتسويق العقارات .</p><p style=\"text-align: right;\">في 10/01 دفعت المنشاة فواتير كهرباء بقيمة 100$ بشيك مسحوب على البنك .</p><p style=\"text-align: right;\">في 11/01 سحب صاحب المنشاة لاغراضه الشخصية مبلغ 500$ من حساب البنك.</p><p style=\"text-align: right;\">في 12/01 دفعت المنشاة 250$ مصروف دعاية واعلان بشيك مسحوب على البنك .</p>"
+}

@@ -1,3 +1,10 @@
-#text-style{
-    
+@import "../../styles/variable.scss";
+#text-style {
+  .border-text {
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    width: min-content;
+    padding:  0px 5px;
+  }
+
 }

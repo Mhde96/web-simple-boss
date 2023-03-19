@@ -60,8 +60,10 @@ export const DbDialogWidget = () => {
     if (typeof parseInt(id) === "number" && parseInt(id) > 0) handleGetDb();
   }, [id]);
 
+  console.log(values)
+
   return (
-    <ModalWrap show={id} onHide={handleClose}>
+    <ModalWrap show={id} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
         <Modal.Title>Create New DataBase</Modal.Title>
       </Modal.Header>
@@ -74,7 +76,10 @@ export const DbDialogWidget = () => {
           error={errors?.name}
         />
         <br />
+
+
         <Input
+          textArea
           onChange={handleChange("description")}
           value={values?.description}
           placeholder={"description"}

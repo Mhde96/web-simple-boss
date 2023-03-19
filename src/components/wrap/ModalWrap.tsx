@@ -9,7 +9,7 @@ export const ModalWrap = ({ children, show, onHide, ...props }: any) => {
   };
 
   return (
-    <Modal show={show} onHide={onHide} {...props}>
+    <Modal show={show} onHide={onHide} {...props} >
       <div style={backgroundStyle}>{children}</div>
     </Modal>
   );

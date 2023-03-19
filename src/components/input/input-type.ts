@@ -5,4 +5,6 @@ export type InputPropsType = {
   error?: string;
   disabled?: boolean;
   type?: "date";
+  maxWidth?: number;
+  textArea?: boolean;
 };

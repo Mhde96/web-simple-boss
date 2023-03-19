@@ -10,7 +10,6 @@ import { AddIcon } from "../../assets/icons/AddIcon";
 import { useAppDispatch } from "../../redux/hooks";
 import { changeDbAsync } from "../../redux/app/appAsync";
 import { DbDialogWidget, OpenDbDialog } from "./DbDialogWidget";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectDb } from "../../redux/app/appSlice";
 import { useLocation, useNavigate } from "react-router-dom";

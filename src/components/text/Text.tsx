@@ -10,6 +10,8 @@ export const Text = ({
   center,
   breakSpaces,
   color,
+  border,
+  maxWidth,
 }: TextPropsType) => {
   const colors = useColors();
   color = color ? color : colors.text;
@@ -17,11 +19,15 @@ export const Text = ({
     bold,
     center,
     ["break-spaces"]: breakSpaces,
+    ["border-text"]: border,
+ 
   });
 
   return (
-    <div className={classes} style={{ color }}>
-      {children}
+    <div id="text-style">
+      <div className={classes} style={{ color,   maxWidth, }}>
+        {children}
+      </div>
     </div>
   );
 };

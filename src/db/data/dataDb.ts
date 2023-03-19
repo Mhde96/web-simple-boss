@@ -3,10 +3,17 @@ import { userType } from "../../redux/app/app-type";
 import { changeDbAsync } from "../../redux/app/appAsync";
 import { dataType, emptyDataObject } from "../../types/indexedDbType";
 import { exportToJson } from "../../utils/exportToJson";
-import { dbKeys, dbTableKeys } from "../dbKeys";
+import {  dbTableKeys } from "../dbKeys";
 import { db } from "../indexedDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../../constant/cookiesKey";
+
+export const registerNewUserIndexedDb = () => {
+  const data: dataType = {
+
+  };
+  createDataIndexedDb(data);
+};
 
 export const selectSpecificDataIndexedDb = async () => {
   const cookies = new Cookies();
@@ -23,7 +30,7 @@ export const selectSpecificDataIndexedDb = async () => {
     data = await db.table(dbTableKeys.data.table).toArray();
     data = data[0];
   }
-  
+
   return data;
 };
 
@@ -34,14 +41,12 @@ export const createDataIndexedDb = async (data: dataType) => {
     description: data.description,
     user_id: data.user_id,
   });
-
-  
 };
 
 export const updateDataIndexedDb = async (data: dataType) => {
   db.table(dbTableKeys.data.table).update(data.id, {
     name: data.name,
-    describe: data.description,
+    description: data.description,
   });
 };
 

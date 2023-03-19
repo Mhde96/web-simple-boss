@@ -46,7 +46,7 @@ export const Navigation = () => {
             user?.id ? (
               <PlatformLayout />
             ) : (
-              <Navigate to={endroutes.login} replace />
+              <Navigate to={endroutes.register} replace />
             )
           }
         >
@@ -99,8 +99,9 @@ export const Navigation = () => {
         </Route>
 
         <Route element={<AuthLayout />}>
+        <Route path={endroutes.register} element={<SignupContainer />} />
+
           <Route path={endroutes.login} element={<LoginContainer />} />
-          <Route path={endroutes.register} element={<SignupContainer />} />
           <Route
             path={endroutes.thankyou}
             element={<AuthThankYouContainer />}
