@@ -19,10 +19,6 @@ import { en } from "../../helper/languages/en";
 import { JoyrideHelper } from "../../features/joyride/JoyrideHelper";
 import { joyride_story } from "../../features/joyride/joyride_story";
 import { ReactSVG } from "react-svg";
-import {
-  fetchAccountsAsync,
-  fetchJournalsAsync,
-} from "../../redux/data/dataAsync";
 import { syncUserDb } from "../../db/mainDb";
 
 export const PlatformLayout = () => {
@@ -30,12 +26,6 @@ export const PlatformLayout = () => {
   const { t } = useTranslation();
   const colors = useColors();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(fetchAccountsAsync());
-    dispatch(fetchJournalsAsync());
-  }, []);
-
   const user = useSelector(selectUser);
 
   const handleLogout = () => {

@@ -7,4 +7,5 @@ export type TextPropsType = {
   color?: string;
   border?: boolean;
   maxWidth?: number;
+  html?: string;
 };

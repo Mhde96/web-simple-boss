@@ -27,11 +27,12 @@ $max-width: calc(50vw - 10vw - 20px);
   }
 
   .home-layout {
-    min-width: $max-width;
-    max-width: $max-width;
-    @media (max-width: $lg) {
-      max-width: $max-width-lg;
-      min-width: $max-width-lg;
-    }
+    width: 100%;
+    // min-width: $max-width;
+    // max-width: $max-width;
+    // @media (max-width: $lg) {
+    //   max-width: $max-width-lg;
+    //   min-width: $max-width-lg;
+    // }
   }
 }

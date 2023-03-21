@@ -3,17 +3,30 @@ import { userType } from "../../redux/app/app-type";
 import { changeDbAsync } from "../../redux/app/appAsync";
 import { dataType, emptyDataObject } from "../../types/indexedDbType";
 import { exportToJson } from "../../utils/exportToJson";
-import {  dbTableKeys } from "../dbKeys";
+import { dbTableKeys } from "../dbKeys";
 import { db } from "../indexedDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../../constant/cookiesKey";
+import { useLiveQuery } from "dexie-react-hooks";
 
 export const registerNewUserIndexedDb = () => {
-  const data: dataType = {
-
-  };
+  const data: dataType = {};
   createDataIndexedDb(data);
 };
+
+// export const getCurrentDataINdexedDb = (dbid: string) => {
+
+//   const data = useLiveQuery(() =>
+//     db
+//       .table(dbTableKeys.data.table)
+//       .where(dbTableKeys.data.id)
+//       .equals(parseInt(dbid))
+//       .first()
+//   );
+
+//   console.log(data);
+//   return data;
+// };
 
 export const selectSpecificDataIndexedDb = async () => {
   const cookies = new Cookies();
@@ -97,12 +110,14 @@ export const resciveBackupFromServer = async (user: userType) => {
 
   let backup: dataType;
   if (user.last_sync != null) {
-    let link = "http://localhost:8000/api/file_download/" + user.id + ".json";
+    let link = "file_download/" + user.id + ".json";
     await api.get(link).then((response) => {
       backup = response.data;
+      console.log(response.data)
     });
   }
-
+console.log(user.last_sync)
+  console.log("backup ==> ", backup);
   await db
     .table(dbTableKeys.data.table)
     .where(dbTableKeys.data.user_id)

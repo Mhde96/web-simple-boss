@@ -25,19 +25,24 @@ export const syncUserDb = async (user: userType) => {
     .equals(user_id)
     .first();
 
-  if (userDb == undefined) {
-    await db.table(dbTableKeys.users.table).add({
-      user_id: user?.id,
-      email: user?.email,
-      last_sync: new Date().toString(),
-    });
-  } else {
-    await db.table(dbTableKeys.users.table).update(userDb.id, {
-      user_id: user.id,
-      email: user.email,
-      // last_sync: new Date().toString(),
-    });
+  console.log('userDb ,',userDb)
+  if (userDb == undefined){
+    resciveBackupFromServer(user)
+    return
   }
+  // if (userDb == undefined) {
+  //   await db.table(dbTableKeys.users.table).add({
+  //     user_id: user?.id,
+  //     email: user?.email,
+  //     last_sync: new Date().toString(),
+  //   });
+  // } else {
+  //   await db.table(dbTableKeys.users.table).update(userDb.id, {
+  //     user_id: user.id,
+  //     email: user.email,
+  //     // last_sync: new Date().toString(),
+  //   });
+  // }
 
   let localdb_latsync = moment(userDb.last_sync).valueOf();
   let backup_lastsync = moment(user.last_sync).valueOf();

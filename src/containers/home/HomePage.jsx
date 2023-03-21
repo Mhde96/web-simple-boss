@@ -7,20 +7,26 @@ import { selectJournals } from "../../redux/data/dataSlice";
 import { useColors } from "../../styles/variables-styles";
 
 import "./home-styles.scss";
-import { en } from "../../helper/languages/en";
-import { useTranslation } from "react-i18next";
-import { ArticleHomeCard } from "./ArticleHomeCard";
 import { DbControlContainer } from "../db-control/DbControlContainer";
+// import { getCurrentDataINdexedDb } from "../../db/data/dataDb";
+import { Text } from "../../components/text/Text";
+import { selectDb } from "../../redux/app/appSlice";
+import { ArticleHomeCard } from "./ArticleHomeCard";
+import { Col, Container, Row } from "react-bootstrap";
 export const HomePage = () => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
+  const db = useSelector(selectDb);
 
+  // console.log(db);
+  // const data = getCurrentDataINdexedDb(db.id);
   return (
     <div>
       <div id="home-styles">
-        <div className="cards home-layout">
-          <DbControlContainer />
-          <div className="account-chart-container">
+        <Container>
+          <Row>
+            <Col xs={12}>
+              <DbControlContainer />
+              <Text html={db?.description} />
+              {/* <div className="account-chart-container">
             <AccountChart />
           </div>
 
@@ -32,10 +38,13 @@ export const HomePage = () => {
               description={t(en.journal_card_3)}
               onClick={() => navigate(endroutes.journals.path)}
             />
-          </div>
-        </div>
-        <div style={{ width: 20 }} />
-        <div className="canvas home-layout">{/* <ArticleHomeCard /> */}</div>
+          </div> */}
+            </Col>
+          </Row>
+        </Container>
+
+        {/* <div style={{ width: 20 }} />
+        <div className="canvas home-layout"><ArticleHomeCard /></div> */}
       </div>
       {/* 
       <div style={{ height: 400 }}>

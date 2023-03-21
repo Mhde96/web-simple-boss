@@ -12,6 +12,7 @@ export const Text = ({
   color,
   border,
   maxWidth,
+  html,
 }: TextPropsType) => {
   const colors = useColors();
   color = color ? color : colors.text;
@@ -20,12 +21,18 @@ export const Text = ({
     center,
     ["break-spaces"]: breakSpaces,
     ["border-text"]: border,
- 
   });
+
+  if (html)
+    return (
+      <div id="text-style" style={{color}}>
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    );
 
   return (
     <div id="text-style">
-      <div className={classes} style={{ color,   maxWidth, }}>
+      <div className={classes} style={{ color, maxWidth }}>
         {children}
       </div>
     </div>

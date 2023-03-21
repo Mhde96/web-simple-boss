@@ -28,7 +28,9 @@ export const DbControlContainer = ({}) => {
   const dbRedux = useSelector(selectDb);
 
   const handleChooseDB = (db) => {
-    dispatch(changeDbAsync({ id: db.id, name: db.name }));
+    dispatch(
+      changeDbAsync({ id: db.id, name: db.name, description: db.description })
+    );
   };
 
   return (
