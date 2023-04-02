@@ -8,4 +8,6 @@ export type TextPropsType = {
   border?: boolean;
   maxWidth?: number;
   html?: string;
+  textAlign?: "center" | "right";
+  onClick?: () => void;
 };

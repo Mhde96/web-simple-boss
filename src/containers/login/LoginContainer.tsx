@@ -24,7 +24,8 @@ export const LoginContainer = () => {
   });
 
   const handleRegister = () => navigate(endroutes.register);
+  const handleForgotPassword = () => navigate(endroutes.forgetpassword)
 
-  const props = { values, handleChange, errors, handleSubmit, handleRegister };
+  const props = { values, handleChange, errors, handleSubmit, handleRegister,handleForgotPassword };
   return <LoginPage {...props} />;
 };

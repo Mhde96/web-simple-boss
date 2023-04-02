@@ -4,7 +4,10 @@
     border: 1px solid $primary-color;
     border-radius: 5px;
     width: min-content;
-    padding:  0px 5px;
+    padding: 0px 5px;
   }
 
+  .onClick {
+    cursor: pointer;
+  }
 }

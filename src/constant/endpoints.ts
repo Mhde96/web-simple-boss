@@ -4,4 +4,5 @@ export const endpoints = {
   account: "accounts",
   refreshToken: "refreshToken",
   journals: "journals",
+  forgot_password:'forgotPassword'
 };

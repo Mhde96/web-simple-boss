@@ -4,8 +4,7 @@ import { Input } from "../../components/input/Input";
 import { Text } from "../../components/text/Text";
 import { ForgetPasswordPagePropsType } from "./forget-password-type";
 
-export const ForgetPasswordPage = (props:ForgetPasswordPagePropsType) => {
-
+export const ForgetPasswordPage = (props: ForgetPasswordPagePropsType) => {
   return (
     <div>
       <Row className="justify-content-center">
@@ -29,11 +28,7 @@ register with us and we’ll send to you reset link`}
             error={props.errors?.email}
           />
           <br />
-          <Button
-            onClick={props.handleSubmit}
-          >
-            Submit
-          </Button>
+          <Button onClick={props.handleSubmit}>Submit</Button>
         </Col>
       </Row>
     </div>

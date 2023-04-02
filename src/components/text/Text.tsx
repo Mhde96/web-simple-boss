@@ -13,26 +13,30 @@ export const Text = ({
   border,
   maxWidth,
   html,
+  textAlign,
+  onClick
 }: TextPropsType) => {
   const colors = useColors();
   color = color ? color : colors.text;
+
   const classes = classNames(fs, {
     bold,
     center,
     ["break-spaces"]: breakSpaces,
     ["border-text"]: border,
+    onClick
   });
 
   if (html)
     return (
-      <div id="text-style" style={{color}}>
+      <div id="text-style" style={{ color, textAlign }}>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     );
 
   return (
-    <div id="text-style">
-      <div className={classes} style={{ color, maxWidth }}>
+    <div id="text-style" onClick={onClick}>
+      <div className={classes} style={{ color, maxWidth, textAlign }}>
         {children}
       </div>
     </div>

@@ -4,6 +4,7 @@ type LoginPagePropsType = {
   errors: any;
   handleSubmit: any;
   handleRegister: any;
+  handleForgotPassword: () => void;
 };
 
 type LoginStateType = {

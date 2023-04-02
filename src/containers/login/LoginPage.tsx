@@ -8,13 +8,16 @@ import "./login-page-style.scss";
 import { motion } from "framer-motion";
 import { PageTransitionProps } from "../../components/animations/AnimationPageProps";
 import { Break } from "../../components/Break";
+import { useColors } from "../../styles/variables-styles";
 export const LoginPage = ({
   handleChange,
   values,
   errors,
   handleSubmit,
   handleRegister,
+  handleForgotPassword,
 }: LoginPagePropsType) => {
+  const colors = useColors()
   return (
     <motion.div {...PageTransitionProps}>
       <br />
@@ -36,6 +39,7 @@ export const LoginPage = ({
         value={values.password}
         error={errors?.password}
       />
+      <Text color={colors.link} textAlign="right" onClick={handleForgotPassword}>forgot password</Text>
       <br />
       <Button onClick={handleSubmit}>Login</Button>
 
