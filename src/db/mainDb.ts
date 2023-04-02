@@ -25,6 +25,8 @@ export const syncUserDb = async (user: userType) => {
     .equals(user_id)
     .first();
 
+    sendBackupToServer(user_id);
+    return
   console.log('userDb ,',userDb)
   if (userDb == undefined){
     resciveBackupFromServer(user)
@@ -43,6 +45,8 @@ export const syncUserDb = async (user: userType) => {
   //     // last_sync: new Date().toString(),
   //   });
   // }
+ 
+
 
   let localdb_latsync = moment(userDb.last_sync).valueOf();
   let backup_lastsync = moment(user.last_sync).valueOf();
