@@ -88,7 +88,7 @@ export const sendBackupToServer = async (user_id: number) => {
     type: "application/json",
   });
   const jsonData = new FormData();
-  jsonData.append("file", blob);
+  jsonData.append("jison", blob);
 
   await api({
     method: "post",
