@@ -5,6 +5,7 @@ export const endroutes = {
   login: "/login",
   register: "/register",
   forgetpassword: "/forgetpassword",
+  reset_password: "/reset-password",
   changeforgetpassword: "/changeforgetpassword",
   otp: "/otp",
   thankyou: "/thankyou",

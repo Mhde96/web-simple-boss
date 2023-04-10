@@ -25,8 +25,8 @@ export const syncUserDb = async (user: userType) => {
     .equals(user_id)
     .first();
 
-    sendBackupToServer(user_id);
-    return
+    // sendBackupToServer(user_id);
+    // return
   console.log('userDb ,',userDb)
   if (userDb == undefined){
     resciveBackupFromServer(user)

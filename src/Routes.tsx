@@ -26,6 +26,7 @@ import { HomeContainer } from "./containers/home/HomeContainer";
 import { BlogContainer } from "./containers/system/blog/BlogContainer";
 import { ContactContainer } from "./containers/system/contact/ContactContainer";
 import { DbControlContainer } from "./containers/db-control/DbControlContainer";
+import { ResetPasswordContainer } from "./containers/reset-password/ResetPasswordContainer";
 
 export const Navigation = () => {
   const user = useSelector(selectUser);
@@ -110,6 +111,10 @@ export const Navigation = () => {
           <Route
             path={endroutes.forgetpassword}
             element={<ForgetPasswordContainer />}
+          />
+          <Route
+            path={endroutes.reset_password}
+            element={<ResetPasswordContainer />}
           />
           <Route path={endroutes.otp} element={<OtbContainer />} />
           <Route
