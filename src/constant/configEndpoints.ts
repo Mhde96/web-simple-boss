@@ -1,4 +1,4 @@
-const domain = "http://64.227.120.186:8002";
-const api = "/api";
+const domain = "http://www.boss-accounting.com:8005";
+const api = "/";
 
 export const baseURL = domain + api;
