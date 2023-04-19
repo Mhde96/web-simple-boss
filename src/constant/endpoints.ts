@@ -1,6 +1,6 @@
 export const endpoints = {
   register: "register",
-  login: "test",
+  login: "login",
   account: "accounts",
   refreshToken: "refreshToken",
   journals: "journals",

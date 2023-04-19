@@ -42,6 +42,8 @@ export const loginAsync =
     api
       .post(endpoints.login, values)
       .then((response) => {
+        console.log('test new response')
+        console.log(response)
         if (response.data.success) {
           dispatch(appSlice.actions.login(response.data.data));
           navigate(endroutes.thankyou);
