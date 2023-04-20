@@ -20,7 +20,7 @@ export type dataType = {
   created_at?: Date;
   editor?: string;
   updated_at?: Date;
-  last_sync?: Date;
+  last_sync?: number;
   user_id?: number;
 };
 

@@ -4,5 +4,8 @@ export const endpoints = {
   account: "accounts",
   refreshToken: "refreshToken",
   journals: "journals",
-  forgot_password:'forgotPassword'
+  forgot_password: 'forgotPassword',
+  backup_download: 'backup_download',
+  backup_upload: 'backup_upload',
+  getTimeFromServer: 'getTimeFromServer',
 };

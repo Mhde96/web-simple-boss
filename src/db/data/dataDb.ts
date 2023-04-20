@@ -8,6 +8,8 @@ import { db } from "../indexedDb";
 import { Cookies } from "react-cookie";
 import { cookiesKey } from "../../constant/cookiesKey";
 import { useLiveQuery } from "dexie-react-hooks";
+import { endpoints } from "../../constant/endpoints";
+import { currentDataId } from "./accountsDb";
 
 export const registerNewUserIndexedDb = () => {
   const data: dataType = {};
@@ -75,8 +77,17 @@ export const exportSpecificDataIndexedDb = async ({ id }: any) => {
   exportToJson(JsonObject);
 };
 
-export const sendBackupToServer = async (user_id: number) => {
+export const sendBackupToServer = async (user_id: number, currentTimeFromServer: number) => {
+
   console.log("send backup");
+
+  await db.table(dbTableKeys.data.table)
+    .where(dbTableKeys.data.id).equals(currentDataId())
+    .modify((data: dataType): dataType => {
+
+      return { ...data, last_sync: currentTimeFromServer }
+    })
+
   let data = await db
     .table(dbTableKeys.data.table)
     .where(dbTableKeys.data.user_id)
@@ -88,19 +99,20 @@ export const sendBackupToServer = async (user_id: number) => {
     type: "application/json",
   });
   const jsonData = new FormData();
-  jsonData.append("jison", blob);
+  jsonData.append("file", blob);
 
   await api({
     method: "post",
-    url: "/file_upload",
+    url: endpoints.backup_upload,
     data: jsonData,
     headers: {
       "Content-Type": "multipart/form-data",
     },
   }).then((response) => console.log("response ====> ", response));
+
 };
 
-export const resciveBackupFromServer = async (user: userType) => {
+export const resciveBackupFromServer = async (user: userType, backup: dataType) => {
   console.log("rescive backup");
   let userDb = await db
     .table(dbTableKeys.users.table)
@@ -108,15 +120,7 @@ export const resciveBackupFromServer = async (user: userType) => {
     .equals(user.id)
     .first();
 
-  let backup: dataType;
-  if (user.last_sync != null) {
-    let link = "file_download/" + user.id + ".json";
-    await api.get(link).then((response) => {
-      backup = response.data;
-      console.log(response.data)
-    });
-  }
-console.log(user.last_sync)
+  console.log(user.last_sync)
   console.log("backup ==> ", backup);
   await db
     .table(dbTableKeys.data.table)

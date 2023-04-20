@@ -12,23 +12,23 @@ import { selectSpecificDataIndexedDb } from "../../db/data/dataDb";
 
 export const registerAsync =
   (values: userType, navigate: NavigateFunction) =>
-  async (dispatch: AppDispatch) => {
-    console.log(values);
-    dispatch(changeStatusSync(true));
+    async (dispatch: AppDispatch) => {
+      console.log(values);
+      dispatch(changeStatusSync(true));
 
-    api
-      .post(endpoints.register, values)
-      .then((response) => {
-        if (response.data.success) {
-          dispatch(appSlice.actions.login(response.data.data));
-          navigate(endroutes.thankyou);
-        }
-      })
-      .catch(() => {})
-      .finally(() => {
-        dispatch(changeStatusSync(false));
-      });
-  };
+      api
+        .post(endpoints.register, values)
+        .then((response) => {
+          if (response.data.success) {
+            dispatch(appSlice.actions.login(response.data.data));
+            navigate(endroutes.thankyou);
+          }
+        })
+        .catch(() => { })
+        .finally(() => {
+          dispatch(changeStatusSync(false));
+        });
+    };
 
 export const changeStatusSync =
   (status: StatusType) => (dispatch: AppDispatch) => {
@@ -37,25 +37,25 @@ export const changeStatusSync =
 
 export const loginAsync =
   (values: { email: string; password: string }, navigate: NavigateFunction) =>
-  async (dispatch: AppDispatch) => {
-    dispatch(changeStatusSync(true));
-    api
-      .post(endpoints.login, values)
-      .then((response) => {
-        console.log('test new response')
-        console.log(response)
-        if (response.data.success) {
-          dispatch(appSlice.actions.login(response.data.data));
-          navigate(endroutes.thankyou);
-        } else {
-          alert(response.data.msg);
-        }
-      })
-      .catch(() => {})
-      .finally(() => {
-        dispatch(changeStatusSync(false));
-      });
-  };
+    async (dispatch: AppDispatch) => {
+      dispatch(changeStatusSync(true));
+      api
+        .post(endpoints.login, values)
+        .then((response) => {
+          console.log('test new response')
+          console.log(response)
+          if (response.data.success) {
+            dispatch(appSlice.actions.login(response.data.data));
+            navigate(endroutes.thankyou);
+          } else {
+            alert(response.data.msg);
+          }
+        })
+        .catch(() => { })
+        .finally(() => {
+          dispatch(changeStatusSync(false));
+        });
+    };
 
 export const refreshTokenAsync = () => async (dispatch: AppDispatch) => {
   const db = await selectSpecificDataIndexedDb();
@@ -63,7 +63,7 @@ export const refreshTokenAsync = () => async (dispatch: AppDispatch) => {
 
   api.post(endpoints.refreshToken).then((response) => {
     if (response.data.success) {
-      dispatch(appSlice.actions.login({ token: response.data.data }));
+      dispatch(appSlice.actions.login(response.data.data));
     }
   });
 };
