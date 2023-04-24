@@ -14,6 +14,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { accountType } from "./account-type";
 import { AccountDialog } from "./AccountDialog";
 import { AccountsPage } from "./AccountsPage";
+import { selectAccounts } from "../../redux/data/dataSlice";
 
 const columns: any = [
   { id: "id", name: "id" },
@@ -24,15 +25,15 @@ export const AccountsContainer = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  // const accounts = useSelector(selectAccounts);
-  const  accounts  = useDbFetchAccounts();
+  const accounts = useSelector(selectAccounts);
+  // const  accounts  = useDbFetchAccounts();
   const DeleteAccountAsync = (account: accountType, isDelete: boolean) => {
     dispatch(
       appSlice.actions.openConfirmBox({
         title: account.name,
         message: t(en.delete_message),
         handleSubmit: () => {
-          DbDeleteAccount(account);
+          // DbDeleteAccount(account);
           dispatch(deleteAccountAsync(account));
         },
       })

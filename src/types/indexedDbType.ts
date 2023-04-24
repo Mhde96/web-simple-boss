@@ -20,7 +20,7 @@ export type dataType = {
   created_at?: Date;
   editor?: string;
   updated_at?: Date;
-  last_sync?: number;
+  last_sync: number;
   user_id?: number;
 };
 
@@ -32,7 +32,7 @@ export let emptyDataObject: dataType = {
   created_at: new Date(),
   description: "",
   editor: "",
-  last_sync: new Date(),
+  last_sync: 0,
   publisher: "",
   updated_at: new Date(),
   user_id: undefined,

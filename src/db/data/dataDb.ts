@@ -112,25 +112,21 @@ export const sendBackupToServer = async (user_id: number, currentTimeFromServer:
 
 };
 
-export const resciveBackupFromServer = async (user: userType, backup: dataType) => {
+export const resciveBackupFromServer = async (user: userType, backup: dataType, userDb: dataType) => {
   console.log("rescive backup");
-  let userDb = await db
-    .table(dbTableKeys.users.table)
-    .where(dbTableKeys.users.user_id)
-    .equals(user.id)
-    .first();
 
-  console.log(user.last_sync)
-  console.log("backup ==> ", backup);
-  await db
-    .table(dbTableKeys.data.table)
-    .where(dbTableKeys.data.user_id)
-    .equals(user.id)
-    .delete();
-  await db.table(dbTableKeys.data.table).bulkAdd(backup);
-  await db
-    .table(dbTableKeys.users.table)
-    .update(userDb.id, { [dbTableKeys.users.last_sync]: new Date() });
+  if (userDb != undefined) {
+    await db
+      .table(dbTableKeys.data.table)
+      .where(dbTableKeys.data.user_id)
+      .equals(user.id)
+      .delete();
+  }
+
+  await db.table(dbTableKeys.data.table).add(backup);
+  // await db
+  //   .table(dbTableKeys.users.table)
+  //   .update(userDb.id, { [dbTableKeys.users.last_sync]: new Date() });
 };
 
 export const importDataFromDeviceIndexedDb = async (e: any) => {

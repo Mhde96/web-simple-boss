@@ -12,35 +12,32 @@ import { dataSlice } from "./dataSlice";
 
 export const SaveAccountAsync =
   (account: accountType, navigate: NavigateFunction) =>
-  (dispatch: AppDispatch) => {
-    let configration = () => {
-      let method = "post";
-      let url = endpoints.account;
-      account.financial_statement = String(account.financial_statement);
-      let data = account;
+    (dispatch: AppDispatch) => {
+      let configration = () => {
+        let method = "post";
+        let url = endpoints.add_account;
+        account.financial_statement = String(account.financial_statement);
+        let data = account;
 
-      if (account.id) {
-        method = "put";
-        url = url + "/" + account.id;
-      }
 
-      return { method, url, data };
+
+        return { method, url, data };
+      };
+      api({ ...configration() }).then((response) => {
+        dispatch(fetchAccountsAsync());
+        navigate(-1);
+      });
     };
-    api({ ...configration() }).then((response) => {
-      dispatch(fetchAccountsAsync());
-      navigate(-1);
-    });
-  };
 
 export const deleteAccountAsync =
   (account: accountType) => (dispatch: AppDispatch) => {
-    api.delete(endpoints.account + "/" + account.id).then(() => {
+    api.delete(endpoints.delete_account + "/" + account.id).then(() => {
       dispatch(fetchAccountsAsync());
     });
   };
 
 export const fetchAccountsAsync = () => (dispatch: AppDispatch) => {
-  api.get(endpoints.account).then((response) => {
+  api.post(endpoints.fetch_accounts).then((response) => {
     if (response.data.success) {
       dispatch(dataSlice.actions.fetchAccounts(response.data.data));
     }
