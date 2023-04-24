@@ -1,11 +1,8 @@
 import { NavigateFunction } from "react-router-dom";
-import { boolean } from "yup";
 import { endpoints } from "../../constant/endpoints";
-import { endroutes } from "../../constant/endroutes";
 import { accountType } from "../../containers/accounts/account-type";
 import { journalType } from "../../containers/journals/journal-type";
 import { api } from "../../helper/api";
-import appSlice from "../app/appSlice";
 
 import { AppDispatch } from "../store";
 import { dataSlice } from "./dataSlice";
@@ -18,8 +15,6 @@ export const SaveAccountAsync =
         let url = endpoints.add_account;
         account.financial_statement = String(account.financial_statement);
         let data = account;
-
-
 
         return { method, url, data };
       };
