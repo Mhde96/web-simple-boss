@@ -4,14 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { EmptyData } from "../../components/data/EmptyData";
 import { ConfirmationDeleteDialog } from "../../components/dialogs/ConfirmationDeleteDialog";
 import { endroutes } from "../../constant/endroutes";
-import { deleteJournalIndexedDb, useFetchJournalsIndexedDb } from "../../db/data/journalsDb";
+import {
+  deleteJournalIndexedDb,
+  useFetchJournalsIndexedDb,
+} from "../../db/data/journalsDb";
 import {
   deleteJournalAsync,
+  fetchAccountsAsync,
   fetchJournalsAsync,
 } from "../../redux/data/dataAsync";
 import { useAppDispatch } from "../../redux/hooks";
 import { journalType } from "./journal-type";
 import { JournalsPage } from "./JournalsPage";
+import { selectJournals } from "../../redux/data/dataSlice";
 
 const columns = [
   { id: "description", name: "description" },
@@ -21,19 +26,19 @@ const columns = [
 export const JournalsContainer = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const journals = useFetchJournalsIndexedDb();
+  const journals = useSelector(selectJournals);
+  // const journals = useFetchJournalsIndexedDb();
 
   const DeleteJournalAsync = (journal: journalType, isDelete: boolean) => {
-  
     if (isDelete && journal.id) {
-      deleteJournalIndexedDb(journal)
-      // dispatch(deleteJournalAsync(journal));
+      // deleteJournalIndexedDb(journal)
+      dispatch(deleteJournalAsync(journal));
     } else {
       setShowConfirmationDialog({
         show: true,
         data: journal,
         title: "Delete Journal",
-        body: "are you sure you want to delete " + journal.number,
+        body: "are you sure you want to delete " + journal?.number,
       });
     }
   };
@@ -42,6 +47,7 @@ export const JournalsContainer = () => {
 
   useEffect(() => {
     dispatch(fetchJournalsAsync());
+    dispatch(fetchAccountsAsync());
   }, []);
 
   const [showConfirmationDialog, setShowConfirmationDialog] = useState<any>({

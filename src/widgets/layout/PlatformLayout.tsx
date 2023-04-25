@@ -41,7 +41,7 @@ export const PlatformLayout = () => {
   };
 
   useEffect(() => {
-    syncUserDb(user);
+    // syncUserDb(user);
   }, []);
 
   const NavCard = ({ title, href, icon, onClick, className }: any) => {

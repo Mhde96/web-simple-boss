@@ -4,7 +4,6 @@ import { JournalCard } from "../../components/cards/journal/JournalCard";
 import { useNavigate } from "react-router-dom";
 import { endroutes } from "../../constant/endroutes";
 import { Button } from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
 import "./journals-page-styles.scss";
@@ -48,7 +47,7 @@ export const JournalsPage = (props: JournalPagePropsType) => {
                 index={index}
                 pointer
                 key={index}
-                entries={item.journalentries}
+                entries={item.entries}
                 onEdit={() => props.handleNavigateToEntries(item.number)}
                 handleTrash={() => props.DeleteJournalAsync(item)}
                 {...item}

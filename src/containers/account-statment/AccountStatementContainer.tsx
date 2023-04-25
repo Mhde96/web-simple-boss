@@ -10,13 +10,17 @@ import { accountType } from "../accounts/account-type";
 import { entryType } from "../entry/journal-entry-type";
 import { AccountStatementPagePropsType } from "./account-statement-type";
 import { AccountStatmentPage } from "./AccountStatementPage";
+import { useSelector } from "react-redux";
+import { selectAccounts, selectJournals } from "../../redux/data/dataSlice";
 
 export const AccountStatmentContainer = () => {
   const { key } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const journals = useFetchJournalsIndexedDb();
-  const accounts = useDbFetchAccounts();
+  // const journals = useFetchJournalsIndexedDb();
+  // const accounts = useDbFetchAccounts();
+  const journals = useSelector(selectJournals);
+  const accounts = useSelector(selectAccounts);
 
   const [entries, setEntries] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState({
@@ -24,7 +28,7 @@ export const AccountStatmentContainer = () => {
     value: "",
   });
   const account = accounts.find(
-    (account: accountType) => account.key == key
+    (account: accountType) => account.id == key
   )?.id;
 
   useEffect(() => {
@@ -34,7 +38,7 @@ export const AccountStatmentContainer = () => {
   }, [key, accounts, journals]);
 
   const handleGetAccountData = (key: string) => {
-    const account = accounts.find((account: accountType) => account.key == key);
+    const account = accounts.find((account: accountType) => account.id == key);
     const account_id = account.id;
     setSelectedAccount({
       value: account.key,
@@ -44,8 +48,8 @@ export const AccountStatmentContainer = () => {
     let data: any = [];
 
     journals.map((journal) => {
-      journal.journalentries?.map((entry) => {
-        if (entry.account_id == account_id) {
+      journal.entries?.map((entry) => {
+        if (entry.account.id == account_id) {
           data.push({ ...entry, number: journal.number });
         }
       });

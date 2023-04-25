@@ -22,13 +22,15 @@ export const FinancialStatementNewPage = (props: any) => {
         value2={t(en.total)}
         value3={t(en.total)}
       />
-      {props?.statement()?.map((account: any) => (
-        <FinancialStatementNewCard
-          name={account.account}
-          value1={account.value1}
-          value2={account.value2}
-          value3={account.value3}
-        />
+      {props?.statement()?.map((account: any, index: number) => (
+        <div key={index}>
+          <FinancialStatementNewCard
+            name={account.account}
+            value1={account.value1}
+            value2={account.value2}
+            value3={account.value3}
+          />
+        </div>
       ))}
     </motion.div>
   );

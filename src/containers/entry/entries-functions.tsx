@@ -73,39 +73,54 @@ export function rowKeyGetter(row: any) {
 export const deleteRow = (rowIdx: number, setValues: any) => {
   setValues((prevValues: any) => ({
     ...prevValues,
-    journalentries: prevValues.journalentries.filter(
+    entries: prevValues.entries.filter(
       (entary: any, index: number) => index != rowIdx
     ),
   }));
 };
 
 export const JournalApi = (data: any, navigate: NavigateFunction) => {
+  console.log(data);
   let configration = () => {
     let method = "post";
-    let url = endpoints.journals;
+    let url = endpoints.add_journal;
+
     if (data.number != "new") {
-      method = "put";
-      url = url + "/" + data.number;
+      method = "post";
+
+      url = endpoints.update_journal;
     }
 
     return { method, url };
   };
 
   let entries: Array<any> = [];
-  data.journalentries.map((entry: any) => {
-    if (entry.account_id && (entry.debit > 0 || entry.credit > 0)) {
+  data.entries.map((entry: any) => {
+    entry.debit = parseInt(entry.debit);
+    entry.credit = parseInt(entry.credit);
+    if (entry.account.id && (entry.debit > 0 || entry.credit > 0)) {
+      if (entry.id == null && configration().url == endpoints.add_journal) {
+        delete entry.id;
+      }
+
+      delete entry.accountName;
+      delete entry.account_id;
+      delete entry.accountKey;
+      delete entry.status;
       entries.push(entry);
     }
   });
 
+  console.log(entries);
   api({
     ...configration(),
 
     data: {
-      ...data,
-      journal_entry: entries,
+      description: data.description,
       date: moment(data.date).format("yyyy-MM-DD"),
-      entries,
+      entries: entries,
+      number: data.number,
+      user_id: data.user_id,
     },
   }).then((response) => {
     navigate(endroutes.journals.path);

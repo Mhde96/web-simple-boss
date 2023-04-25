@@ -1,3 +1,5 @@
+import { accountType } from "../accounts/account-type";
+
 export enum columnsKey {
   id = "id",
   account_id = "account_id",
@@ -7,6 +9,7 @@ export enum columnsKey {
   credit = "credit",
   debit = "debit",
   status = "status",
+  account = "account",
 }
 
 export type entryType = {
@@ -18,6 +21,7 @@ export type entryType = {
   [columnsKey.credit]: number;
   [columnsKey.debit]: number;
   [columnsKey.status]: number;
+  [columnsKey.account]: accountType;
 };
 
 enum status {
@@ -37,6 +41,12 @@ export const empty_row: entryType = {
   [columnsKey.credit]: 0,
   [columnsKey.debit]: 0,
   [columnsKey.status]: status.empty,
+  [columnsKey.account]: {
+    name: "",
+    financial_statement: "",
+    credit: 0,
+    debit: 0,
+  },
 };
 
 export type JournalEntryPagePropsType = {

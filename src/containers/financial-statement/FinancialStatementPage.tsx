@@ -15,11 +15,18 @@ export const FinancialStatementPage = (props: any) => {
             <FinancialStatementCard name={t(en.account)} value={t(en.value)} />
           </div>
           {props?.state?.credits?.map((item: any, index: number) => (
-            <FinancialStatementCard name={item.name} value={item.credit} />
+            <FinancialStatementCard
+              name={item.name}
+              value={item.credit}
+              key={index}
+            />
           ))}
         </div>
         <div className="footer">
-          <FinancialStatementCard name={t(en.total)} value={props?.state?.total} />
+          <FinancialStatementCard
+            name={t(en.total)}
+            value={props?.state?.total}
+          />
         </div>
       </div>
 
@@ -29,11 +36,18 @@ export const FinancialStatementPage = (props: any) => {
             <FinancialStatementCard name={t(en.account)} value={t(en.value)} />
           </div>
           {props?.state?.debits?.map((item: any, index: number) => (
-            <FinancialStatementCard name={item.name} value={item.debit} />
+            <FinancialStatementCard
+              key={index}
+              name={item.name}
+              value={item.debit}
+            />
           ))}
         </div>
         <div className="footer">
-          <FinancialStatementCard name={t(en.total)} value={props?.state?.total} />
+          <FinancialStatementCard
+            name={t(en.total)}
+            value={props?.state?.total}
+          />
         </div>
       </div>
     </motion.div>

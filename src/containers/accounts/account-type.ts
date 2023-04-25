@@ -8,7 +8,7 @@ export type AccountsPropsType = {
 export type accountType = {
   id?: number;
   name: string;
-  key?: string ;
+  // key?: string ;
   financial_statement: "0" | "1" | "2" | string;
   isDelete?: boolean; // this just if you want to delete account in redux async function
   debit?: any;

@@ -17,7 +17,7 @@ export const AccountStatmentPage = (props: AccountStatementPagePropsType) => {
   const colorMode = useColorMemo();
   const navigate = useNavigate();
   const accounts = props.accounts.map((item: accountType) => ({
-    value: item.key,
+    value: item.id,
     label: item.name,
   }));
 

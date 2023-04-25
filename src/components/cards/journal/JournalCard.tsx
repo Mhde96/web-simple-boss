@@ -37,10 +37,10 @@ export const JournalCard = ({
   index,
   entries,
 }: JournalCardType) => {
-
   const colors = useColors();
   const [active, setActive] = useState(false);
-  const accounts = useDbFetchAccounts()
+  // const accounts = useDbFetchAccounts()
+  const accounts = useSelector(selectAccounts);
 
   const classes = classNames(
     {
@@ -75,7 +75,7 @@ export const JournalCard = ({
                 <div className="entry" key={index}>
                   <div>
                     {
-                      accounts.find((account) => account.id == entry.account_id)
+                      accounts.find((account) => account.id == entry.account.id)
                         .name
                     }
                   </div>

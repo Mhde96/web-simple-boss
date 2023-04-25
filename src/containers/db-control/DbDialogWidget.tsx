@@ -60,7 +60,7 @@ export const DbDialogWidget = () => {
     if (typeof parseInt(id) === "number" && parseInt(id) > 0) handleGetDb();
   }, [id]);
 
-  console.log(values)
+  // console.log(values)
 
   return (
     <ModalWrap show={id} onHide={handleClose} size="lg">
@@ -76,7 +76,6 @@ export const DbDialogWidget = () => {
           error={errors?.name}
         />
         <br />
-
 
         <Input
           textArea

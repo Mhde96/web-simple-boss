@@ -39,17 +39,16 @@ export const saveJournalsIndexedDb = async (journal: journalType) => {
     isUpdate = true;
   }
 
+  journal.number = journal.id;
 
-  journal.number = journal.id
-
-  let journalentries: Array<entryType> = [];
-  journal.journalentries?.map((entry, index) => {
+  let entries: Array<entryType> = [];
+  journal.entries?.map((entry, index) => {
     if (entry?.debit > 0 || entry?.credit > 0) {
-      journalentries.push({ ...entry, id: index + 1 });
+      entries.push({ ...entry, id: index + 1 });
     }
   });
 
-  journal.journalentries = journalentries;
+  journal.entries = entries;
 
   await db
     .table(dbTableKeys.data.table)

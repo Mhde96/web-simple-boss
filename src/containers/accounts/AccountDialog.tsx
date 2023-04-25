@@ -19,11 +19,14 @@ import {
   saveAccountIndexedDb,
   useDbFetchAccounts,
 } from "../../db/data/accountsDb";
+import { useSelector } from "react-redux";
+import { selectAccounts } from "../../redux/data/dataSlice";
+import { SaveAccountAsync } from "../../redux/data/dataAsync";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
   financial_statement: yup.string().required(),
-  key: yup.string().required(),
+  // key: yup.string().required(),
 });
 export const AccountDialog = ({}: any) => {
   const { t } = useTranslation();
@@ -33,14 +36,14 @@ export const AccountDialog = ({}: any) => {
 
   // redux
   const dispatch = useAppDispatch();
-  // const accounts = useSelector(selectAccounts);
-  const  accounts  = useDbFetchAccounts();
+  const accounts = useSelector(selectAccounts);
+  // const  accounts  = useDbFetchAccounts();
 
   const { values, setValues, handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
       name: "",
       financial_statement: "0",
-      key: undefined,
+      // key: undefined,
     },
     validateOnChange: false,
     validationSchema,
@@ -48,7 +51,7 @@ export const AccountDialog = ({}: any) => {
       saveAccountIndexedDb(values);
       navigate(-1);
       // DbAddAccount(values);
-      // dispatch(SaveAccountAsync(values, navigate));
+      dispatch(SaveAccountAsync(values, navigate));
     },
   });
 
@@ -57,7 +60,7 @@ export const AccountDialog = ({}: any) => {
 
     if (id != undefined) {
       if (id == "new") {
-        setValues({ name: "", financial_statement: "0", key: undefined });
+        setValues({ name: "", financial_statement: "0" });
       } else setValues(accounts.find((account: any) => account.id == id));
       return true;
     } else return false;
@@ -78,13 +81,13 @@ export const AccountDialog = ({}: any) => {
             placeholder={t(en.account_name)}
             error={errors?.name}
           />
-          <br />
+          {/* <br />
           <Input
             onChange={handleChange("key")}
             value={values?.key}
             placeholder={t(en.account_key)}
             error={errors?.key}
-          />
+          /> */}
           <br />
           <>
             {financial_statement_array.map((item, index) => (

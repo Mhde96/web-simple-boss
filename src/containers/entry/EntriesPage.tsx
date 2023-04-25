@@ -14,9 +14,7 @@ import { navigateAccountStatement } from "../account-statment/account-statement-
 import { useColorMemo } from "../../hook/useColorMemo";
 import { useTranslation } from "react-i18next";
 import { en } from "../../helper/languages/en";
-import moment from "moment";
 import { dateFormatUi } from "../../utils/date-format";
-import { ReactDatePicker } from "react-datepicker";
 
 const MENU_ID = "menu-id";
 
@@ -106,16 +104,16 @@ export const EntriesPage = (props: JournalEntryPagePropsType) => {
         components={{ rowRenderer }}
         columns={jounral_entry_columns}
         summaryRows={props.summaryRows}
-        rows={props.values.journalentries}
+        rows={props.values.entries}
         onRowsChange={props.onRowsChange}
       />
 
       <Menu id={MENU_ID}>
-        {values.journalentries[rowIndex]?.accountKey && (
+        {values.entries[rowIndex]?.accountKey && (
           <Item
             onClick={() => {
               navigateAccountStatement({
-                key: values.journalentries[rowIndex].accountKey,
+                key: values.entries[rowIndex].accountKey,
                 navigate,
               });
             }}

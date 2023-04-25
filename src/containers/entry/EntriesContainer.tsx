@@ -34,8 +34,10 @@ import {
 export const EntriesContainer = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const accounts = useDbFetchAccounts();
-  const journals = useFetchJournalsIndexedDb();
+  // const accounts = useDbFetchAccounts();
+  const accounts = useSelector(selectAccounts);
+  const journals = useSelector(selectJournals);
+  // const journals = useFetchJournalsIndexedDb();
   const { number } = useParams();
 
   useEffect(() => {
@@ -51,12 +53,12 @@ export const EntriesContainer = () => {
       number,
       description: "",
       date: new Date(),
-      journalentries: journal_entry_rows(),
+      entries: journal_entry_rows(),
     },
     onSubmit: (values) => {
-      // JournalApi(values, navigate);
-      console.log("values +> ", values);
-      saveJournalsIndexedDb(values);
+      JournalApi(values, navigate);
+
+      // saveJournalsIndexedDb(values);
       // navigate(endroutes.journals.path);
     },
   });
@@ -67,14 +69,14 @@ export const EntriesContainer = () => {
       (journal: journalType) => journal.number == number
     );
 
-    journal?.journalentries?.map((item) => {
+    journal?.entries?.map((item) => {
       const account = accounts.find(
-        (account: accountType) => account.id == item.account_id
+        (account: accountType) => account.id == item.account.id
       );
       data.push({
         ...item,
         accountName: account?.name,
-        accountKey: account?.key,
+        // accountKey: account?.key,
       });
     });
 
@@ -84,7 +86,7 @@ export const EntriesContainer = () => {
         ...journal,
         number,
 
-        journalentries: [...data, ...journal_entry_rows()],
+        entries: [...data, ...journal_entry_rows()],
       });
     }
   };
@@ -164,7 +166,7 @@ export const EntriesContainer = () => {
       );
 
       if (accountsfiltered?.length > 1) {
-        setValues({ ...values, journalentries: newRows });
+        setValues({ ...values, entries: newRows });
         setRowIndex(index);
         setOpen(true);
         return;
@@ -176,46 +178,45 @@ export const EntriesContainer = () => {
       }
     }
 
-    if (index == values.journalentries?.length - 1) {
+    if (index == values.entries?.length - 1) {
       setValues({
         ...values,
-        journalentries: [...newRows, empty_row],
+        entries: [...newRows, empty_row],
       });
     } else {
-      setValues({ ...values, journalentries: newRows });
+      setValues({ ...values, entries: newRows });
     }
   };
 
   const fillAccount = (account: accountType, rowIndex: number) => {
     setValues((prevValues) => ({
       ...prevValues,
-      journalentries: prevValues.journalentries.map(
-        (entary: entryType, index: number) => {
-          if (index == rowIndex) {
-            let _entary = { ...entary };
+      entries: prevValues.entries.map((entary: entryType, index: number) => {
+        if (index == rowIndex) {
+          let _entary = { ...entary };
 
-            return {
-              ..._entary,
-              [columnsKey.accountName]: account.name,
-              [columnsKey.accountKey]: account.key,
-              [columnsKey.account_id]: account.id,
-            };
-          }
-          // nothing happen
-          else return entary;
+          return {
+            ..._entary,
+            [columnsKey.accountName]: account.name,
+            [columnsKey.accountKey]: 1, // account.key,
+            [columnsKey.account_id]: account.id,
+            [columnsKey.account]: account,
+          };
         }
-      ),
+        // nothing happen
+        else return entary;
+      }),
     }));
   };
 
   const summaryRows = useMemo(() => {
-    const totalCredit = _.sumBy(values.journalentries, (item: any) =>
+    const totalCredit = _.sumBy(values.entries, (item: any) =>
       Number(item.credit)
     );
-    const totalDebit = _.sumBy(values.journalentries, (item: any) =>
+    const totalDebit = _.sumBy(values.entries, (item: any) =>
       Number(item.debit)
     );
-    const accountLength = values?.journalentries?.filter(
+    const accountLength = values?.entries?.filter(
       (item: any) => item.account_id
     )?.length;
 
@@ -228,7 +229,7 @@ export const EntriesContainer = () => {
         difference,
       },
     ];
-  }, [values.journalentries]);
+  }, [values.entries]);
 
   const props: JournalEntryPagePropsType = {
     values,
@@ -249,7 +250,7 @@ export const EntriesContainer = () => {
     // goAccountStatement
   };
 
-  if (values?.journalentries?.length > 0)
+  if (values?.entries?.length > 0)
     return (
       <>
         <SelectAccountDialog

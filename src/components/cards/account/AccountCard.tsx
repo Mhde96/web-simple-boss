@@ -20,15 +20,15 @@ import { en } from "../../../helper/languages/en";
 export const AccountCard = (props: AccountCardTypeProps) => {
   const { t } = useTranslation();
   const colors = useColors();
-  const { account_key, name, operations, isHeader, index } = props;
-  const accountKey = account_key ? account_key + " - " : "";
+  const { name, operations, isHeader, index } = props;
+  // const accountKey = account_key ? account_key + " - " : "";
 
   const AnimationProps = { ...CardAnimationProps({ index }) };
 
   return (
     <motion.div {...AnimationProps} id="account-card-styles">
       <div className="name" onClick={() => operations?.update()}>
-        {accountKey + name}
+        {name}
       </div>
 
       <div
@@ -58,7 +58,9 @@ export const AccountCard = (props: AccountCardTypeProps) => {
             />
           </>
         )}
-        {operations?.delete && <TrashIcon fill={colors.text} onClick={operations.delete} />}
+        {operations?.delete && (
+          <TrashIcon fill={colors.text} onClick={operations.delete} />
+        )}
       </div>
     </motion.div>
   );

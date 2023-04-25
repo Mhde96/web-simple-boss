@@ -19,11 +19,11 @@ const trial_balance_ammount = (
   }));
 
   journals.map((journal: any) => {
-    journal.journalentries?.map((entry: any) => {
+    journal.entries?.map((entry: any) => {
       const account = _accounts?.find((item) => {
-        return item.id == entry.account_id;
+        return item.id == entry.account.id;
       });
-      if (entry.account_id == account?.id) {
+      if (entry.account.id == account?.id) {
         _entries.push({ ...entry, accountName: account?.name });
       }
     });
@@ -31,7 +31,7 @@ const trial_balance_ammount = (
 
   _entries.map((entry: any) => {
     _accounts = _accounts.map((account) => {
-      if (account.id == entry.account_id) {
+      if (account.id == entry.account.id) {
         return {
           ...account,
           debit: Number(account.debit) + Number(entry.debit),
@@ -236,8 +236,8 @@ const balance_sheet = (_trial_balance: any, _profit_account: any) => {
 };
 
 export const useFinancialStatement = () => {
-  const accounts = useDbFetchAccounts();
-  const journals = useFetchJournalsIndexedDb();
+  const accounts = useSelector(selectAccounts);
+  const journals = useSelector(selectJournals);
 
   const _trial_balance_ammount = trial_balance_ammount(accounts, journals);
   const _trial_balance = trial_balance(_trial_balance_ammount);

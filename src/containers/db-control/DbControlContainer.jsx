@@ -67,7 +67,7 @@ export const DbControlContainer = ({}) => {
                   e.target.value = "";
                 }}
               />
-              <label className="primary-button" for="file-upload">
+              <label className="primary-button" htmlFor="file-upload">
                 {"Import "} <CloudPlusIcon />
               </label>
             </Col>

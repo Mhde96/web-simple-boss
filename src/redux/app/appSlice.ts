@@ -79,8 +79,7 @@ export const appSlice = createSlice({
       state.language = payload;
     },
     changeDb: (state, { payload }) => {
-      
-      cookies.set(cookiesKey.dbId, payload.id);
+      // cookies.set(cookiesKey.dbId, payload.id);
       state.db = payload;
     },
   },

@@ -5,7 +5,7 @@ export type journalType = {
   description: string;
   date: any;
   journal_entries?: Array<entryType>;
-  journalentries?: Array<entryType>;
+  // journalentries?: Array<entryType>;
   entries?: Array<entryType>;
   number: number | string;
 };
